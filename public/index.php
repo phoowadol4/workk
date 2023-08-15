@@ -3,7 +3,9 @@ include("./process/process_get.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    ok
+    
+
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
