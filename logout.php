@@ -1,23 +1,22 @@
 <?php
-// Start a session
 session_start();
 
-// Check if the user is logged in
-if (isset($username['username'])) {
-    // Perform any necessary cleanup or actions before logging out
-    
-    // Clear session data
+// Delete token and token expiration session variables
+unset($_SESSION['token']);
+unset($_SESSION['token_expiration']);
+
     session_unset();
     
     // Destroy the session
     session_destroy();
+
     
     // Redirect the user to the login page or any other desired page
     header("Location: login_form.php"); // You might replace this with your actual login page URL
     exit();
-} else {
-    // If the user is not logged in, redirect them to the login page
-    header("Location: login_form.php");
-    exit();
-}
+ 
+    header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 ?> 

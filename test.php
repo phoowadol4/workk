@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,27 +26,28 @@
     </div>
   </form>
   <?php
-if (isset($_GET['result'])) {
-    $searchQuery = $_GET['result'];
 
-    // Check if there is data in the database
-    $hasData = true; // Assuming there is data
+session_start();
+if (!isset($_SESSION['token'])) {
+  $tokenExpiration = time() + 60; 
+  $_SESSION['token'] = $token;
+  $_SESSION['token_expiration'] = $tokenExpiration;
+  header("Location: login_form.php"); 
+  exit();
+}
+  $token = $_SESSION['token'];
 
-    $curl = curl_init();
 
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.healthserv.gistnu.nu.ac.th/persons',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJvb256YTY2IiwiaWF0IjoxNjkyMDY2OTE4LCJleHAiOjE2OTIwNzA1MTh9.UsFqY3NNSe6Y4DyXt6ww-kMC1EU1kdJyYtuStpOaWt0' // Replace with your actual access token
-        ),
-    ));
+$apiUrl = 'https://api.healthserv.gistnu.nu.ac.th/persons';
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => $apiUrl,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer ' . $token
+    ),
+));
     
 
     $response = curl_exec($curl);
@@ -55,7 +57,12 @@ if (isset($_GET['result'])) {
     } else {
         $data = json_decode($response, true);
         
-        // Display the data in a user-friendly way
+        if (isset($_GET['result'])) {
+          $searchQuery = $_GET['result'];
+      
+        
+          $hasData = true; 
+        }
         if (isset($data['result']) && !empty($data['result'])) {
             echo '<h2>Search Results</h2>';
             echo '<table>';
@@ -63,9 +70,10 @@ if (isset($_GET['result'])) {
           
             </tr></thead>';
             echo '<tbody>';
+            $searchQuery = "John";
             foreach ($data['result'] as $person) {
                 // Check if the ID matches the search query
-                if ($person['id'] == $searchQuery) {
+                if ($person['fname'] == $searchQuery || $person['id'] == $searchQuery ) {
                   echo "<tr>
                   <td>" . $person['cid'] . "</td>
                   <td>" . $person['pname'] . "</td>
@@ -168,9 +176,9 @@ if (isset($_GET['result'])) {
     }
 
     curl_close($curl);
-}
+
 ?>
-
-
+<form method="post" action="logout.php">
+<button type="submit" class="text-white bg-indigo-700 shadow-lg shadow-indigo-700/50 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="ล็อก">
   </body>
 </html>

@@ -22,7 +22,7 @@
     <div class="flex justify-center items-center flex-col">
       <img class="h-20" src="./รูป/รพสต.png" alt="รพสต">
       <h2 class="text-2xl text-center mb-6">เข้าสู่ระบบ</h2>
-      <form method="post" action="login.php">
+      <form method="post" action="loginp.php">
         <label class="block text-gray-700 text-sm font-bold mb-2 " for="username">Username:</label>
         <input class="shadow appearance-none border rounded w-full py-2 px-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="username" id="username" placeholder="@ล็อกอิน" required><br><br>
 

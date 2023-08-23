@@ -1,53 +1,50 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve the form data
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+session_start(); // Start the session
 
-    $curl = curl_init();
+if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+    $username = $_SESSION['username'];
+    $password = $_SESSION['password'];
 
-    $data = array(
-        "username" => $username,
-        "password" => $password
-    );
+    $url = 'https://api.healthserv.gistnu.nu.ac.th/auth/login';
+    $data = [
+        'username' => $username,
+        'password' => $password,
+    ];
+    $jsonData = json_encode($data);
 
+    $ch = curl_init();
 
-    $jsonPayload = json_encode($data);
-
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.healthserv.gistnu.nu.ac.th/auth/login',
+    curl_setopt_array($ch, array(
+        CURLOPT_URL => $url,
+        CURLOPT_POST => 1,
+        CURLOPT_POSTFIELDS => $jsonData,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => $jsonPayload,
-        CURLOPT_HTTPHEADER => array(
+        CURLOPT_HTTPHEADER => [
             'Content-Type: application/json'
-        ), // Removed the hardcoded Bearer token
+        ],
     ));
 
-    $response = curl_exec($curl);
-    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE); // Get the HTTP status code
-
-    curl_close($curl);
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     if ($httpCode === 200) {
-        // Successful login
-        header("Location: test.php");
-        exit();
+        $responseData = json_decode($response, true);
+        if (isset($responseData['result']['token'])) {
+            
+            $_SESSION['token'] = $responseData['result']['token'];
+          
+            header("Location: test.php"); // Redirect to dashboard page
+            exit();
+        } else {
+            // Display an error message if token is missing
+            echo "Login failed. Token missing in API response.";
+        }
+    } else if ($httpCode === 401) {
+        // Display an error message for unauthorized access (invalid username/password)
+        echo "Login failed. Invalid username or password.";
     } else {
-        // Failed login
-        // You can display an error message or redirect back to the login page
-       
-        header("Location: login_form.php?error=1");
-        exit();
-        
+        // Display a general error message with HTTP status code
+        echo "Login failed. HTTP Status Code: $httpCode";
     }
 }
 ?>
-<!-- Your HTML form goes here -->
-
-xxx
