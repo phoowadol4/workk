@@ -1,6 +1,7 @@
 <?php
 include("../process/process_get.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,19 +75,22 @@ include("../process/process_get.php");
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="../index.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700">
-                                    Form 1
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 1
                                 </a>
                                 <a href="../index2.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Form 2
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 2
                                 </a>
                                 <a href="../index3.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Form 3
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 3
                                 </a>
                             </div>
                         </div>
+
+
+
                         <!-- Pages links -->
                         <div x-data="{ isActive: false, open: false }">
                             <!-- active classes 'bg-primary-100 dark:bg-primary' -->
@@ -115,75 +119,28 @@ include("../process/process_get.php");
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="blank.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Blank
+                                <a href="people.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    ผู้ตอบแบบสอบถาม
                                 </a>
                                 <a href="comment.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    comment
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    ความคิดเห็นของผู้รับบริการ
+
                                 </a>
                                 <a href="age.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     age
-                                </a>  
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Pricing (soon)
                                 </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Kanban (soon)
-                                </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Feed (soon)
-                                </a>
-                            </div>
-                        </div>                    
-                        <!-- Layouts links -->
-                        <div x-data="{ isActive: false, open: false}">
-                            <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                            <a href="#" @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{'bg-primary-100 dark:bg-primary': isActive || open}" role="button"
-                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                <span aria-hidden="true">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                                    </svg>
-                                </span>
-                                <span class="ml-2 text-sm"> Layouts </span>
-                                <span aria-hidden="true" class="ml-auto">
-                                    <!-- active class 'rotate-180' -->
-                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Layouts">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="layouts/two-columns-sidebar.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Two Columns Sidebar
-                                </a>
-                                <a href="layouts/mini-plus-one-columns-sidebar.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Mini + One Columns Sidebar
-                                </a>
-                                <a href="layouts/mini-column-sidebar.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Mini Column Sidebar
+                                <a href="form_response.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    form_response
                                 </a>
                             </div>
                         </div>
+
                     </nav>
+
                 </div>
             </aside>
 
@@ -245,7 +202,6 @@ include("../process/process_get.php");
                                 </div>
                             </button>
 
-                            <!-- Settings button -->
                             <button @click="openSettingsPanel"
                                 class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
                                 <span class="sr-only">Open settings panel</span>
@@ -257,7 +213,6 @@ include("../process/process_get.php");
                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </button>
-
                             <!-- User avatar button -->
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
@@ -266,7 +221,28 @@ include("../process/process_get.php");
                                     <span class="sr-only">User menu</span>
                                     <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
                                         alt="Ahmed Kamel" />
-                                </button>      
+                                </button>
+
+                                <!-- User dropdown menu -->
+                                <div x-show="open" x-ref="userMenu"
+                                    x-transition:enter="transition-all transform ease-out"
+                                    x-transition:enter-start="translate-y-1/2 opacity-0"
+                                    x-transition:enter-end="translate-y-0 opacity-100"
+                                    x-transition:leave="transition-all transform ease-in"
+                                    x-transition:leave-start="translate-y-0 opacity-100"
+                                    x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
+                                    @keydown.escape="open = false"
+                                    class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
+                                    tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a href="#" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Your Profile
+                                    </a>
+                                    <a href="../process/out.php" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Logout
+                                    </a>
+                                </div>
                             </div>
                         </nav>
 
@@ -301,7 +277,6 @@ include("../process/process_get.php");
                                         </svg>
                                     </div>
                                 </button>
-
                                 <!-- Settings button -->
                                 <button @click="openSettingsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })"
                                     class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
@@ -315,7 +290,6 @@ include("../process/process_get.php");
                                     </svg>
                                 </button>
                             </div>
-
                             <!-- User avatar button -->
                             <div class="relative ml-auto" x-data="{ open: false }">
                                 <button @click="open = !open" type="button" aria-haspopup="true"
@@ -325,6 +299,25 @@ include("../process/process_get.php");
                                     <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
                                         alt="Ahmed Kamel" />
                                 </button>
+
+                                <!-- User dropdown menu -->
+                                <div x-show="open" x-transition:enter="transition-all transform ease-out"
+                                    x-transition:enter-start="translate-y-1/2 opacity-0"
+                                    x-transition:enter-end="translate-y-0 opacity-100"
+                                    x-transition:leave="transition-all transform ease-in"
+                                    x-transition:leave-start="translate-y-0 opacity-100"
+                                    x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
+                                    class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
+                                    role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a href="#" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Your Profile
+                                    </a>
+                                    <a href="../process/out.php" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Logout
+                                    </a>
+                                </div>
                             </div>
                         </nav>
                     </div>
@@ -361,21 +354,21 @@ include("../process/process_get.php");
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="../index.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700">
-                                        Form 1
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 1
                                     </a>
                                     <a href="../index2.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Form 2
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 2
                                     </a>
                                     <a href="../index3.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Form 3
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 3
                                     </a>
                                 </div>
                             </div>
 
-                        
+
 
                             <!-- Pages links -->
                             <div x-data="{ isActive: false, open: false }">
@@ -405,71 +398,22 @@ include("../process/process_get.php");
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="blank.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Blank
+                                    <a href="people.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        ผู้ตอบแบบสอบถาม
                                     </a>
                                     <a href="comment.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        comment
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        ความคิดเห็นของผู้รับบริการ
+
                                     </a>
                                     <a href="age.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         age
                                     </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Pricing (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Kanban (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Feed (soon)
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Layouts links -->
-                            <div x-data="{ isActive: false, open: false}">
-                                <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                                <a href="#" @click="$event.preventDefault(); open = !open"
-                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                    :class="{'bg-primary-100 dark:bg-primary': isActive || open}" role="button"
-                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                                        </svg>
-                                    </span>
-                                    <span class="ml-2 text-sm"> Layouts </span>
-                                    <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
-                                        <svg class="w-4 h-4 transition-transform transform"
-                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Layouts">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="layouts/two-columns-sidebar.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Two Columns Sidebar
-                                    </a>
-                                    <a href="layouts/mini-plus-one-columns-sidebar.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Mini + One Columns Sidebar
-                                    </a>
-                                    <a href="layouts/mini-column-sidebar.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Mini Column Sidebar
+                                    <a href="form_response.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        form_response
                                     </a>
                                 </div>
                             </div>
@@ -485,13 +429,14 @@ include("../process/process_get.php");
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ข้อเสนอแนะ</h4>
+                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ผู้ตอบแบบสอบถาม</h4>
                             </div>
-                            <table class="relative p-4 h-72">
+                            <table>
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>answerer</th>
+                                        <th>รพ.สต.ควรปรับปรุงและพัฒนาในเรื่องใด</th>
+                                        <th>ข้อเสนอแนะอื่นๆ ในการปรับปรุงการบริการของ รพ.สต.เรื่องใดบ้าง</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -499,7 +444,8 @@ include("../process/process_get.php");
                                         foreach ($dataArray['result'] as $survey) {
                                             echo '<tr>';
                                             echo '<td>' . $survey['id'] . '</td>';
-                                            echo '<td>' . $survey['answerer'] . '</td>';
+                                            echo '<td>' . $survey['f_improve'] . '</td>';
+                                            echo '<td>' . $survey['f_other'] . '</td>';
                                             echo '</tr>';
                                         }
                                         ?>
@@ -507,7 +453,7 @@ include("../process/process_get.php");
                             </table>
                         </div>
                     </div>
-            </div>
+                </div>
             </main>
         </div>
 
@@ -611,6 +557,9 @@ include("../process/process_get.php");
         </section>
     </div>
     </div>
+    </section>
+    </div>
+    </div>
 
     <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
@@ -678,7 +627,6 @@ include("../process/process_get.php");
                     this.$refs.settingsPanel.focus()
                 })
             },
-    
             isMobileSubMenuOpen: false,
             openMobileSubMenu() {
                 this.isMobileSubMenuOpen = true

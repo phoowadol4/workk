@@ -11,9 +11,11 @@ include("./process/process_get.php");
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="build/css/tailwind.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+
     <style>
     table {
         border-collapse: collapse;
@@ -25,8 +27,137 @@ include("./process/process_get.php");
         border: 1px solid black;
         padding: 8px;
     }
-    </style>
+
+    .mapsConsumerUiSceneInternalCoreScene__root {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        z-index: 0;
+        background-color: #000
+    }
+
+    .mapsConsumerLibAppKeynav__on .mapsConsumerUiSceneInternalCoreScene__root:focus::after,
+    .mapsConsumerUiSceneInternalCoreScene__root:focus-visible::after {
+        content: "";
+        border: 2px solid #174ea6;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 100%;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 1
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root:focus::after {
+        display: none
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__effects {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__imageryRender {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        background-color: #000
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__root .widget-scene-imagery-iframe {
+        position: absolute
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__root .canvas-renderer {
+        position: absolute;
+        left: 0;
+        top: 0
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__canvas {
+        background-color: #000;
+        left: 0;
+        outline: none;
+        position: absolute;
+        top: 0
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__captureCanvas {
+        position: relative;
+        z-index: 3
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__tileImage3d {
+        -webkit-perspective: 1000;
+        perspective: 1000;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden
+    }
+
+    @media print {
+        .mapsConsumerUiSceneInternalCoreScene__canvas {
+            width: 100% !important;
+            height: auto !important;
+            -webkit-transform: none !important;
+            -ms-transform: none !important;
+            -o-transform: none !important;
+            transform: none !important
+        }
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root {
+        background: #fff;
+        position: static;
+        overflow: visible
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__canvas {
+        display: block;
+        background: #fff
+    }
+
+    .print-mode .app-globe-mode .mapsConsumerUiSceneInternalCoreScene__canvas {
+        background-color: #000
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__imageryRender {
+        position: relative;
+        background: #fff;
+        z-index: 4
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .widget-scene-imagery-iframe {
+        position: relative;
+        left: 50% !important;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%)
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .canvas-renderer,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .canvas-container,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root canvas {
+        position: static !important
+    }
+
+    .print-mode .canvas-renderer+.mapsConsumerUiSceneInternalCoreScene__canvas,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__captureCanvas+.mapsConsumerUiSceneInternalCoreScene__canvas,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__captureCanvas+.canvas-renderer {
+        display: none !important
+    }
+    #map {
+            height: 350px;
+            width: screen;  
+        }
+</style>
 </head>
+
 
 <body>
     <div x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark}">
@@ -36,7 +167,6 @@ include("./process/process_get.php");
                 class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-primary-darker">
                 Loading.....
             </div>
-
             <!-- Sidebar -->
             <aside
                 class="flex-shrink-0 hidden w-64 bg-white border-r dark:border-primary-darker dark:bg-darker md:block">
@@ -72,16 +202,16 @@ include("./process/process_get.php");
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="index.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700">
-                                    Form 1
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 1
                                 </a>
                                 <a href="index2.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Form 2
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 2
                                 </a>
                                 <a href="index3.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Form 3
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 3
                                 </a>
                             </div>
                         </div>
@@ -114,76 +244,23 @@ include("./process/process_get.php");
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="pages/blank.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Blank
+                                <a href="pages/people.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    ผู้ตอบแบบสอบถาม
                                 </a>
                                 <a href="pages/comment.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    comment
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    ความคิดเห็นของผู้รับบริการ
+
                                 </a>
                                 <a href="pages/age.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     age
                                 </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Profile (soon)
-                                </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Pricing (soon)
-                                </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Kanban (soon)
-                                </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Feed (soon)
-                                </a>
-                            </div>
-                        </div>
-                        <!-- Layouts links -->
-                        <div x-data="{ isActive: false, open: false}">
-                            <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                            <a href="#" @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{'bg-primary-100 dark:bg-primary': isActive || open}" role="button"
-                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                <span aria-hidden="true">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                                    </svg>
-                                </span>
-                                <span class="ml-2 text-sm"> Layouts </span>
-                                <span aria-hidden="true" class="ml-auto">
-                                    <!-- active class 'rotate-180' -->
-                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Layouts">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="layouts/two-columns-sidebar.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Two Columns Sidebar
-                                </a>
-                                <a href="layouts/mini-plus-one-columns-sidebar.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Mini + One Columns Sidebar
-                                </a>
-                                <a href="layouts/mini-column-sidebar.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Mini Column Sidebar
-                                </a>
+                                <a href="pages/form_response.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    form_response
+                                </a>   
                             </div>
                         </div>
                     </nav>
@@ -260,26 +337,28 @@ include("./process/process_get.php");
                                 </svg>
                             </button>
                             <!-- User avatar button -->
-                            <div class="relative" x-data="{ open: false }">
-                                <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
-                                    type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
-                                    class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+                            <div class="relative ml-auto" x-data="{ open: false }">
+                                <button @click="open = !open" type="button" aria-haspopup="true"
+                                    :aria-expanded="open ? 'true' : 'false'"
+                                    class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                                     <span class="sr-only">User menu</span>
                                     <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
                                         alt="Ahmed Kamel" />
                                 </button>
 
                                 <!-- User dropdown menu -->
-                                <div x-show="open" x-ref="userMenu"
-                                    x-transition:enter="transition-all transform ease-out"
+                                <div x-show="open" x-transition:enter="transition-all transform ease-out"
                                     x-transition:enter-start="translate-y-1/2 opacity-0"
                                     x-transition:enter-end="translate-y-0 opacity-100"
                                     x-transition:leave="transition-all transform ease-in"
                                     x-transition:leave-start="translate-y-0 opacity-100"
                                     x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
-                                    @keydown.escape="open = false"
-                                    class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
-                                    tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
+                                    role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a href="#" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Your Profile
+                                    </a>
                                     <a href="./process/out.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Logout
@@ -352,6 +431,10 @@ include("./process/process_get.php");
                                     x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
                                     class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
                                     role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a href="#" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Your Profile
+                                    </a>
                                     <a href="./process/out.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Logout
@@ -393,19 +476,22 @@ include("./process/process_get.php");
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="index.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700">
-                                        Form 1
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 1
                                     </a>
                                     <a href="index2.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Form 2
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 2
                                     </a>
                                     <a href="index3.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Form 3
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 3
                                     </a>
                                 </div>
                             </div>
+
+
+
                             <!-- Pages links -->
                             <div x-data="{ isActive: false, open: false }">
                                 <!-- active classes 'bg-primary-100 dark:bg-primary' -->
@@ -434,76 +520,23 @@ include("./process/process_get.php");
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="pages/blank.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Blank
+                                    <a href="pages/people.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        ผู้ตอบแบบสอบถาม
                                     </a>
                                     <a href="pages/comment.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        comment
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        ความคิดเห็นของผู้รับบริการ
+
                                     </a>
                                     <a href="pages/age.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         age
                                     </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Profile (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Pricing (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Kanban (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Feed (soon)
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Layouts links -->
-                            <div x-data="{ isActive: false, open: false}">
-                                <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                                <a href="#" @click="$event.preventDefault(); open = !open"
-                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                    :class="{'bg-primary-100 dark:bg-primary': isActive || open}" role="button"
-                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                                        </svg>
-                                    </span>
-                                    <span class="ml-2 text-sm"> Layouts </span>
-                                    <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
-                                        <svg class="w-4 h-4 transition-transform transform"
-                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Layouts">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="layouts/two-columns-sidebar.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Two Columns Sidebar
-                                    </a>
-                                    <a href="layouts/mini-plus-one-columns-sidebar.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Mini + One Columns Sidebar
-                                    </a>
-                                    <a href="layouts/mini-column-sidebar.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Mini Column Sidebar
-                                    </a>
+                                    <a href="pages/form_response.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    form_response
+                                </a>   
                                 </div>
                             </div>
                         </nav>
@@ -513,222 +546,254 @@ include("./process/process_get.php");
                 <main>
                     <!-- Content header -->
                     <!-- Charts -->
-                    <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-4">
+                    <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
                         <!-- Bar chart card -->
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ข้อเสนอแนะ</h4>
+                                <h4 class="text-lg font-semibold text-black dark:text-light">
+                                    แผนที่</h4>
+                                <div class="flex items-center space-x-2">
+                                </div>
                             </div>
-                            <table class="relative p-4 h-72">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>answerer</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        foreach ($dataArray['result'] as $survey) {
-                                            echo '<tr>';
-                                            echo '<td>' . $survey['id'] . '</td>';
-                                            echo '<td>' . $survey['answerer'] . '</td>';
-                                            echo '</tr>';
-                                        }
-                                        ?>
-                                </tbody>
-                            </table>
+                            <div id="map"></div>
+                            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+                            <script>
+                            var map = L.map('map').setView([16.743258, 100.196908], 13);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(map);
+
+                            L.marker([51.5, -0.09]).addTo(map)
+                                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                                .openPopup();
+                            </script>
+                        </div>
+                        <div class="bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
+                                <!-- Card header -->
+                                <div class="flex items-center justify-between p-4 border-b dark:border-primary">
+                                    <h4 class="text-lg font-semibold text-black dark:text-light">ข้อมูล</h4>
+                                </div>
+                                <!-- Chart -->
+                                <div class="relative p-4"></div>
+                                <canvas id="dataPieChart"></canvas>
+                                <script>
+                                // Convert PHP array to JavaScript array for chart
+                                var dataValues = <?php echo json_encode(array_values($valueCounts)); ?>;
+                                var dataLabels = <?php echo json_encode(array_keys($valueCounts)); ?>;
+
+                                // Create the pie chart
+                                var ctx = document.getElementById('dataPieChart').getContext('2d');
+                                var myPieChart = new Chart(ctx, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: dataLabels,
+                                        datasets: [{
+                                            data: dataValues,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.7)',
+                                                'rgba(54, 162, 235, 0.7)',
+                                                'rgba(255, 206, 86, 0.7)',
+                                                // Add more colors here if you have more data points
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true
+                                    }
+                                });
+                                </script>
+
+                            </div>
+                    </div>
+                </main>
+
+                <!-- Panels -->
+                <!-- Settings Panel -->
+                <!-- Backdrop -->
+                <div x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    x-show="isSettingsPanelOpen" @click="isSettingsPanelOpen = false"
+                    class="fixed inset-0 z-10 bg-primary-darker" style="opacity: 0.5" aria-hidden="true"></div>
+                <!-- Panel -->
+                <section x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
+                    x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                    x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
+                    x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+                    x-ref="settingsPanel" tabindex="-1" x-show="isSettingsPanelOpen"
+                    @keydown.escape="isSettingsPanelOpen = false"
+                    class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
+                    aria-labelledby="settinsPanelLabel">
+                    <div class="absolute left-0 p-2 transform -translate-x-full">
+                        <!-- Close button -->
+                        <button @click="isSettingsPanelOpen = false"
+                            class="p-2 text-white rounded-md focus:outline-none focus:ring">
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Panel content -->
+                    <div class="flex flex-col h-screen">
+                        <!-- Panel header -->
+                        <div
+                            class="flex flex-col items-center justify-center flex-shrink-0 px-4 py-8 space-y-4 border-b dark:border-primary-dark">
+                            <span aria-hidden="true" class="text-gray-500 dark:text-primary">
+                                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                </svg>
+                            </span>
+                            <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-500 dark:text-light">
+                                Settings
+                            </h2>
+                        </div>
+                        <!-- Content -->
+                        <div class="flex-1 overflow-hidden hover:overflow-y-auto">
+                            <!-- Theme -->
+                            <div class="p-4 space-y-4 md:p-8">
+                                <h6 class="text-lg font-medium text-gray-400 dark:text-light">Mode</h6>
+                                <div class="flex items-center space-x-8">
+                                    <!-- Light button -->
+                                    <button @click="setLightTheme"
+                                        class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
+                                        :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': !isDark, 'text-gray-500 dark:text-primary-light': isDark }">
+                                        <span>
+                                            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                            </svg>
+                                        </span>
+                                        <span>Light</span>
+                                    </button>
+
+                                    <!-- Dark button -->
+                                    <button @click="setDarkTheme"
+                                        class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
+                                        :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': isDark, 'text-gray-500 dark:text-primary-light': !isDark }">
+                                        <span>
+                                            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                            </svg>
+                                        </span>
+                                        <span>Dark</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Colors -->
+                            <div class="p-4 space-y-4 md:p-8">
+                                <h6 class="text-lg font-medium text-gray-400 dark:text-light">Colors</h6>
+                                <div>
+                                    <button @click="setColors('cyan')" class="w-10 h-10 rounded-full"
+                                        style="background-color: var(--color-cyan)"></button>
+                                    <button @click="setColors('teal')" class="w-10 h-10 rounded-full"
+                                        style="background-color: var(--color-teal)"></button>
+                                    <button @click="setColors('green')" class="w-10 h-10 rounded-full"
+                                        style="background-color: var(--color-green)"></button>
+                                    <button @click="setColors('fuchsia')" class="w-10 h-10 rounded-full"
+                                        style="background-color: var(--color-fuchsia)"></button>
+                                    <button @click="setColors('blue')" class="w-10 h-10 rounded-full"
+                                        style="background-color: var(--color-blue)"></button>
+                                    <button @click="setColors('violet')" class="w-10 h-10 rounded-full"
+                                        style="background-color: var(--color-violet)"></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </section>
             </div>
-            </main>
-        </div>
 
-        <!-- Panels -->
-        <!-- Settings Panel -->
-        <!-- Backdrop -->
-        <div x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
-            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="isSettingsPanelOpen"
-            @click="isSettingsPanelOpen = false" class="fixed inset-0 z-10 bg-primary-darker" style="opacity: 0.5"
-            aria-hidden="true"></div>
-        <!-- Panel -->
-        <section x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
-            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-            x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-            x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" x-ref="settingsPanel"
-            tabindex="-1" x-show="isSettingsPanelOpen" @keydown.escape="isSettingsPanelOpen = false"
-            class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
-            aria-labelledby="settinsPanelLabel">
-            <div class="absolute left-0 p-2 transform -translate-x-full">
-                <!-- Close button -->
-                <button @click="isSettingsPanelOpen = false"
-                    class="p-2 text-white rounded-md focus:outline-none focus:ring">
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <!-- Panel content -->
-            <div class="flex flex-col h-screen">
-                <!-- Panel header -->
-                <div
-                    class="flex flex-col items-center justify-center flex-shrink-0 px-4 py-8 space-y-4 border-b dark:border-primary-dark">
-                    <span aria-hidden="true" class="text-gray-500 dark:text-primary">
-                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                        </svg>
-                    </span>
-                    <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-500 dark:text-light">Settings
-                    </h2>
-                </div>
-                <!-- Content -->
-                <div class="flex-1 overflow-hidden hover:overflow-y-auto">
-                    <!-- Theme -->
-                    <div class="p-4 space-y-4 md:p-8">
-                        <h6 class="text-lg font-medium text-gray-400 dark:text-light">Mode</h6>
-                        <div class="flex items-center space-x-8">
-                            <!-- Light button -->
-                            <button @click="setLightTheme"
-                                class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
-                                :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': !isDark, 'text-gray-500 dark:text-primary-light': isDark }">
-                                <span>
-                                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                    </svg>
-                                </span>
-                                <span>Light</span>
-                            </button>
+            <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+            <script src="build/js/script.js"></script>
+            <script>
+            const setup = () => {
+                const getTheme = () => {
+                    if (window.localStorage.getItem('dark')) {
+                        return JSON.parse(window.localStorage.getItem('dark'))
+                    }
 
-                            <!-- Dark button -->
-                            <button @click="setDarkTheme"
-                                class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
-                                :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': isDark, 'text-gray-500 dark:text-primary-light': !isDark }">
-                                <span>
-                                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                    </svg>
-                                </span>
-                                <span>Dark</span>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Colors -->
-                    <div class="p-4 space-y-4 md:p-8">
-                        <h6 class="text-lg font-medium text-gray-400 dark:text-light">Colors</h6>
-                        <div>
-                            <button @click="setColors('cyan')" class="w-10 h-10 rounded-full"
-                                style="background-color: var(--color-cyan)"></button>
-                            <button @click="setColors('teal')" class="w-10 h-10 rounded-full"
-                                style="background-color: var(--color-teal)"></button>
-                            <button @click="setColors('green')" class="w-10 h-10 rounded-full"
-                                style="background-color: var(--color-green)"></button>
-                            <button @click="setColors('fuchsia')" class="w-10 h-10 rounded-full"
-                                style="background-color: var(--color-fuchsia)"></button>
-                            <button @click="setColors('blue')" class="w-10 h-10 rounded-full"
-                                style="background-color: var(--color-blue)"></button>
-                            <button @click="setColors('violet')" class="w-10 h-10 rounded-full"
-                                style="background-color: var(--color-violet)"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Panel -->
-    </div>
-    </div>
+                    return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+                }
 
-    <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
-    <script src="build/js/script.js"></script>
-    <script>
-    const setup = () => {
-        const getTheme = () => {
-            if (window.localStorage.getItem('dark')) {
-                return JSON.parse(window.localStorage.getItem('dark'))
+                const setTheme = (value) => {
+                    window.localStorage.setItem('dark', value)
+                }
+
+                const getColor = () => {
+                    if (window.localStorage.getItem('color')) {
+                        return window.localStorage.getItem('color')
+                    }
+                    return 'cyan'
+                }
+
+                const setColors = (color) => {
+                    const root = document.documentElement
+                    root.style.setProperty('--color-primary', `var(--color-${color})`)
+                    root.style.setProperty('--color-primary-50', `var(--color-${color}-50)`)
+                    root.style.setProperty('--color-primary-100', `var(--color-${color}-100)`)
+                    root.style.setProperty('--color-primary-light', `var(--color-${color}-light)`)
+                    root.style.setProperty('--color-primary-lighter', `var(--color-${color}-lighter)`)
+                    root.style.setProperty('--color-primary-dark', `var(--color-${color}-dark)`)
+                    root.style.setProperty('--color-primary-darker', `var(--color-${color}-darker)`)
+                    this.selectedColor = color
+                    window.localStorage.setItem('color', color)
+                    //
+                }
+
+                return {
+                    loading: true,
+                    isDark: getTheme(),
+                    toggleTheme() {
+                        this.isDark = !this.isDark
+                        setTheme(this.isDark)
+                    },
+                    setLightTheme() {
+                        this.isDark = false
+                        setTheme(this.isDark)
+                    },
+                    setDarkTheme() {
+                        this.isDark = true
+                        setTheme(this.isDark)
+                    },
+                    color: getColor(),
+                    selectedColor: 'cyan',
+                    setColors,
+                    toggleSidbarMenu() {
+                        this.isSidebarOpen = !this.isSidebarOpen
+                    },
+                    isSettingsPanelOpen: false,
+                    openSettingsPanel() {
+                        this.isSettingsPanelOpen = true
+                        this.$nextTick(() => {
+                            this.$refs.settingsPanel.focus()
+                        })
+                    },
+                    isMobileSubMenuOpen: false,
+                    openMobileSubMenu() {
+                        this.isMobileSubMenuOpen = true
+                        this.$nextTick(() => {
+                            this.$refs.mobileSubMenu.focus()
+                        })
+                    },
+                    isMobileMainMenuOpen: false,
+                    openMobileMainMenu() {
+                        this.isMobileMainMenuOpen = true
+                        this.$nextTick(() => {
+                            this.$refs.mobileMainMenu.focus()
+                        })
+                    }
+                }
             }
-
-            return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        }
-
-        const setTheme = (value) => {
-            window.localStorage.setItem('dark', value)
-        }
-
-        const getColor = () => {
-            if (window.localStorage.getItem('color')) {
-                return window.localStorage.getItem('color')
-            }
-            return 'cyan'
-        }
-
-        const setColors = (color) => {
-            const root = document.documentElement
-            root.style.setProperty('--color-primary', `var(--color-${color})`)
-            root.style.setProperty('--color-primary-50', `var(--color-${color}-50)`)
-            root.style.setProperty('--color-primary-100', `var(--color-${color}-100)`)
-            root.style.setProperty('--color-primary-light', `var(--color-${color}-light)`)
-            root.style.setProperty('--color-primary-lighter', `var(--color-${color}-lighter)`)
-            root.style.setProperty('--color-primary-dark', `var(--color-${color}-dark)`)
-            root.style.setProperty('--color-primary-darker', `var(--color-${color}-darker)`)
-            this.selectedColor = color
-            window.localStorage.setItem('color', color)
-            //
-        }
-
-        return {
-            loading: true,
-            isDark: getTheme(),
-            toggleTheme() {
-                this.isDark = !this.isDark
-                setTheme(this.isDark)
-            },
-            setLightTheme() {
-                this.isDark = false
-                setTheme(this.isDark)
-            },
-            setDarkTheme() {
-                this.isDark = true
-                setTheme(this.isDark)
-            },
-            color: getColor(),
-            selectedColor: 'cyan',
-            setColors,
-            toggleSidbarMenu() {
-                this.isSidebarOpen = !this.isSidebarOpen
-            },
-            isSettingsPanelOpen: false,
-            openSettingsPanel() {
-                this.isSettingsPanelOpen = true
-                this.$nextTick(() => {
-                    this.$refs.settingsPanel.focus()
-                })
-            },
-            isMobileSubMenuOpen: false,
-            openMobileSubMenu() {
-                this.isMobileSubMenuOpen = true
-                this.$nextTick(() => {
-                    this.$refs.mobileSubMenu.focus()
-                })
-            },
-            isMobileMainMenuOpen: false,
-            openMobileMainMenu() {
-                this.isMobileMainMenuOpen = true
-                this.$nextTick(() => {
-                    this.$refs.mobileMainMenu.focus()
-                })
-            }
-        }
-    }
-    </script>
+            </script>
 </body>
 
 </html>

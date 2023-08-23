@@ -3,8 +3,6 @@ include("./process/process_get.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    
-
 
 <head>
     <meta charset="utf-8" />
@@ -18,8 +16,8 @@ include("./process/process_get.php");
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
+
 <body>
     <div x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark}">
         <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
@@ -64,16 +62,16 @@ include("./process/process_get.php");
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="index.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700">
-                                    Form 1
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 1
                                 </a>
                                 <a href="index2.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Form 2
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 2
                                 </a>
                                 <a href="index3.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Form 3
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Dashboard 3
                                 </a>
                             </div>
                         </div>
@@ -105,33 +103,25 @@ include("./process/process_get.php");
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="pages/blank.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Blank
+                                <a href="pages/people.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    ผู้ตอบแบบสอบถาม
                                 </a>
                                 <a href="pages/comment.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    comment
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    ความคิดเห็นของผู้รับบริการ
                                 </a>
                                 <a href="pages/age.php" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     age
                                 </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Pricing (soon)
-                                </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Kanban (soon)
-                                </a>
-                                <a href="#" role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                    Feed (soon)
+                                <a href="pages/form_response.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    form_response
                                 </a>
                             </div>
-                        </div>                 
-                       
+                        </div>
+
                     </nav>
                 </div>
             </aside>
@@ -227,6 +217,10 @@ include("./process/process_get.php");
                                     @keydown.escape="open = false"
                                     class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
                                     tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a href="#" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Your Profile
+                                    </a>
                                     <a href="./process/out.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Logout
@@ -298,6 +292,10 @@ include("./process/process_get.php");
                                     x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
                                     class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
                                     role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a href="#" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        Your Profile
+                                    </a>
                                     <a href="./process/out.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Logout
@@ -339,16 +337,16 @@ include("./process/process_get.php");
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="index.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700">
-                                        Form 1
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 1
                                     </a>
                                     <a href="index2.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Form 2
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 2
                                     </a>
                                     <a href="index3.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        form 3
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        Dashboard 3
                                     </a>
                                 </div>
                             </div>
@@ -367,7 +365,7 @@ include("./process/process_get.php");
                                                 d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> Pages </span>
+                                    <span class="ml-2 text-sm "> Pages </span>
                                     <span aria-hidden="true" class="ml-auto">
                                         <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
@@ -381,33 +379,22 @@ include("./process/process_get.php");
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="pages/blank.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Blank
+                                    <a href="pages/people.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        ผู้ตอบแบบสอบถาม
                                     </a>
                                     <a href="pages/comment.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        comment
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        ความคิดเห็นของผู้รับบริการ
+
                                     </a>
                                     <a href="pages/age.php" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         age
                                     </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Profile (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Pricing (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Kanban (soon)
-                                    </a>
-                                    <a href="#" role="menuitem"
-                                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                                        Feed (soon)
+                                    <a href="pages/form_response.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        form_response
                                     </a>
                                 </div>
                             </div>
@@ -425,7 +412,7 @@ include("./process/process_get.php");
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
-                                        class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
+                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
                                         ผู้ตอบแบบสอบถามล่าสุด
                                     </h6>
                                     <span class="text-lg font-semibold"><?php
@@ -436,12 +423,11 @@ include("./process/process_get.php");
                                 </div>
                                 <div>
                                     <span>
-                                        <svg class="w-12 h-12 text-gray-300 dark:text-primary-dark"
+                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                            d="M10.25,2.375c-4.212,0-7.625,3.413-7.625,7.625s3.413,7.625,7.625,7.625s7.625-3.413,7.625-7.625S14.462,2.375,10.25,2.375M10.651,16.811v-0.403c0-0.221-0.181-0.401-0.401-0.401s-0.401,0.181-0.401,0.401v0.403c-3.443-0.201-6.208-2.966-6.409-6.409h0.404c0.22,0,0.401-0.181,0.401-0.401S4.063,9.599,3.843,9.599H3.439C3.64,6.155,6.405,3.391,9.849,3.19v0.403c0,0.22,0.181,0.401,0.401,0.401s0.401-0.181,0.401-0.401V3.19c3.443,0.201,6.208,2.965,6.409,6.409h-0.404c-0.22,0-0.4,0.181-0.4,0.401s0.181,0.401,0.4,0.401h0.404C16.859,13.845,14.095,16.609,10.651,16.811 M12.662,12.412c-0.156,0.156-0.409,0.159-0.568,0l-2.127-2.129C9.986,10.302,9.849,10.192,9.849,10V5.184c0-0.221,0.181-0.401,0.401-0.401s0.401,0.181,0.401,0.401v4.651l2.011,2.008C12.818,12.001,12.818,12.256,12.662,12.412" 
-                                            />
+                                                d="M10.25,2.375c-4.212,0-7.625,3.413-7.625,7.625s3.413,7.625,7.625,7.625s7.625-3.413,7.625-7.625S14.462,2.375,10.25,2.375M10.651,16.811v-0.403c0-0.221-0.181-0.401-0.401-0.401s-0.401,0.181-0.401,0.401v0.403c-3.443-0.201-6.208-2.966-6.409-6.409h0.404c0.22,0,0.401-0.181,0.401-0.401S4.063,9.599,3.843,9.599H3.439C3.64,6.155,6.405,3.391,9.849,3.19v0.403c0,0.22,0.181,0.401,0.401,0.401s0.401-0.181,0.401-0.401V3.19c3.443,0.201,6.208,2.965,6.409,6.409h-0.404c-0.22,0-0.4,0.181-0.4,0.401s0.181,0.401,0.4,0.401h0.404C16.859,13.845,14.095,16.609,10.651,16.811 M12.662,12.412c-0.156,0.156-0.409,0.159-0.568,0l-2.127-2.129C9.986,10.302,9.849,10.192,9.849,10V5.184c0-0.221,0.181-0.401,0.401-0.401s0.401,0.181,0.401,0.401v4.651l2.011,2.008C12.818,12.001,12.818,12.256,12.662,12.412" />
                                         </svg>
                                     </span>
                                 </div>
@@ -450,7 +436,7 @@ include("./process/process_get.php");
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
-                                        class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
+                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
                                         จำนวนผู้ตอบแบบสอบถาม
                                     </h6>
                                     <span class="text-xl font-semibold"> <?php
@@ -459,7 +445,7 @@ include("./process/process_get.php");
                                 </div>
                                 <div>
                                     <span>
-                                        <svg class="w-12 h-12 text-gray-300 dark:text-primary-dark"
+                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -473,18 +459,18 @@ include("./process/process_get.php");
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
-                                        class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
-                                        Orders
+                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
+                                        ผู้ตอบแบบสอบถาม
                                     </h6>
                                     <span class="text-xl font-semibold"><?php
 
                                         foreach ($dataArray['result'] as $survey){
-                                        } echo $survey['sex'];?></span>
+                                        } echo $survey['answerer'];?></span>
 
                                 </div>
                                 <div>
                                     <span>
-                                        <svg class="w-12 h-12 text-gray-300 dark:text-primary-dark"
+                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -494,20 +480,23 @@ include("./process/process_get.php");
                                 </div>
                             </div>
                             <!-- Tickets card -->
-                            <a href ="./pages/comment.php" class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
+                            <a href="./pages/comment.php"
+                                class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
-                                        class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
-                                        ข้อเสนอแนะ
+                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
+                                        ความคิดเห็นของผู้รับบริการ
+
                                     </h6>
                                     <span class="text-xl font-semibold"><?php
                                           foreach ($dataArray['result'] as $survey){
-                                        } echo $survey['answerer'];?></span>
+                                        } echo $survey['f_improve'];
+                                          $survey['f_other'];?></span>
 
                                 </div>
                                 <div>
                                     <span>
-                                        <svg class="w-12 h-12 text-gray-300 dark:text-primary-dark"
+                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -524,35 +513,37 @@ include("./process/process_get.php");
                             <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                                 <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">
+                                    <h4 class="text-lg font-semibold text-black dark:text-light">
                                         อายุของผู้ตอบแบบสอบถาม</h4>
                                     <div class="flex items-center space-x-2">
                                     </div>
                                 </div>
                                 <!-- Chart -->
                                 <div class="relative p-4">
-                                    <canvas id="barChart"></canvas>
+                                    <canvas id="lineChart"></canvas>
 
                                     <script>
                                     // Convert PHP array to JavaScript array for chart
-                                    var dataValuesage = <?php echo json_encode(array_values($valueCountsage)); ?>;
+                                    var dataValuesage = <?php  echo json_encode(array_values($valueCountsage)); ?>;
                                     var dataLabelsage = <?php echo json_encode(array_keys($valueCountsage)); ?>;
 
                                     // Create the pie chart
-                                    var ctx = document.getElementById('barChart').getContext('2d');
+                                    var ctx = document.getElementById('lineChart').getContext('2d');
                                     var myPieChart = new Chart(ctx, {
-                                        type: 'bar',
+                                        type: 'line',
                                         data: {
-                                            labels: dataLabelsage,
+                                            labels: dataValuesage,
                                             datasets: [{
-                                                data: dataValuesage,
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132, 0.7)',
-                                                    'rgba(54, 162, 235, 0.7)',
-                                                    'rgba(255, 206, 86, 0.7)',
+                                                axis: 'y',
+                                                label: 'อายุ',
+                                                data: dataLabelsage,
+                                                borderColor: [
+                                                    'rgb(255, 99, 132)',
+                                                    'rgb(255, 159, 64)',
                                                     // Add more colors here if you have more data points
                                                 ],
-                                                borderWidth: 1
+                                                tension: 0.1
+
                                             }]
                                         },
                                         options: {
@@ -566,7 +557,7 @@ include("./process/process_get.php");
                             <div class="bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                                 <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">เพศ</h4>
+                                    <h4 class="text-lg font-semibold text-black dark:text-light">เพศ</h4>
                                 </div>
                                 <!-- Chart -->
                                 <div class="relative p-4"></div>
@@ -585,9 +576,9 @@ include("./process/process_get.php");
                                         datasets: [{
                                             data: dataValues,
                                             backgroundColor: [
-                                                'rgba(255, 99, 132, 0.7)',
-                                                'rgba(54, 162, 235, 0.7)',
-                                                'rgba(255, 206, 86, 0.7)',
+                                                'rgba(63, 122, 99)',
+                                                'rgba(242, 140, 137)',
+                                                // 'rgba(255, 206, 86, 0.7)',
                                                 // Add more colors here if you have more data points
                                             ],
                                             borderWidth: 1
@@ -608,7 +599,7 @@ include("./process/process_get.php");
                             <div class="col-span-1 bg-white rounded-md dark:bg-darker">
                                 <!-- Card header -->
                                 <div class="p-4 border-b dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">
+                                    <h4 class="text-lg font-semibold text-black  dark:text-light">
                                         ผู้ป่วยมาใช้บริการที่นี่เป็นครั้งแรก
                                     </h4>
                                 </div>
@@ -630,9 +621,8 @@ include("./process/process_get.php");
                                             datasets: [{
                                                 data: dataValuesever,
                                                 backgroundColor: [
-                                                    'rgba(255, 99, 132, 0.7)',
-                                                    'rgba(54, 162, 235, 0.7)',
-                                                    'rgba(255, 206, 86, 0.7)',
+                                                    'rgba(41, 94, 164)',
+                                                    'rgba(255, 203, 79)',
                                                     // Add more colors here if you have more data points
                                                 ],
                                                 borderWidth: 1
@@ -650,8 +640,8 @@ include("./process/process_get.php");
                             <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                                 <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">
-                                        ผู้ตอบแบบสอบถามมากที่สุด</h4>
+                                    <h4 class="text-lg font-semibold text-black dark:text-light">
+                                        ผู้ประเมินให้คะแนนมากที่สุด 5 อันดับแรก</h4>
                                     <div class="flex items-center">
                                     </div>
                                 </div>
@@ -660,8 +650,8 @@ include("./process/process_get.php");
                                     <canvas id="dataBarChart"></canvas>
                                     <script>
                                     // Convert PHP array to JavaScript array for chart
-                                    var dataValuespop = <?php echo json_encode(array_values($top3Data)); ?>;
-                                    var dataLabelspop = <?php echo json_encode(array_keys($top3Data)); ?>;
+                                    var dataValuespop = <?php echo json_encode(array_values($top3Ratings)); ?>;
+                                    var dataLabelspop = <?php echo json_encode(array_keys($top3Ratings)); ?>;
 
                                     // Create the bar chart
                                     var ctx = document.getElementById('dataBarChart').getContext('2d');
@@ -670,10 +660,10 @@ include("./process/process_get.php");
                                         data: {
                                             labels: dataLabelspop,
                                             datasets: [{
-                                                label: 'Data Count',
+                                                label: 'ค่าเฉลี่ย',
                                                 data: dataValuespop,
-                                                backgroundColor: 'rgba(75, 192, 192, 0.7)',
-                                                borderColor: 'rgba(75, 192, 192, 1)',
+                                                backgroundColor: 'rgb(255, 159, 64)',
+                                                borderColor: 'rgb(255, 159, 64)',
                                                 borderWidth: 1
                                             }]
                                         },
@@ -690,10 +680,12 @@ include("./process/process_get.php");
                                 </div>
                             </div>
                         </div>
+                        <!-- <div class="col-span-12 xl:col-span-6"> -->
+
                     </div>
                 </main>
 
-               
+
             </div>
 
             <!-- Panels -->
@@ -877,8 +869,7 @@ include("./process/process_get.php");
             },
         }
     }
-
-
     </script>
 </body>
+
 </html>

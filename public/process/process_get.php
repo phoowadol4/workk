@@ -9,7 +9,7 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
-    'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJvb256YTY2IiwiaWF0IjoxNjkyMDc3Mjc2LCJleHAiOjE2OTIwODA4NzZ9.auCOfdCNUjomHv6NmChjKc_Nxs9JdZh9Ks2PZgv5fK0'
+    'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJvb256YTY2IiwiaWF0IjoxNjkyNzU0OTc0LCJleHAiOjE2OTI3NTg1NzR9._5SlRLxs_OZ9t4pK4ua_6vzrpjmNhhQvugVzTdF44dw'
   ]);
 
 // Execute the request
@@ -69,9 +69,10 @@ ksort($valueCountsage);
 
 ?>
 <?php
-// Assuming the JSON data contains an array of objects with a "value" field
-// Example JSON data: [{"value": "A"}, {"value": "B"}, {"value": "A"}, ...]
+// Assuming the JSON data contains an array of objects with various rating fields
+// Example JSON data: [{"s_smile": 5, "s_willing": 4, ...}, {"s_smile": 4, "s_willing": 5, ...}, ...]
 $valueCountspop = array();
+$ratingTotals = array();
 
 foreach ($dataArray['result'] as $itempop) {
     $fields = array(
@@ -82,23 +83,37 @@ foreach ($dataArray['result'] as $itempop) {
     );
 
     foreach ($fields as $field) {
-        $valuepop = $itempop[$field];
+        $rating = $itempop[$field];
 
-        // If the value already exists in the $valueCountspop array, increment its count
-        if (isset($valueCountspop[$valuepop])) {
-            $valueCountspop[$valuepop]++;
-        } else {
-            // If the value does not exist in the $valueCountspop array, initialize its count to 1
-            $valueCountspop[$valuepop] = 1;
+        // Ensure that the rating is between 1 and 5
+        if ($rating >= 1 && $rating <= 5) {
+            // If the rating already exists in the $valueCountspop array, increment its count and total
+            if (isset($valueCountspop[$field][$rating])) {
+                $valueCountspop[$field][$rating]++;
+                $ratingTotals[$field] += $rating;
+            } else {
+                // If the rating does not exist in the $valueCountspop array, initialize its count to 1 and total to rating
+                $valueCountspop[$field][$rating] = 1;
+                $ratingTotals[$field] = $rating;
+            }
         }
     }
 }
 
-// Sort the data in descending order based on the count
-arsort($valueCountspop);
+// Calculate the average for each field
+$ratingAverages = array();
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}
 
-// Select the top 3 most popular data points
-$top3Data = array_slice($valueCountspop, 0, 3);
+// Sort the averages in descending order
+arsort($ratingAverages);
+
+// Select the top 3 rated fields
+$top3Ratings = array_slice($ratingAverages, 0, 5);
+
+// Convert the data for use in JavaScript
+// $top3Data = json_encode($top3Ratings);
 ?>
 
 <?php
@@ -117,4 +132,97 @@ foreach ($dataArray['result'] as $itemever) {
         $valueCountsever[$valueever] = 1;
     }
 }
+?>
+
+
+<!-- ค่าเฉลี่ยแบบสอบถาม 15 ข้อ -->
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_ssmile = number_format($ratingAverages['s_smile'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_swilling = number_format($ratingAverages['s_willing'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_slaw = number_format($ratingAverages['s_law'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_stime = number_format($ratingAverages['s_time'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_sfast = number_format($ratingAverages['s_fast'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_shelp = number_format($ratingAverages['s_help'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_ssolve = number_format($ratingAverages['s_solve'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_srespon = number_format($ratingAverages['s_respon'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_seasy = number_format($ratingAverages['s_easy'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+} $s_sappoint = number_format($ratingAverages['s_appoint'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_sclean = number_format($ratingAverages['s_clean'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_sterm = number_format($ratingAverages['s_term'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+} $s_sfacility = number_format($ratingAverages['s_facility'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}
+$s_staffAverage = number_format($ratingAverages['s_staff'], 3);
+?>
+
+<?php
+foreach ($ratingTotals as $field => $total) {
+    $ratingAverages[$field] = $total / array_sum($valueCountspop[$field]);
+}$s_soverall = number_format($ratingAverages['s_overall'], 3);
 ?>
