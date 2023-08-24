@@ -359,7 +359,7 @@ include("./process/process_get.php");
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Your Profile
                                     </a>
-                                    <a href="./process/out.php" role="menuitem"
+                                    <a href="/workk/work1/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Logout
                                     </a>
@@ -435,7 +435,7 @@ include("./process/process_get.php");
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Your Profile
                                     </a>
-                                    <a href="./process/out.php" role="menuitem"
+                                    <a href="/workk/work1/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Logout
                                     </a>
@@ -564,7 +564,7 @@ include("./process/process_get.php");
                                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             }).addTo(map);
 
-                            L.marker([51.5, -0.09]).addTo(map)
+                            L.marker([16.842432702794973, 100.20194986132327]).addTo(map)
                                 .bindPopup('A pretty CSS popup.<br> Easily customizable.')
                                 .openPopup();
                             </script>

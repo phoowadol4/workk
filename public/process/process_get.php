@@ -1,16 +1,34 @@
 <?php
-// API endpoint URL
-$url = 'https://api.healthserv.gistnu.nu.ac.th/surveys';
+session_start();
+if (isset($_SESSION['token']) && isset($_SESSION['token_timestamp'])) {
+    // Check if the token has expired (1 minute in this case)
+    $tokenExpiration = $_SESSION['token_timestamp'] + 3600; // 1 minute
+    $currentTime = time();
 
+    if ($currentTime > $tokenExpiration) {
+        // Token has expired, log the user out and redirect to login
+        session_unset();
+        session_destroy();
+        header("Location: /workk/work1/login_form.php?expired=1");
+        exit();
+    }
+} else {
+    header("Location:  /workk/work1/login_form.php");
+    exit();
+}
+
+$token = $_SESSION['token'];
+
+$apiUrl = 'https://api.healthserv.gistnu.nu.ac.th/surveys';
 $ch = curl_init();
 
-// Set cURL options
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Content-Type: application/json',
-    'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJvb256YTY2IiwiaWF0IjoxNjkyNzU0OTc0LCJleHAiOjE2OTI3NTg1NzR9._5SlRLxs_OZ9t4pK4ua_6vzrpjmNhhQvugVzTdF44dw'
-  ]);
+curl_setopt_array($ch, array(
+    CURLOPT_URL => $apiUrl,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer ' . $token
+    ),
+));
 
 // Execute the request
 $response = curl_exec($ch);
