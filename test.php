@@ -38,24 +38,46 @@ if (!isset($_SESSION['token'])) {
   $token = $_SESSION['token'];
 
 
-$apiUrl = 'https://api.healthserv.gistnu.nu.ac.th/persons';
-$curl = curl_init();
+$apiUrl1 = 'https://api.healthserv.gistnu.nu.ac.th/persons';
+$apiUrl2 = 'https://api.healthserv.gistnu.nu.ac.th/houses'; 
 
-curl_setopt_array($curl, array(
-    CURLOPT_URL => $apiUrl,
+$curl1 = curl_init();
+$curl2 = curl_init();
+
+
+curl_setopt_array($curl1, array(
+    CURLOPT_URL => $apiUrl1,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => array(
         'Authorization: Bearer ' . $token
     ),
 ));
-    
 
-    $response = curl_exec($curl);
+$response1 = curl_exec($curl1);
 
-    if ($response === false) {
-        echo 'API request failed: ' . curl_error($curl);
-    } else {
-        $data = json_decode($response, true);
+if ($response1 === false) {
+    echo 'API request failed: ' . curl_error($curl1);
+} else {
+    $data1 = json_decode($response1, true);
+}
+
+
+curl_setopt_array($curl2, array(
+    CURLOPT_URL => $apiUrl2,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer ' . $token
+    ),
+));
+
+$response2 = curl_exec($curl2);
+
+if ($response2 === false) {
+    echo 'API request failed: ' . curl_error($curl2);
+} else {
+    $data2 = json_decode($response2, true);
+}
+
         
         if (isset($_GET['result'])) {
           $searchQuery = $_GET['result'];
@@ -63,18 +85,16 @@ curl_setopt_array($curl, array(
         
           $hasData = true; 
         }
-        if (isset($data['result']) && !empty($data['result'])) {
-            echo '<h2>Search Results</h2>';
-            echo '<table>';
-            echo '<thead><tr>
-          
-            </tr></thead>';
-            echo '<tbody>';
-            $searchQuery = "John";
-            foreach ($data['result'] as $person) {
-                // Check if the ID matches the search query
+        $searchQuery = isset($_GET['result']) ? $_GET['result'] : '';
+
+        if (isset($data1['result']) && !empty($data1['result'])) {
+            echo '<h2>Search persons</h2>';
+    
+            echo '<thead><td>
+            </td></thead>';
+            foreach ($data1['result'] as $person) {
                 if ($person['fname'] == $searchQuery || $person['id'] == $searchQuery ) {
-                  echo "<tr>
+                  echo "<td>
                   <td>" . $person['cid'] . "</td>
                   <td>" . $person['pname'] . "</td>
                   <td>" . $person['fname'] . "</td>
@@ -165,18 +185,62 @@ curl_setopt_array($curl, array(
                   <td>" . $person['pttype_nhso_valid'] . "</td>
                   <td>" . $person['pttype_nhso_valid_datetime'] . "</td>
                   <td>" . $person['id'] . "</td>
-                </tr>";
+                </td>";
       }
-                echo "</table>";
+                
       }
   
         } else {
             echo 'No data found.';
         }
-    }
+        if (isset($data2['result']) && !empty($data2['result'])) {
+          echo '<h2>Search houses </h2>';
+          
+          echo '<thead><td>
+          </td></thead>';
+          foreach ($data2['result'] as $item) {
+              // Check if any relevant field matches the search query
+              if ( $item['id'] == $searchQuery ) {
+                  echo "<td>
+                  <td>" . $item['id'] . "</td>
+                <td>" . $item['house_id'] . "</td>
+                <td>" . $item['village_id'] . "</td>
+                <td>" . $item['address'] . "</td>
+                <td>" . $item['road'] . "</td>
+                <td>" . $item['census_id'] . "</td>
+                <td>" . $item['hos_guid'] . "</td>
+                <td>" . $item['location_area_id'] . "</td>
+                <td>" . $item['latitude'] . "</td>
+                <td>" . $item['longitude'] . "</td>
+                <td>" . $item['family_count'] . "</td>
+                <td>" . $item['last_update'] . "</td>
+                <td>" . $item['house_type_id'] . "</td>
+                <td>" . $item['house_guid'] . "</td>
+                <td>" . $item['village_guid'] . "</td>
+                <td>" . $item['doctor_code'] . "</td>
+                <td>" . $item['head_person_id'] . "</td>
+                <td>" . $item['utm_lat'] . "</td>
+                <td>" . $item['utm_long'] . "</td>
+                <td>" . $item['house_social_survey_staff'] . "</td>
+                <td>" . $item['house_subtype_id'] . "</td>
+                <td>" . $item['house_condo_roomno'] . "</td>
+                <td>" . $item['house_condo_name'] . "</td>
+                <td>" . $item['house_housing_development_name'] . "</td>
+                <td>" . $item['doctor_code2'] . "</td>
+                <td>" . $item['vms_person_id'] . "</td>
+                <td>" . $item['person_count'] . "</td>
+                <td>" . $item['address_int'] . "</td>
 
-    curl_close($curl);
-
+                  </td>";
+                }
+            }
+          
+           
+        }
+        
+        // Close curl sessions
+        curl_close($curl1);
+        curl_close($curl2);
 ?>
 <form method="post" action="logout.php">
 <button type="submit" class="text-white bg-indigo-700 shadow-lg shadow-indigo-700/50 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="ล็อก">
