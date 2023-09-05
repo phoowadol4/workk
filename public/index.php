@@ -63,16 +63,13 @@ include("./process/process_get.php");
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="index.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Dashboard 1
+                                    รายงานสรุปผลแบบประเมิน
                                 </a>
                                 <a href="index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     Dashboard 2
                                 </a>
-                                <a href="index3.php" role="menuitem"
-                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Dashboard 3
-                                </a>
+                                
                             </div>
                         </div>
                         <!-- Pages links -->
@@ -113,11 +110,11 @@ include("./process/process_get.php");
                                 </a>
                                 <a href="pages/age.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    age
+                                    อายุของผู้ตอบแบบสอบถาม
                                 </a>
                                 <a href="pages/form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    form_response
+                                    คะแนนประเมินแบบสอบถาม
                                 </a>
                             </div>
                         </div>
@@ -217,14 +214,19 @@ include("./process/process_get.php");
                                     @keydown.escape="open = false"
                                     class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
                                     tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
-                                    <a href="#" role="menuitem"
+                                    <a role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                        Your Profile
+                                        <?php
+                                        if (isset($_SESSION['username'])) {
+                                        $username = $_SESSION['username'];
+                                        echo $username;
+                                        }?>
                                     </a>
                                     <a href="/workk/work1/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                        Logout
+                                        ออกจากระบบ
                                     </a>
+
                                 </div>
                             </div>
                         </nav>
@@ -292,13 +294,17 @@ include("./process/process_get.php");
                                     x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
                                     class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
                                     role="menu" aria-orientation="vertical" aria-label="User menu">
-                                    <a href="#" role="menuitem"
+                                    <a role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                        Your Profile
+                                        <?php
+                                        if (isset($_SESSION['username'])) {
+                                        $username = $_SESSION['username'];
+                                        echo $username;
+                                        }?>
                                     </a>
                                     <a href="/workk/work1/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                        Logout
+                                        ออกจากระบบ
                                     </a>
                                 </div>
                             </div>
@@ -338,16 +344,13 @@ include("./process/process_get.php");
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="index.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Dashboard 1
+                                        รายงานสรุปผลแบบประเมิน
                                     </a>
                                     <a href="index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         Dashboard 2
                                     </a>
-                                    <a href="index3.php" role="menuitem"
-                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Dashboard 3
-                                    </a>
+                                   
                                 </div>
                             </div>
 
@@ -390,11 +393,11 @@ include("./process/process_get.php");
                                     </a>
                                     <a href="pages/age.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        age
+                                        อายุของผู้ตอบแบบสอบถาม
                                     </a>
                                     <a href="pages/form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        form_response
+                                        คะแนนประเมินแบบสอบถาม
                                     </a>
                                 </div>
                             </div>

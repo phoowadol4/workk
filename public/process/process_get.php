@@ -38,9 +38,45 @@ if ($response === false) {
     echo 'Error: ' . curl_error($ch);
     exit();
 }
+$apiUrl1 = 'https://api.healthserv.gistnu.nu.ac.th/persons';
+$apiUrl2 = 'https://api.healthserv.gistnu.nu.ac.th/houses'; 
 
-// Close cURL
-curl_close($ch);
+$curl1 = curl_init();
+$curl2 = curl_init();
+
+
+curl_setopt_array($curl1, array(
+    CURLOPT_URL => $apiUrl1,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer ' . $token
+    ),
+));
+
+$response1 = curl_exec($curl1);
+
+if ($response1 === false) {
+    echo 'API request failed: ' . curl_error($curl1);
+} else {
+    $data1 = json_decode($response1, true);
+}
+
+
+curl_setopt_array($curl2, array(
+    CURLOPT_URL => $apiUrl2,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer ' . $token
+    ),
+));
+
+$response2 = curl_exec($curl2);
+
+if ($response2 === false) {
+    echo 'API request failed: ' . curl_error($curl2);
+} else {
+    $data2 = json_decode($response2, true);
+}
 
 // Decode JSON response to an array
 $dataArray = json_decode($response, true);
