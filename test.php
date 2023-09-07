@@ -89,13 +89,13 @@ if ($response2 === false) {
 
         if (isset($data1['result']) && !empty($data1['result'])) {
             echo '<h2>Search persons</h2>';
-    
             echo '<thead><td>
             </td></thead>';
             foreach ($data1['result'] as $person) {
                 if ($person['fname'] == $searchQuery || $person['id'] == $searchQuery ) {
                   echo "<td>
                   <td>" . $person['cid'] . "</td>
+                  <td>" . $person['house_id'] . "</td>
                   <td>" . $person['pname'] . "</td>
                   <td>" . $person['fname'] . "</td>
                   <td>" . $person['lname'] . "</td>
@@ -187,7 +187,7 @@ if ($response2 === false) {
                   <td>" . $person['id'] . "</td>
                 </td>";
       }
-                
+                echo "</table>";
       }
   
         } else {
@@ -195,12 +195,11 @@ if ($response2 === false) {
         }
         if (isset($data2['result']) && !empty($data2['result'])) {
           echo '<h2>Search houses </h2>';
-          
-          echo '<thead><td>
+          echo '<thead><td>   
           </td></thead>';
           foreach ($data2['result'] as $item) {
               // Check if any relevant field matches the search query
-              if ( $item['id'] == $searchQuery ) {
+              if ( $item['house_id'] == $person['house_id'] ) {
                   echo "<td>
                   <td>" . $item['id'] . "</td>
                 <td>" . $item['house_id'] . "</td>
@@ -235,7 +234,7 @@ if ($response2 === false) {
                 }
             }
           
-           
+            echo '</table>';
         }
         
         // Close curl sessions

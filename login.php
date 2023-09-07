@@ -33,7 +33,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
             
             $_SESSION['token'] = $responseData['result']['token'];
           
-            header("Location: test.php"); // Redirect to dashboard page
+            header("Location: new.php"); // Redirect to dashboard page
             exit();
         } else {
             // Display an error message if token is missing
