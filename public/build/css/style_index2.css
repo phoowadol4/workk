@@ -1,0 +1,218 @@
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th,
+    td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__root {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        z-index: 0;
+        background-color: #000
+    }
+
+    .mapsConsumerLibAppKeynav__on .mapsConsumerUiSceneInternalCoreScene__root:focus::after,
+    .mapsConsumerUiSceneInternalCoreScene__root:focus-visible::after {
+        content: "";
+        border: 2px solid #174ea6;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 100%;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 1
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root:focus::after {
+        display: none
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__effects {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__imageryRender {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        background-color: #000
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__root .widget-scene-imagery-iframe {
+        position: absolute
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__root .canvas-renderer {
+        position: absolute;
+        left: 0;
+        top: 0
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__canvas {
+        background-color: #000;
+        left: 0;
+        outline: none;
+        position: absolute;
+        top: 0
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__captureCanvas {
+        position: relative;
+        z-index: 3
+    }
+
+    .mapsConsumerUiSceneInternalCoreScene__tileImage3d {
+        -webkit-perspective: 1000;
+        perspective: 1000;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden
+    }
+
+    @media print {
+        .mapsConsumerUiSceneInternalCoreScene__canvas {
+            width: 100% !important;
+            height: auto !important;
+            -webkit-transform: none !important;
+            -ms-transform: none !important;
+            -o-transform: none !important;
+            transform: none !important
+        }
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root {
+        background: #fff;
+        position: static;
+        overflow: visible
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__canvas {
+        display: block;
+        background: #fff
+    }
+
+    .print-mode .app-globe-mode .mapsConsumerUiSceneInternalCoreScene__canvas {
+        background-color: #000
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__imageryRender {
+        position: relative;
+        background: #fff;
+        z-index: 4
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .widget-scene-imagery-iframe {
+        position: relative;
+        left: 50% !important;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%)
+    }
+
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .canvas-renderer,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .canvas-container,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__root canvas {
+        position: static !important
+    }
+
+    .print-mode .canvas-renderer+.mapsConsumerUiSceneInternalCoreScene__canvas,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__captureCanvas+.mapsConsumerUiSceneInternalCoreScene__canvas,
+    .print-mode .mapsConsumerUiSceneInternalCoreScene__captureCanvas+.canvas-renderer {
+        display: none !important
+    }
+
+    /* 3 */
+    .btn-3 {
+        background: rgb(0, 172, 238);
+        background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+        width: 130px;
+        height: 40px;
+        line-height: 42px;
+        padding: 0;
+        border: none;
+
+    }
+
+    .btn-3 span {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .btn-3:before,
+    .btn-3:after {
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 0;
+        background: rgba(2, 126, 251, 1);
+        transition: all 0.3s ease;
+    }
+
+    .btn-3:before {
+        height: 0%;
+        width: 2px;
+    }
+
+    .btn-3:after {
+        width: 0%;
+        height: 2px;
+    }
+
+    .btn-3:hover {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .btn-3:hover:before {
+        height: 100%;
+    }
+
+    .btn-3:hover:after {
+        width: 100%;
+    }
+
+    .btn-3 span:hover {
+        color: rgba(2, 126, 251, 1);
+    }
+
+    .btn-3 span:before,
+    .btn-3 span:after {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: 0;
+        background: rgba(2, 126, 251, 1);
+        transition: all 0.3s ease;
+    }
+
+    .btn-3 span:before {
+        width: 2px;
+        height: 0%;
+    }
+
+    .btn-3 span:after {
+        width: 0%;
+        height: 2px;
+    }
+
+    .btn-3 span:hover:before {
+        height: 100%;
+    }
+
+    .btn-3 span:hover:after {
+        width: 100%;
+    }
+    

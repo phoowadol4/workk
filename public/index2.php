@@ -13,8 +13,11 @@ $keepName;
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet" />
-
+    <link rel="stylesheet" href="./build/css/style_index2.css">
+    <link rel="stylesheet" href="./build/css/map.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
@@ -22,336 +25,6 @@ $keepName;
     </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
 
-    <style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    th,
-    td {
-        border: 1px solid black;
-        padding: 8px;
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__root {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-        z-index: 0;
-        background-color: #000
-    }
-
-    .mapsConsumerLibAppKeynav__on .mapsConsumerUiSceneInternalCoreScene__root:focus::after,
-    .mapsConsumerUiSceneInternalCoreScene__root:focus-visible::after {
-        content: "";
-        border: 2px solid #174ea6;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        width: 100%;
-        z-index: 1
-    }
-
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__root:focus::after {
-        display: none
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__effects {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 2
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__imageryRender {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 1;
-        background-color: #000
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__root .widget-scene-imagery-iframe {
-        position: absolute
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__root .canvas-renderer {
-        position: absolute;
-        left: 0;
-        top: 0
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__canvas {
-        background-color: #000;
-        left: 0;
-        outline: none;
-        position: absolute;
-        top: 0
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__captureCanvas {
-        position: relative;
-        z-index: 3
-    }
-
-    .mapsConsumerUiSceneInternalCoreScene__tileImage3d {
-        -webkit-perspective: 1000;
-        perspective: 1000;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden
-    }
-
-    @media print {
-        .mapsConsumerUiSceneInternalCoreScene__canvas {
-            width: 100% !important;
-            height: auto !important;
-            -webkit-transform: none !important;
-            -ms-transform: none !important;
-            -o-transform: none !important;
-            transform: none !important
-        }
-    }
-
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__root {
-        background: #fff;
-        position: static;
-        overflow: visible
-    }
-
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__canvas {
-        display: block;
-        background: #fff
-    }
-
-    .print-mode .app-globe-mode .mapsConsumerUiSceneInternalCoreScene__canvas {
-        background-color: #000
-    }
-
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__imageryRender {
-        position: relative;
-        background: #fff;
-        z-index: 4
-    }
-
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .widget-scene-imagery-iframe {
-        position: relative;
-        left: 50% !important;
-        -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%)
-    }
-
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .canvas-renderer,
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__root .canvas-container,
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__root canvas {
-        position: static !important
-    }
-
-    .print-mode .canvas-renderer+.mapsConsumerUiSceneInternalCoreScene__canvas,
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__captureCanvas+.mapsConsumerUiSceneInternalCoreScene__canvas,
-    .print-mode .mapsConsumerUiSceneInternalCoreScene__captureCanvas+.canvas-renderer {
-        display: none !important
-    }
-
-    /* 3 */
-    .btn-3 {
-        background: rgb(0, 172, 238);
-        background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
-        width: 130px;
-        height: 40px;
-        line-height: 42px;
-        padding: 0;
-        border: none;
-
-    }
-
-    .btn-3 span {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .btn-3:before,
-    .btn-3:after {
-        position: absolute;
-        content: "";
-        right: 0;
-        top: 0;
-        background: rgba(2, 126, 251, 1);
-        transition: all 0.3s ease;
-    }
-
-    .btn-3:before {
-        height: 0%;
-        width: 2px;
-    }
-
-    .btn-3:after {
-        width: 0%;
-        height: 2px;
-    }
-
-    .btn-3:hover {
-        background: transparent;
-        box-shadow: none;
-    }
-
-    .btn-3:hover:before {
-        height: 100%;
-    }
-
-    .btn-3:hover:after {
-        width: 100%;
-    }
-
-    .btn-3 span:hover {
-        color: rgba(2, 126, 251, 1);
-    }
-
-    .btn-3 span:before,
-    .btn-3 span:after {
-        position: absolute;
-        content: "";
-        left: 0;
-        bottom: 0;
-        background: rgba(2, 126, 251, 1);
-        transition: all 0.3s ease;
-    }
-
-    .btn-3 span:before {
-        width: 2px;
-        height: 0%;
-    }
-
-    .btn-3 span:after {
-        width: 0%;
-        height: 2px;
-    }
-
-    .btn-3 span:hover:before {
-        height: 100%;
-    }
-
-    .btn-3 span:hover:after {
-        width: 100%;
-    }
-
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 5vh;
-    }
-
-    .container {
-        padding: 3rem;
-        width: 300px;
-    }
-
-    input[type="search"] {
-        -webkit-appearance: none !important;
-        background-clip: padding-box;
-        background-color: white;
-        vertical-align: middle;
-        border-radius: 0.25rem;
-        border: 1px solid #e0e0e5;
-        font-size: 1rem;
-        width: 100%;
-        line-height: 2;
-        padding: 0.375rem 1.25rem;
-        -webkit-transition: border-color 0.2s;
-        -moz-transition: border-color 0.2s;
-        transition: border-color 0.2s;
-    }
-
-    input[type="search"]:focus {
-        transition: all 0.5s;
-        box-shadow: 0 0 40px #f9d442b9;
-        border-color: #f9d342;
-        outline: none;
-    }
-
-    form.search-form {
-        display: flex;
-        justify-content: center;
-    }
-
-    label {
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: auto;
-        align-self: center;
-        margin-bottom: 0;
-    }
-
-    input.search-field {
-        margin-bottom: 0;
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: auto;
-        align-self: center;
-        height: 51px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    input.search-submit {
-        height: 51px;
-        margin: 0;
-        padding: 1rem 1.3rem;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: 0.25rem;
-        border-bottom-right-radius: 0.25rem;
-        font-family: "Font Awesome 5 Free";
-        font-size: 1rem;
-    }
-
-    .screen-reader-text {
-        clip: rect(1px, 1px, 1px, 1px);
-        position: absolute !important;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-    }
-
-    .button {
-        display: inline-block;
-        font-weight: 600;
-        font-size: 0.8rem;
-        line-height: 1.15;
-        letter-spacing: 0.1rem;
-        text-transform: uppercase;
-        background: #f9d342;
-        color: #292826;
-        border: 1px solid transparent;
-        vertical-align: middle;
-        text color: black;
-        text-shadow: none;
-        -webkit-transition: all 0.2s;
-        -moz-transition: all 0.2s;
-        transition: all 0.2s;
-    }
-
-    .button:hover,
-    .button:active,
-    .button:focus {
-        cursor: pointer;
-        background: #d4b743;
-        color: #292826;
-        outline: 0;
-    }
-
-    #map {
-        height: 500px;
-    }
-    </style>
 </head>
 
 
@@ -383,7 +56,7 @@ $keepName;
                                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Dashboards </span>
+                                <span class="ml-2 text-sm"> Dashboard </span>
                                 <span class="ml-auto" aria-hidden="true">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -403,7 +76,7 @@ $keepName;
                                 </a>
                                 <a href="index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Dashboard 2
+                                    ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                 </a>
 
                             </div>
@@ -478,19 +151,22 @@ $keepName;
                         </button>
 
                         <!-- Brand -->
-                        <div class="wrapper">
-                            <div class="container">
-                                <form role="search" class="search-form form" id="search_user">
-                                    <label>
-                                        <span class="screen-reader-text">Search for...</span>
-                                        <input type="search" class="search-field" placeholder="Type something..."
-                                            value="" name="re" title="" id="search_u" />
-                                    </label>
-                                    <button type="submit" class="search-submit button" id="search_s"></button>
-                                </form>
+                        <div>
+                        <form class="flex items-center">
+                            <div class="relative flex w-full flex-wrap items-stretch">
+                                <input type="search"
+                                    class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                                    placeholder="ค้นหารายชื่อ" name="re" aria-label="Search" aria-describedby="button-addon3"  />
+
+                                <!--Search button-->
+                                <button type="submit"
+                                    class="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                                     id="button-addon3" data-te-ripple-init>
+                                    ค้นหา
+                                </button>
                             </div>
+                        </form>
                         </div>
-                        <!-- icons -->
                         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js">
                         </script>
                         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -530,6 +206,42 @@ $keepName;
                                     </svg>
                                 </div>
                             </button>
+                            <!-- User avatar button -->
+                            <div class="relative" x-data="{ open: false }">
+                                <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
+                                    type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
+                                    class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+                                    <span class="sr-only">User menu</span>
+                                    <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
+                                        alt="Ahmed Kamel" />
+                                </button>
+
+                                <!-- User dropdown menu -->
+                                <div x-show="open" x-ref="userMenu"
+                                    x-transition:enter="transition-all transform ease-out"
+                                    x-transition:enter-start="translate-y-1/2 opacity-0"
+                                    x-transition:enter-end="translate-y-0 opacity-100"
+                                    x-transition:leave="transition-all transform ease-in"
+                                    x-transition:leave-start="translate-y-0 opacity-100"
+                                    x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
+                                    @keydown.escape="open = false"
+                                    class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
+                                    tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        <?php
+                                        if (isset($_SESSION['username'])) {
+                                        $username = $_SESSION['username'];
+                                        echo $username;
+                                        }?>
+                                    </a>
+                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        ออกจากระบบ
+                                    </a>
+
+                                </div>
+                            </div>
                         </nav>
 
                         <!-- Mobile sub menu -->
@@ -563,6 +275,39 @@ $keepName;
                                         </svg>
                                     </div>
                                 </button>
+                            </div>
+                            <!-- User avatar button -->
+                            <div class="relative ml-auto" x-data="{ open: false }">
+                                <button @click="open = !open" type="button" aria-haspopup="true"
+                                    :aria-expanded="open ? 'true' : 'false'"
+                                    class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+                                    <span class="sr-only">User menu</span>
+                                    <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
+                                        alt="Ahmed Kamel" />
+                                </button>
+
+                                <!-- User dropdown menu -->
+                                <div x-show="open" x-transition:enter="transition-all transform ease-out"
+                                    x-transition:enter-start="translate-y-1/2 opacity-0"
+                                    x-transition:enter-end="translate-y-0 opacity-100"
+                                    x-transition:leave="transition-all transform ease-in"
+                                    x-transition:leave-start="translate-y-0 opacity-100"
+                                    x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
+                                    class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
+                                    role="menu" aria-orientation="vertical" aria-label="User menu">
+                                    <a role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        <?php
+                                        if (isset($_SESSION['username'])) {
+                                        $username = $_SESSION['username'];
+                                        echo $username;
+                                        }?>
+                                    </a>
+                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                        ออกจากระบบ
+                                    </a>
+                                </div>
                             </div>
                         </nav>
                     </div>
@@ -678,7 +423,8 @@ $keepName;
                                 <?php                                
                                 if (isset($_GET['re'])) {
                                     $searchQuery = $_GET['re'];
-                                }                                
+                                }                              
+                                  
                                 if (isset($data1['result']) && !empty($data1['result'])) {
                                     echo '<br><h2 class="text-lg font-semibold mb-2">Search persons</h2>';
                                                             
@@ -893,17 +639,73 @@ switch (true) {
         $latitude = json_encode($latitude);
         $longitude = json_encode($longitude);
 ?>
-                            var map = L.map('map').setView([<?= $latitude; ?>, <?= $longitude; ?>], 13);
-
                             console.log('location', <?= $latitude; ?>);
 
+                            var map = L.map('map').setView([<?= $latitude; ?>, <?= $longitude; ?>], 13);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             }).addTo(map);
 
                             L.marker([<?= $latitude; ?>, <?= $longitude; ?>]).addTo(map)
-                                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                                .bindPopup(
+                                    'แสดงเส้นทาง.<button  id="getDirections" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Go</button>'
+                                )
                                 .openPopup();
+
+
+                            var latitude = <?= $latitude ?>;
+                            var longitude = <?= $longitude ?>;
+
+                            var sourceLatitude = latitude;
+                            var sourceLongitude = longitude;
+
+                            var destinationLatitude;
+                            var destinationLongitude;
+
+                            if ("geolocation" in navigator) {
+                                // Request the user's current location
+                                navigator.geolocation.getCurrentPosition(function(position) {
+                                    destinationLatitude = position.coords.latitude;
+                                    destinationLongitude = position.coords.longitude;
+
+                                    // Function to open Google Maps with directions
+                                    function openDirections() {
+                                        var mapsURL;
+                                        var userAgent = navigator.userAgent.toLowerCase();
+                                        var isiOS = /ipad|iphone|ipod/.test(userAgent);
+                                        var isAndroid = /android/.test(userAgent);
+
+                                        switch (true) {
+                                            case isiOS:
+                                                // iOS device
+                                                mapsURL =
+                                                    `comgooglemaps://?saddr=${destinationLatitude},${destinationLongitude}&daddr=${latitude},${longitude}&views=traffic`;
+
+                                                break;
+
+                                            case isAndroid:
+                                                // Android device
+                                                mapsURL =
+                                                    `google.navigation:q=${destinationLatitude},${destinationLongitude}&origin=${latitude},${longitude}`;
+
+                                                break;
+
+                                            default:
+                                                // Fallback for other devices or browsers
+                                                mapsURL =
+                                                    `https://www.google.com/maps/dir/?api=1&origin=${destinationLatitude},${destinationLongitude}&destination=${latitude},${longitude}`;
+
+
+                                                break;
+                                        }
+                                        // Open the URL in a new tab/window
+                                        window.open(mapsURL, '_blank');
+                                    }
+                                    // Add a click event listener to the "Get Directions" button
+                                    document.getElementById('getDirections').addEventListener('click',
+                                        openDirections);
+                                }, function() {});
+                            } else {}
                             <?php
         break;
     case $cid && $latitude == 'None':
@@ -913,6 +715,25 @@ switch (true) {
                                 icon: 'error',
                                 title: 'Oops...',
                                 text: 'ไม่มีข้อมูลบ้านในพิกัด',
+                            });
+
+                            var defaultMap = L.map('map').setView([16.797776693735905, 100.21001478729903], 13);
+
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(defaultMap);
+
+                            L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
+                                .bindPopup('ไม่มีที่อยู่บ้านในพิกัด no home')
+                                .openPopup();
+                            <?php
+        break;
+        case $searchQuery !== $name :
+            ?>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'ไม่พบชื่อนี้ในระบบ',
                             });
 
                             var defaultMap = L.map('map').setView([16.797776693735905, 100.21001478729903], 13);

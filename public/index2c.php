@@ -399,16 +399,13 @@ $keepName;
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="index.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Dashboard 1
+                                    รายงานสรุปผลแบบประเมิน
                                 </a>
                                 <a href="index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     Dashboard 2
                                 </a>
-                                <a href="index3.php" role="menuitem"
-                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Dashboard 3
-                                </a>
+
                             </div>
                         </div>
 
@@ -451,11 +448,11 @@ $keepName;
                                 </a>
                                 <a href="pages/age.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    age
+                                    อายุของผู้ตอบแบบสอบถาม
                                 </a>
                                 <a href="pages/form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    form_response
+                                    คะแนนประเมินแบบสอบถาม
                                 </a>
                             </div>
                         </div>
@@ -603,16 +600,13 @@ $keepName;
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="index.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Dashboard 1
+                                        รายงานสรุปผลแบบประเมิน
                                     </a>
                                     <a href="index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         Dashboard 2
                                     </a>
-                                    <a href="index3.php" role="menuitem"
-                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Dashboard 3
-                                    </a>
+
                                 </div>
                             </div>
 
@@ -657,11 +651,11 @@ $keepName;
                                     </a>
                                     <a href="pages/age.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        age
+                                        อายุของผู้ตอบแบบสอบถาม
                                     </a>
                                     <a href="pages/form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        form_response
+                                        คะแนนประเมินแบบสอบถาม
                                     </a>
                                 </div>
                             </div>
@@ -863,7 +857,7 @@ $keepName;
                             $keepName = $name;
                             $latitude = $houseData['latitude'];
                             $longitude = $houseData['longitude'];
-                            $hasLocation = $latitude === 'None';
+                            $hasLocation = $latitude !== 'None';
                             $mergedData[] = array_merge($personData, $houseData);
 
                             
@@ -888,55 +882,123 @@ $keepName;
                             </div>
                             <div id="map" class="overflow-auto h-64">
                             </div>
+                            <button id="getDirections">Get Directions to Healthcare Facility</button>
+
                             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js">
                             </script>
                             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
                             <script>
-                            <?php if ($name === 'None' || $name === null) { ?>
-                            console.log('ไม่พบชื่อนี้');
-                            <?php } else { ?>
-                            console.log('name:', '<?php echo $name; ?>');
+                            <?php
+switch (true) {
+    case $hasLocation:
+        // Initialize map with provided latitude and longitude
+        $latitude = json_encode($latitude);
+        $longitude = json_encode($longitude);
+?>
+                            console.log('location', <?= $latitude; ?>);
 
-                            <?php if ($hasLocation) { ?>
-                            // Initialize map with provided latitude and longitude
-                            console.log('log-no', <?php echo $cid; ?>);
+                            var map = L.map('map').setView([<?= $latitude; ?>, <?= $longitude; ?>], 13);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(map);
 
-                            var defaultMap = L.map('map').setView([16.797776693735905, 100.21001478729903], 13);
+                            L.marker([<?= $latitude; ?>, <?= $longitude; ?>]).addTo(map)
+                                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                                .openPopup();
+
+                            var latitude = <?= $latitude ?>;
+                            var longitude = <?= $longitude ?>;
+
+                            var destinationLatitude; // Set this to the destination's latitude
+
+                            var destinationLongitude;
+
+
+                            if ("geolocation" in navigator) {
+                                // Request the user's current location
+                                navigator.geolocation.getCurrentPosition(function(position) {
+                                    destinationLatitude = position.coords.latitude;
+                                    destinationLongitude = position.coords.longitude;
+
+                                    // Function to open Google Maps with directions
+                                    function openDirections() {
+                                        var directionsUrl =
+                                            `https://www.google.co.th/maps/dir/${latitude},${longitude}/${destinationLatitude},${destinationLongitude}`;
+                                        window.open(directionsUrl, '_blank');
+                                    }
+
+                                    document.getElementById('getDirections').addEventListener('click',
+                                        openDirections);
+                                });
+                            } else {
+                                // Geolocation is not available in this browser
+                                console.error("Geolocation is not supported in your browser.");
+                            }
+                            <?php
+        break;
+    case $cid && $latitude == 'None':
+        ?>
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'ไม่มีข้อมูลบ้านในพิกัด',
+                            });
+
+                            var defaultMap = L.map('map').setView([16.797776693735905,
+                                100.21001478729903
+                            ], 13);
 
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             }).addTo(defaultMap);
-                            console.log('location', '<?php echo $latitude; ?>');
+
                             L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
                                 .bindPopup('ไม่มีที่อยู่บ้านในพิกัด no home')
                                 .openPopup();
+                            <?php
+        break;
+        case $searchQuery !== $name :
+            ?>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'ไม่พบชื่อนี้ในระบบ',
+                            });
 
-                            <?php } else { ?>
-
-                            var map = L.map('map').setView([<?php echo $latitude; ?>, <?php echo $longitude; ?>], 13);
-
-                            console.log('location', '<?php echo $latitude; ?>');
+                            var defaultMap = L.map('map').setView([16.797776693735905,
+                                100.21001478729903
+                            ], 13);
 
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            }).addTo(map);
-                            L.marker([<?php echo $latitude; ?>, <?php echo $longitude; ?>]).addTo(map)
-                                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                            }).addTo(defaultMap);
+
+                            L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
+                                .bindPopup('ไม่มีที่อยู่บ้านในพิกัด no home')
                                 .openPopup();
-                            <?php } ?>
-                            <?php } ?>
+                            <?php
+        break;
+    default:
+        ?>
+                            console.log('log-no', <?= json_encode($cid); ?>);
 
-                            var searchForm = document.getElementById('search_user');
-                            searchForm.addEventListener('submit', function(e) {
-                                // e.preventDefault();
-                                var nameT1 = document.querySelector('input[name="re"]').value;
-                                var latitudeT1 = <?php echo json_encode($latitude) ;?>;
-                                var latitudeT11 = <?php echo json_encode($hasLocation) ;?>;
+                            var defaultMap = L.map('map').setView([16.797776693735905,
+                                100.21001478729903
+                            ], 13);
 
-                                console.log("uy:", <?php echo $keepName; ?>);
-                                console.log("Lat :", latitudeT1);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(defaultMap);
 
-                            });
+                            L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
+                                .bindPopup('ไม่มีที่อยู่บ้านในพิกัด no home')
+                                .openPopup();
+                            <?php
+        break;
+}
+
+?>
                             </script>
 
                         </div>
