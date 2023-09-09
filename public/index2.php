@@ -152,20 +152,21 @@ $keepName;
 
                         <!-- Brand -->
                         <div>
-                        <form class="flex items-center">
-                            <div class="relative flex w-full flex-wrap items-stretch">
-                                <input type="search"
-                                    class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                                    placeholder="ค้นหารายชื่อ" name="re" aria-label="Search" aria-describedby="button-addon3"  />
+                            <form class="flex items-center">
+                                <div class="relative flex w-full flex-wrap items-stretch">
+                                    <input type="search"
+                                        class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                                        placeholder="ค้นหารายชื่อ" name="re" aria-label="Search"
+                                        aria-describedby="button-addon3" />
 
-                                <!--Search button-->
-                                <button type="submit"
-                                    class="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-                                     id="button-addon3" data-te-ripple-init>
-                                    ค้นหา
-                                </button>
-                            </div>
-                        </form>
+                                    <!--Search button-->
+                                    <button type="submit"
+                                        class="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                                        id="button-addon3" data-te-ripple-init>
+                                        ค้นหา
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js">
                         </script>
@@ -349,7 +350,7 @@ $keepName;
                                     </a>
                                     <a href="index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Dashboard 2
+                                        ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                     </a>
 
                                 </div>
@@ -418,205 +419,192 @@ $keepName;
                             <div class="flex items-center justify-between border-b dark:border-primary">
                                 <h4 class="text-lg font-semibold text-black dark:text-light">ข้อมูล</h4>
                             </div>
-                            <!-- Chart -->
+                            <div id="resultdata">
+                            </div>
                             <div>
-                                <?php                                
-                                if (isset($_GET['re'])) {
-                                    $searchQuery = $_GET['re'];
-                                }                              
-                                  
-                                if (isset($data1['result']) && !empty($data1['result'])) {
-                                    echo '<br><h2 class="text-lg font-semibold mb-2">Search persons</h2>';
-                                                            
-                                    $mergedData = array();
-                                    foreach ($data1['result'] as $person) {
-                                        if ($person['fname'] == $searchQuery || $person['id'] == $searchQuery ) {
-                                            $personData = array(
-                                                'cid' => $person['cid'],
-                                                'id' => $person['id'],
-                                                'pname' => $person['pname'],
-                                                'fname' => $person['fname'],
-                                                'lname' => $person['lname'],
-                                                'house_id' => $person['house_id'],
-                                                'pcode' => $person['pcode'],
-                                                'sex' => $person['sex'],
-                                                'nationality' => $person['nationality'],
-                                                'citizenship' => $person['citizenship'],
-                                                'education' => $person['education'],
-                                                'occupation' => $person['occupation'],
-                                                'religion' => $person['religion'],
-                                                'marrystatus' => $person['marrystatus'],
-                                                'house_regist_type_id' => $person['house_regist_type_id'],
-                                                'birthdate' => $person['birthdate'],
-                                                'has_house_regist' => $person['has_house_regist'],
-                                                'chronic_disease_list' => $person['chronic_disease_list'],
-                                                'club_list' => $person['club_list'],
-                                                'village_id' => $person['village_id'],
-                                                'blood_group' => $person['blood_group'],
-                                                'current_age' => $person['current_age'],
-                                                'death_date' => $person['death_date'],
-                                                'hos_guid' => $person['hos_guid'],
-                                                'income_per_year' => $person['income_per_year'],
-                                                'home_position_id' => $person['home_position_id'],
-                                                'family_position_id' => $person['family_position_id'],
-                                                'drug_allergy' => $person['drug_allergy'],
-                                                'last_update' => $person['last_update'],
-                                                'death' => $person['death'],
-                                                'pttype' => $person['pttype'],
-                                                'pttype_begin_date' => $person['pttype_begin_date'],
-                                                'pttype_expire_date' => $person['pttype_expire_date'],
-                                                'pttype_hospmain' => $person['pttype_hospmain'],
-                                                'pttype_hospsub' => $person['pttype_hospsub'],
-                                                'father_person_id' => $person['father_person_id'],
-                                                'mother_person_id' => $person['mother_person_id'],
-                                                'pttype_no' => $person['pttype_no'],
-                                                'sps_person_id' => $person['sps_person_id'],
-                                                'birthtime' => $person['birthtime'],
-                                                'age_y' => $person['age_y'],
-                                                'age_m' => $person['age_m'],
-                                                'age_d' => $person['age_d'],
-                                                'family_id' => $person['family_id'],
-                                                'person_house_position_id' => $person['person_house_position_id'],
-                                                'person_guid' => $person['person_guid'],
-                                                'house_guid' => $person['house_guid'],
-                                                'patient_hn' => $person['patient_hn'],
-                                                'found_dw_emr' => $person['found_dw_emr'],
-                                                'person_discharge_id' => $person['person_discharge_id'],
-                                                'movein_date' => $person['movein_date'],
-                                                'discharge_date' => $person['discharge_date'],
-                                                'person_labor_type_id' => $person['person_labor_type_id'],
-                                                'father_name' => $person['father_name'],
-                                                'mother_name' => $person['mother_name'],
-                                                'sps_name' => $person['sps_name'],
-                                                'father_cid' => $person['father_cid'],
-                                                'mother_cid' => $person['mother_cid'],
-                                                'sps_cid' => $person['sps_cid'],
-                                                'bloodgroup_rh' => $person['bloodgroup_rh'],
-                                                'home_phone' => $person['home_phone'],
-                                                'old_code' => $person['old_code'],
-                                                'deformed_status' => $person['deformed_status'],
-                                                'ncd_dm_history_type_id' => $person['ncd_dm_history_type_id'],
-                                                'ncd_ht_history_type_id' => $person['ncd_ht_history_type_id'],
-                                                'agriculture_member_type_id' => $person['agriculture_member_type_id'],
-                                                'senile' => $person['senile'],
-                                                'in_region' => $person['in_region'],
-                                                'body_weight_kg' => $person['body_weight_kg'],
-                                                'height_cm' => $person['height_cm'],
-                                                'nutrition_level' => $person['nutrition_level'],
-                                                'height_nutrition_level' => $person['height_nutrition_level'],
-                                                'bw_ht_nutrition_level' => $person['bw_ht_nutrition_level'],
-                                                'hometel' => $person['hometel'],
-                                                'worktel' => $person['worktel'],
-                                                'register_conflict' => $person['register_conflict'],
-                                                'care_person_name' => $person['care_person_name'],
-                                                'work_addr' => $person['work_addr'],
-                                                'person_dm_screen_status_id' => $person['person_dm_screen_status_id'],
-                                                'person_ht_screen_status_id' => $person['person_ht_screen_status_id'],
-                                                'person_stroke_screen_status_id' => $person['person_stroke_screen_status_id'],
-                                                'person_obesity_screen_status_id' => $person['person_obesity_screen_status_id'],
-                                                'person_dmht_manage_type_id' => $person['person_dmht_manage_type_id'],
-                                                'last_screen_dmht_bdg_year' => $person['last_screen_dmht_bdg_year'],
-                                                'dw_chronic_register' => $person['dw_chronic_register'],
-                                                'mobile_phone' => $person['mobile_phone'],
-                                                'pttype_nhso_valid' => $person['pttype_nhso_valid'],
-                                                'pttype_nhso_valid_datetime' => $person['pttype_nhso_valid_datetime'],
-                                            );
-                                            echo "
-                                            <div class='border-t pt-2 mt-2'>
-                                            <span class='font-semibold text-primary-dark'>ID:</span> {$person['id']}<br>
-                                                <span class='font-semibold text-primary-dark'>CID:</span> {$person['cid']}<br>
-                                                <span class='font-semibold text-primary-dark'>ชื่อ:</span> {$person['pname']} &nbsp;{$person['fname']} &nbsp;{$person['lname']}<br>
-                                                <span class='font-semibold text-primary-dark'>CID:</span> {$person['pcode']}<br>
-                                                <span class='font-semibold text-primary-dark'>เพศ:</span> {$person['sex']}<br>
-                                                <span class='font-semibold text-primary-dark'>สัญชาติ:</span> {$person['nationality']}<br>
-                                                <span class='font-semibold text-primary-dark'>citizenship:</span> {$person['citizenship']}<br>
-                                                <span class='font-semibold text-primary-dark'>education:</span> {$person['education']}<br>
-                                                <span class='font-semibold text-primary-dark'>occupation:</span> {$person['occupation']}<br>
-                                                <span class='font-semibold text-primary-dark'>marrystatus:</span> {$person['marrystatus']}<br>
-                                                <span class='font-semibold text-primary-dark'>house_regist_type_id:</span> {$person['house_regist_type_id']}<br>
-                                                <span class='font-semibold text-primary-dark'>birthdate:</span> {$person['birthdate']}<br>
-                                                <span class='font-semibold text-primary-dark'>has_house_regist:</span> {$person['has_house_regist']}<br>
-                                            </div>
-                                            ";
-                                            break;
-                                        }
-                                    }
+                                <?php
+            if (isset($_GET['re'])) {
+                $searchQuery = $_GET['re'];
+            }                              
+            
+            if (isset($data1['result']) && !empty($data1['result'])) {                                
+        $mergedData = array();
+        foreach ($data1['result'] as $person) {
+            if ($person['fname'] == $searchQuery || $person['lname'] == $searchQuery ) {
+                $personData = array(
+                'cid' => $person['cid'],
+                'id' => $person['id'],
+                'pname' => $person['pname'],
+                'fname' => $person['fname'],
+                'lname' => $person['lname'],
+                'house_id' => $person['house_id'],
+                'pcode' => $person['pcode'],
+                'sex' => $person['sex'],
+                'nationality' => $person['nationality'],
+                'citizenship' => $person['citizenship'],
+                'education' => $person['education'],
+                'occupation' => $person['occupation'],
+                'religion' => $person['religion'],
+                'marrystatus' => $person['marrystatus'],
+                'house_regist_type_id' => $person['house_regist_type_id'],
+                'birthdate' => $person['birthdate'],
+                'has_house_regist' => $person['has_house_regist'],
+                'chronic_disease_list' => $person['chronic_disease_list'],
+                'club_list' => $person['club_list'],
+                'village_id' => $person['village_id'],
+                'blood_group' => $person['blood_group'],
+                'current_age' => $person['current_age'],
+                'death_date' => $person['death_date'],
+                'hos_guid' => $person['hos_guid'],
+                'income_per_year' => $person['income_per_year'],
+                'home_position_id' => $person['home_position_id'],
+                'family_position_id' => $person['family_position_id'],
+                'drug_allergy' => $person['drug_allergy'],
+                'last_update' => $person['last_update'],
+                'death' => $person['death'],
+                'pttype' => $person['pttype'],
+                'pttype_begin_date' => $person['pttype_begin_date'],
+                'pttype_expire_date' => $person['pttype_expire_date'],
+                'pttype_hospmain' => $person['pttype_hospmain'],
+                'pttype_hospsub' => $person['pttype_hospsub'],
+                'father_person_id' => $person['father_person_id'],
+                'mother_person_id' => $person['mother_person_id'],
+                'pttype_no' => $person['pttype_no'],
+                'sps_person_id' => $person['sps_person_id'],
+                'birthtime' => $person['birthtime'],
+                'age_y' => $person['age_y'],
+                'age_m' => $person['age_m'],
+                'age_d' => $person['age_d'],
+                'family_id' => $person['family_id'],
+                'person_house_position_id' => $person['person_house_position_id'],
+                'person_guid' => $person['person_guid'],
+                'house_guid' => $person['house_guid'],
+                'patient_hn' => $person['patient_hn'],
+                'found_dw_emr' => $person['found_dw_emr'],
+                'person_discharge_id' => $person['person_discharge_id'],
+                'movein_date' => $person['movein_date'],
+                'discharge_date' => $person['discharge_date'],
+                'person_labor_type_id' => $person['person_labor_type_id'],
+                'father_name' => $person['father_name'],
+                'mother_name' => $person['mother_name'],
+                'sps_name' => $person['sps_name'],
+                'father_cid' => $person['father_cid'],
+                'mother_cid' => $person['mother_cid'],
+                'sps_cid' => $person['sps_cid'],
+                'bloodgroup_rh' => $person['bloodgroup_rh'],
+                'home_phone' => $person['home_phone'],
+                'old_code' => $person['old_code'],
+                'deformed_status' => $person['deformed_status'],
+                'ncd_dm_history_type_id' => $person['ncd_dm_history_type_id'],
+                'ncd_ht_history_type_id' => $person['ncd_ht_history_type_id'],
+                'agriculture_member_type_id' => $person['agriculture_member_type_id'],
+                'senile' => $person['senile'],
+                'in_region' => $person['in_region'],
+                'body_weight_kg' => $person['body_weight_kg'],
+                'height_cm' => $person['height_cm'],
+                'nutrition_level' => $person['nutrition_level'],
+                'height_nutrition_level' => $person['height_nutrition_level'],
+                'bw_ht_nutrition_level' => $person['bw_ht_nutrition_level'],
+                'hometel' => $person['hometel'],
+                'worktel' => $person['worktel'],
+                'register_conflict' => $person['register_conflict'],
+                'care_person_name' => $person['care_person_name'],
+                'work_addr' => $person['work_addr'],
+                'person_dm_screen_status_id' => $person['person_dm_screen_status_id'],
+                'person_ht_screen_status_id' => $person['person_ht_screen_status_id'],
+                'person_stroke_screen_status_id' => $person['person_stroke_screen_status_id'],
+                'person_obesity_screen_status_id' => $person['person_obesity_screen_status_id'],
+                'person_dmht_manage_type_id' => $person['person_dmht_manage_type_id'],
+                'last_screen_dmht_bdg_year' => $person['last_screen_dmht_bdg_year'],
+                'dw_chronic_register' => $person['dw_chronic_register'],
+                'mobile_phone' => $person['mobile_phone'],
+                'pttype_nhso_valid' => $person['pttype_nhso_valid'],
+                'pttype_nhso_valid_datetime' => $person['pttype_nhso_valid_datetime'],
+            );
 
-                                if (isset($data2['result']) && !empty($data2['result'])) {
-                                    echo '<br><h2 class="text-lg font-semibold mt-4">Search houses</h2>';
-                                    
-                                    foreach ($data2['result'] as $item) {
-                                        if ($item['house_id'] == $personData['house_id'] ) {
-                                            $houseData = array(
-                                                'house_id' => $item['house_id'],
-                                                'id' => $item['id'],
-                                                'address' => $item['address'],
-                                                'road' => $item['road'],
-                                                'census_id' => $item['census_id'],
-                                                'hos_guid' => $item['hos_guid'],
-                                                'location_area_id' => $item['location_area_id'],
-                                                'latitude' => $item['latitude'],
-                                                'longitude' => $item['longitude'] ,
-                                                'family_count' => $item['family_count'],
-                                                'last_update' => $item['last_update'] ,
-                                                'house_type_id' => $item['house_type_id'],
-                                                'house_guid' => $item['house_guid'],
-                                                'village_guid' => $item['village_guid'],
-                                                'doctor_code' => $item['doctor_code'],
-                                                'head_person_id' => $item['head_person_id'],
-                                                'utm_lat' => $item['utm_lat'],
-                                                'utm_long' => $item['utm_long'],
-                                                'house_social_survey_staff' => $item['house_social_survey_staff'],
-                                                'house_subtype_id' => $item['house_subtype_id'],
-                                                'house_condo_roomno' => $item['house_condo_roomno'],
-                                                'house_condo_name' => $item['house_condo_name'],
-                                                'house_housing_development_name' => $item['house_housing_development_name'],
-                                                'doctor_code2' => $item['doctor_code2'],
-                                                'vms_person_id' => $item['vms_person_id'],
-                                                'person_count' => $item['person_count'],
-                                                'address_int' => $item['address_int'],
-                                                // Add other fields here...
-                                            );
-                                            echo "
-                                            <div class='border-t pt-2 mt-2'>
-                                                <span class='font-semibold text-primary-dark'>ID:</span> {$item['id']}<br>
-                                                <span class='font-semibold text-primary-dark'>House ID:</span> {$item['house_id']}<br>
-                                                <span class='font-semibold text-primary-dark'>Village ID:</span> {$item['village_id']}<br>
-                                                <span class='font-semibold text-primary-dark'>address:</span> {$item['address']}<br>
-                                                <span class='font-semibold text-primary-dark'>road:</span> {$item['road']}<br>
-                                                <span class='font-semibold text-primary-dark'>census_id:</span> {$item['census_id']}<br>
-                                                <span class='font-semibold text-primary-dark'>hos_guid:</span> {$item['hos_guid']}<br>
-                                                <span class='font-semibold text-primary-dark'>location_area_id:</span> {$item['location_area_id']}<br>
-                                                <span class='font-semibold text-primary-dark'>latitude:</span> {$item['latitude']}<br>
-                                                <span class='font-semibold text-primary-dark'>longitude:</span> {$item['longitude']}<br>
-                                                <span class='font-semibold text-primary-dark'>family_count:</span> {$item['family_count']}<br>
-                                                <span class='font-semibold text-primary-dark'>last_update:</span> {$item['last_update']}<br>
-                                                <span class='font-semibold text-primary-dark'>Village house_type_id:</span> {$item['house_type_id']}<br>
-                                                <span class='font-semibold text-primary-dark'>doctor_code:</span> {$item['doctor_code']}<br>
-                                                <span class='font-semibold text-primary-dark'>head_person_id:</span> {$item['head_person_id']}<br>
-                        
-                                            </div>
-                                            ";
+            
+            $sex = $personData['sex'];
 
-                            $name = $personData['fname'];
-                            $cid = $personData['sex'];
-                            $keepName = $name;
-                            $latitude = $houseData['latitude'];
-                            $longitude = $houseData['longitude'];
-                            $hasLocation = $latitude !== 'None';
-                            $mergedData[] = array_merge($personData, $houseData);
+            if ($sex == 2){
+                 $sex ="หญิง";
+            }
+            else{
+                 $sex = "ชาย";
+            }
 
-                            
-                            break;
+            echo "
+            <div>
+                <span class='font-semibold text-primary-dark'>ชื่อ:</span> {$person['pname']} &nbsp;{$person['fname']} &nbsp;{$person['lname']}<br>
+                <span class='font-semibold text-primary-dark'>เพศ:</span> {$sex}<br>
+            </div>
+            ";
+            break;
+        }
+    }
 
-                            }
+if (isset($data2['result']) && !empty($data2['result'])) {    
+    foreach ($data2['result'] as $item) {
+        if ($item['house_id'] == $personData['house_id'] ) {
+            $houseData = array(
+                'house_id' => $item['house_id'],
+                'id' => $item['id'],
+                'address' => $item['address'],
+                'road' => $item['road'],
+                'census_id' => $item['census_id'],
+                'hos_guid' => $item['hos_guid'],
+                'location_area_id' => $item['location_area_id'],
+                'latitude' => $item['latitude'],
+                'longitude' => $item['longitude'] ,
+                'family_count' => $item['family_count'],
+                'last_update' => $item['last_update'] ,
+                'house_type_id' => $item['house_type_id'],
+                'house_guid' => $item['house_guid'],
+                'village_guid' => $item['village_guid'],
+                'doctor_code' => $item['doctor_code'],
+                'head_person_id' => $item['head_person_id'],
+                'utm_lat' => $item['utm_lat'],
+                'utm_long' => $item['utm_long'],
+                'house_social_survey_staff' => $item['house_social_survey_staff'],
+                'house_subtype_id' => $item['house_subtype_id'],
+                'house_condo_roomno' => $item['house_condo_roomno'],
+                'house_condo_name' => $item['house_condo_name'],
+                'house_housing_development_name' => $item['house_housing_development_name'],
+                'doctor_code2' => $item['doctor_code2'],
+                'vms_person_id' => $item['vms_person_id'],
+                'person_count' => $item['person_count'],
+                'address_int' => $item['address_int'],
+                // Add other fields here...
+            );
+            echo "
+            <div>
+                <span class='font-semibold text-primary-dark'>บ้านเลขที่:</span> {$item['address']}<br>
+                <span class='font-semibold text-primary-dark'>ละติจูด:</span> {$item['latitude']}<br>
+                <span class='font-semibold text-primary-dark'>ลองจิจูด:</span> {$item['longitude']}<br>
+                
+
+            </div>
+            ";
+                    $pname = $personData['pname'];
+                    $fname = $personData['fname'];
+                    $name = $pname . ' ' . $fname . ' ' . $personData['lname'];
+                    $keepName = $name;
+                    $latitude = $houseData['latitude'];
+                    $longitude = $houseData['longitude'];
+                    $hasLocation = $latitude !== 'None';
+                    $mergedData[] = array_merge($personData, $houseData);
+
+
+                    break;
 
                     }
-                } 
-            }
-                curl_close($curl1);
-                curl_close($curl2);
-                ?>
+
+                    }
+                    } 
+                    }
+                    curl_close($curl1);
+                    curl_close($curl2);
+                    ?>
+
                             </div>
                         </div>
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker p-4">
@@ -631,11 +619,11 @@ $keepName;
                             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js">
                             </script>
                             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
                             <script>
                             <?php
 switch (true) {
     case $hasLocation:
-        // Initialize map with provided latitude and longitude
         $latitude = json_encode($latitude);
         $longitude = json_encode($longitude);
 ?>
@@ -648,16 +636,17 @@ switch (true) {
 
                             L.marker([<?= $latitude; ?>, <?= $longitude; ?>]).addTo(map)
                                 .bindPopup(
-                                    'แสดงเส้นทาง.<button  id="getDirections" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Go</button>'
+                                    '<p class="font-semibold text-primary-dark text-center text-black text-md">บ้านของ</p>' +
+                                    '<p class="font-semibold text-primary-dark text-black text-center text-md"><?= $name; ?></p>' +
+                                    '<div class="text-center">' +
+                                    '<button id="getDirections" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ไปยังเส้นทาง</button>' +
+                                    '</div>'
                                 )
                                 .openPopup();
 
 
                             var latitude = <?= $latitude ?>;
                             var longitude = <?= $longitude ?>;
-
-                            var sourceLatitude = latitude;
-                            var sourceLongitude = longitude;
 
                             var destinationLatitude;
                             var destinationLongitude;
@@ -724,26 +713,9 @@ switch (true) {
                             }).addTo(defaultMap);
 
                             L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
-                                .bindPopup('ไม่มีที่อยู่บ้านในพิกัด no home')
-                                .openPopup();
-                            <?php
-        break;
-        case $searchQuery !== $name :
-            ?>
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'ไม่พบชื่อนี้ในระบบ',
-                            });
-
-                            var defaultMap = L.map('map').setView([16.797776693735905, 100.21001478729903], 13);
-
-                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            }).addTo(defaultMap);
-
-                            L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
-                                .bindPopup('ไม่มีที่อยู่บ้านในพิกัด no home')
+                                .bindPopup(
+                                    '<p class="font-semibold text-primary-dark text-black text-md">ไม่มีที่อยู่บ้านในพิกัด</p>'
+                                    )
                                 .openPopup();
                             <?php
         break;
@@ -758,7 +730,9 @@ switch (true) {
                             }).addTo(defaultMap);
 
                             L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
-                                .bindPopup('ไม่มีที่อยู่บ้านในพิกัด no home')
+                                .bindPopup(
+                                    '<p class="font-semibold text-primary-dark text-black text-md">ไม่มีที่อยู่บ้านในพิกัด</p>'
+                                    )
                                 .openPopup();
                             <?php
         break;

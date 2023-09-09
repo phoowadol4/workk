@@ -11,6 +11,7 @@ include("./process/process_get.php");
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="build/css/tailwind.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
@@ -67,9 +68,9 @@ include("./process/process_get.php");
                                 </a>
                                 <a href="index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Dashboard 2
+                                    ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                 </a>
-                                
+
                             </div>
                         </div>
                         <!-- Pages links -->
@@ -348,9 +349,9 @@ include("./process/process_get.php");
                                     </a>
                                     <a href="index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Dashboard 2
+                                        ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                     </a>
-                                   
+
                                 </div>
                             </div>
 
@@ -416,15 +417,17 @@ include("./process/process_get.php");
                                 <div>
                                     <h6
                                         class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
-                                        ผู้ตอบแบบสอบถามล่าสุด
+
+                                        empty
+
                                     </h6>
-                                    <span class="text-lg font-semibold"><?php
-                                        foreach ($dataArray['result'] as $survey){
-                                        } $datetime = $survey['date_time'];
-                                        echo date("d-F-Y H:i:s", strtotime($datetime))."&nbspน.";
-                                        ?></span>
+                                    <span class="text-md font-semibold">
+                                        <?php
+                                        
+                                        ?>
+                                    </span>
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <span>
                                         <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -433,20 +436,20 @@ include("./process/process_get.php");
                                                 d="M10.25,2.375c-4.212,0-7.625,3.413-7.625,7.625s3.413,7.625,7.625,7.625s7.625-3.413,7.625-7.625S14.462,2.375,10.25,2.375M10.651,16.811v-0.403c0-0.221-0.181-0.401-0.401-0.401s-0.401,0.181-0.401,0.401v0.403c-3.443-0.201-6.208-2.966-6.409-6.409h0.404c0.22,0,0.401-0.181,0.401-0.401S4.063,9.599,3.843,9.599H3.439C3.64,6.155,6.405,3.391,9.849,3.19v0.403c0,0.22,0.181,0.401,0.401,0.401s0.401-0.181,0.401-0.401V3.19c3.443,0.201,6.208,2.965,6.409,6.409h-0.404c-0.22,0-0.4,0.181-0.4,0.401s0.181,0.401,0.4,0.401h0.404C16.859,13.845,14.095,16.609,10.651,16.811 M12.662,12.412c-0.156,0.156-0.409,0.159-0.568,0l-2.127-2.129C9.986,10.302,9.849,10.192,9.849,10V5.184c0-0.221,0.181-0.401,0.401-0.401s0.401,0.181,0.401,0.401v4.651l2.011,2.008C12.818,12.001,12.818,12.256,12.662,12.412" />
                                         </svg>
                                     </span>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Users card -->
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
-                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
+                                        class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
                                         จำนวนผู้ตอบแบบสอบถาม
                                     </h6>
-                                    <span class="text-xl font-semibold"> <?php
+                                    <span class="text-md font-semibold"> <?php
                                           foreach ($dataArray['result'] as $survey){
                                         } echo $survey['id']."&nbspคน";?></span>
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <span>
                                         <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -455,23 +458,45 @@ include("./process/process_get.php");
                                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                                         </svg>
                                     </span>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!-- Orders card -->
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
-                                    <h6
-                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
+                                    <span
+                                        class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
                                         ผู้ตอบแบบสอบถาม
-                                    </h6>
-                                    <span class="text-xl font-semibold"><?php
+                                    </span>
+                                    <span
+                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
+                                        (ญาติ)
+                                    </span>
+                                    <span class="text-md font-semibold">
+                                        <?php
+                                        // Initialize an array to store the count for 'ผู้ป่วย'
+                                        $valueCountspeople11 = array(
+                                            'ญาติ' => 0,
+                                        );
 
-                                        foreach ($dataArray['result'] as $survey){
-                                        } echo $survey['answerer'];?></span>
+                                        foreach ($dataArray['result'] as $people) {
+                                            $people11 = $people['answerer'];
+
+                                            if ($people11 == 'ญาติ') {
+                                                $valueCountspeople11['ญาติ']++;
+                                            }
+                                        }
+
+                                        // Access the count from the PHP array
+                                        $count = $valueCountspeople11['ญาติ'];
+
+                                        // Print the result in the desired format
+                                        echo "จำนวน $count คน";
+                                        ?>
+                                    </span>
 
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <span>
                                         <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -480,24 +505,47 @@ include("./process/process_get.php");
                                                 d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                         </svg>
                                     </span>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Tickets card -->
-                            <a href="./pages/comment.php"
-                                class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
+                            <a class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
+                                    <h3
+                                        class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
+                                        ผู้ตอบแบบสอบถาม
+                                    </h3>
                                     <h6
                                         class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
-                                        ความคิดเห็นของผู้รับบริการ
+                                        (ผู้ป่วย)
 
                                     </h6>
-                                    <span class="text-xl font-semibold"><?php
-                                          foreach ($dataArray['result'] as $survey){
-                                        } echo $survey['f_improve'];
-                                          $survey['f_other'];?></span>
+                                    <span class="text-md font-semibold">
+                                        <?php
+                                        // Initialize an array to store the count for 'ผู้ป่วย'
+                                        $valueCountspeople12 = array(
+                                            'ผู้ป่วย' => 0,
+                                        );
+
+                                        foreach ($dataArray['result'] as $people) {
+                                            $people12 = $people['answerer'];
+
+                                            if ($people12 == 'ผู้ป่วย') {
+                                                $valueCountspeople12['ผู้ป่วย']++;
+                                            }
+                                        }
+
+                                        // Access the count from the PHP array
+                                        $count = $valueCountspeople12['ผู้ป่วย'];
+
+                                        // Print the result in the desired format
+                                        echo "จำนวน $count คน";
+                                        ?>
+
+
+                                    </span>
 
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <span>
                                         <svg class="w-12 h-12 text-black dark:text-primary-dark"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -506,7 +554,7 @@ include("./process/process_get.php");
                                                 d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                                         </svg>
                                     </span>
-                                </div>
+                                </div> -->
                             </a>
                         </div>
 
@@ -517,41 +565,57 @@ include("./process/process_get.php");
                                 <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                     <h4 class="text-lg font-semibold text-black dark:text-light">
-                                        อายุของผู้ตอบแบบสอบถาม</h4>
+                                        ช่วงอายุของผู้ตอบแบบสอบถาม</h4>
                                     <div class="flex items-center space-x-2">
                                     </div>
                                 </div>
                                 <!-- Chart -->
                                 <div class="relative p-4">
-                                    <canvas id="lineChart"></canvas>
+                                    <canvas id="barch"></canvas>
 
                                     <script>
-                                    // Convert PHP array to JavaScript array for chart
-                                    var dataValuesage = <?php  echo json_encode(array_values($valueCountsage)); ?>;
-                                    var dataLabelsage = <?php echo json_encode(array_keys($valueCountsage)); ?>;
+                                    // Convert PHP array to JavaScript variables for chart
+                                    var dataValuesage = <?php echo json_encode(array_values($valueCountsage)); ?>;
 
-                                    // Create the pie chart
-                                    var ctx = document.getElementById('lineChart').getContext('2d');
-                                    var myPieChart = new Chart(ctx, {
-                                        type: 'line',
+                                    // Create the bar chart
+                                    var ctx = document.getElementById('barch').getContext('2d');
+                                    Chart.defaults.font.family = "Lato";
+                                    Chart.defaults.font.size = 14;
+                                    Chart.defaults.color = "#555555";
+                                    var myBarChart = new Chart(ctx, {
+
+                                        type: 'bar',
                                         data: {
-                                            labels: dataValuesage,
+                                            labels: ['อายุน้อยกว่า 20 ปี', 'อายุระหว่าง 21-30 ปี',
+                                                'อายุระหว่าง 31-40 ปี', 'อายุระหว่าง 41-50 ปี',
+                                                'อายุมากกว่า 60 ปี'
+                                            ],
+                                            font: {
+                                                color: 'blue' // Change the label text color here
+                                            },
                                             datasets: [{
-                                                axis: 'y',
-                                                label: 'อายุ',
-                                                data: dataLabelsage,
-                                                borderColor: [
+                                                label: 'จำนวนช่วงอายุของผู้ตอบแบบประเมิน',
+                                                data: dataValuesage,
+                                                backgroundColor: [
                                                     'rgb(255, 99, 132)',
                                                     'rgb(255, 159, 64)',
-                                                    // Add more colors here if you have more data points
+                                                    'rgb(255, 205, 86)',
+                                                    'rgb(75, 192, 192)',
+                                                    'rgb(54, 162, 235)'
+                                                    // Add more colors here if needed
                                                 ],
-                                                tension: 0.1
-
+                                                borderWidth: 1
                                             }]
                                         },
                                         options: {
                                             responsive: true,
-                                        }
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        },
+
                                     });
                                     </script>
                                 </div>
@@ -570,7 +634,10 @@ include("./process/process_get.php");
                                 var dataValues = <?php echo json_encode(array_values($valueCounts)); ?>;
                                 var dataLabels = <?php echo json_encode(array_keys($valueCounts)); ?>;
 
-                                // Create the pie chart
+                                Chart.defaults.font.family = "Lato";
+                                Chart.defaults.font.size = 14;
+                                Chart.defaults.color = "#555555";
+
                                 var ctx = document.getElementById('dataPieChart').getContext('2d');
                                 var myPieChart = new Chart(ctx, {
                                     type: 'pie',
@@ -616,6 +683,10 @@ include("./process/process_get.php");
                                     var dataLabelsever = <?php echo json_encode(array_keys($valueCountsever)); ?>;
 
                                     // Create the pie chart
+                                    Chart.defaults.font.family = "Lato";
+                                    Chart.defaults.font.size = 14;
+                                    Chart.defaults.color = "text-black dark:text-light";
+
                                     var ctx = document.getElementById('everchart').getContext('2d');
                                     var myPieChart = new Chart(ctx, {
                                         type: 'pie',
@@ -644,48 +715,128 @@ include("./process/process_get.php");
                                 <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                     <h4 class="text-lg font-semibold text-black dark:text-light">
-                                        ผู้ประเมินให้คะแนนมากที่สุด 5 อันดับแรก</h4>
+                                        ผู้ประเมินให้คะแนน จากตอนที่ 2
+                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                                     <div class="flex items-center">
                                     </div>
                                 </div>
                                 <!-- Chart -->
-                                <div class="relative p-4">
+                                <div class="relative p-4 items-center">
                                     <canvas id="dataBarChart"></canvas>
                                     <script>
                                     // Convert PHP array to JavaScript array for chart
-                                    var dataValuespop = <?php echo json_encode(array_values($top3Ratings)); ?>;
-                                    var dataLabelspop = <?php echo json_encode(array_keys($top3Ratings)); ?>;
+                                    var dataValuespop = <?php echo json_encode(array_values($top5Ratings)); ?>;
+var dataLabelspop = <?php echo json_encode(array_keys($top5Ratings)); ?>;
 
-                                    // Create the bar chart
-                                    var ctx = document.getElementById('dataBarChart').getContext('2d');
-                                    var myBarChart = new Chart(ctx, {
-                                        type: 'bar',
-                                        data: {
-                                            labels: dataLabelspop,
-                                            datasets: [{
-                                                label: 'ค่าเฉลี่ย',
-                                                data: dataValuespop,
-                                                backgroundColor: 'rgb(255, 159, 64)',
-                                                borderColor: 'rgb(255, 159, 64)',
-                                                borderWidth: 1
-                                            }]
-                                        },
-                                        options: {
-                                            responsive: true,
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: true
-                                                }
-                                            }
-                                        }
-                                    });
+console.log(dataValuespop);
+console.log(dataLabelspop);
+
+var isDarkTheme = document.body.classList.contains('dark-theme'); // Check if it's a dark theme
+
+// Determine text color based on the theme
+var textColor = isDarkTheme ? 'white' : 'black';
+
+var labelsAdjusted = dataLabelspop.map(label => {
+    var words = label.split(' ');
+    var shortenedLabel = '';
+
+    // Check if the words array has at least one element
+    if (words.length >= 1) {
+        shortenedLabel = words[0];
+    } else {
+        // If not, use the original label
+        shortenedLabel = label;
+    }
+
+    return shortenedLabel;
+});
+
+// Create the bar chart with the determined text color
+Chart.defaults.font.family = "Lato";
+Chart.defaults.font.size = 12;
+
+var ctx = document.getElementById('dataBarChart').getContext('2d');
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labelsAdjusted,
+        datasets: [{
+            label: 'ค่าเฉลี่ยมากที่สุด 5 อันดับแรก',
+            data: dataValuespop,
+            backgroundColor: 'rgb(255, 159, 64)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            indexAxis: 'y',
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    color: textColor // Set the text color for y-axis labels
+                }
+            }
+        }
+    }
+});
+
                                     </script>
+
+
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-span-12 xl:col-span-6"> -->
+                        <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
+                            <!-- Card header -->
+                            <div class="flex items-center justify-between p-4 border-b dark:border-primary">
+                                <h4 class="text-lg font-semibold text-black dark:text-light">
+                                    ผู้ประเมินให้คะแนน จากตอนที่ 2
+                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
+                                <div class="flex items-center">
+                                </div>
+                            </div>
+                            <!-- Chart -->
+                            <div class="relative p-4 items-center">
+                                <div>
+                                    <div class="block w-full overflow-x-auto">
+                                        <table class="w-full bg-transparent border-collapse">
+                                            <table class="w-full bg-transparent border-collapse">
+                                                <thead>
+                                                    <tr>
+                                                        <th
+                                                            class="py-2 px-4 border-b border-r border-gray-300 font-semibold text-black dark:text-light">
+                                                            ค่าเฉลี่ยมากที่สุด 5 อันดับแรก</th>
+                                                        <th
+                                                            class="py-2 px-4 border-b border-gray-300 font-semibold text-black dark:text-light">
+                                                            ค่าเฉลี่ย</th>
+                                                        <th class="py-2 px-4 border-b border-gray-300"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-100">
+                                                    <?php
+                            $top5RatingsKeys = array_keys($top5Ratings);
+                            $top5RatingsValues = array_values($top5Ratings);
 
-                    </div>
+                            for ($i = 0; $i < min(15, count($top5Ratings)); $i++) {
+                                echo '<tr class="font-semibold text-black dark:text-light">';
+                                echo '<td class="py-2 px-4 border-b border-r border-gray-300 table-cell">' . $top5RatingsKeys[$i] . '</td>';
+                                echo '<td class="py-2 px-4 border-b border-gray-300 table-cell text-center">' . json_encode($top5RatingsValues[$i]) . '</td>';
+                                echo '<td class="py-2 px-4 border-b border-gray-300 table-cell"></td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                                                </tbody>
+                                            </table>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- <div class="col-span-12 xl:col-span-6"> -->
+
+                        </div>
                 </main>
 
 

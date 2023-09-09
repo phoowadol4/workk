@@ -1226,7 +1226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     function isValidAge(age) {
-        if (isNaN(age) || age <= 6 || age.length > 2) {
+        if (isNaN(age) || age <= 8 || age.length > 2) {
             return false; // Invalid age
         }
         return true; // Valid age

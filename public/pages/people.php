@@ -80,7 +80,7 @@ include("../process/process_get.php");
                                 </a>
                                 <a href="../index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Dashboard 2
+                                    ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                 </a>
                                
                             </div>
@@ -127,7 +127,7 @@ include("../process/process_get.php");
                                 </a>
                                 <a href="age.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    age
+                                    อายุของผู้ตอบแบบสอบถาม
                                 </a>
                                 <a href="form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
@@ -216,7 +216,7 @@ include("../process/process_get.php");
                                     type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
                                     class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                                     <span class="sr-only">User menu</span>
-                                    <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
+                                    <img class="w-10 h-10 rounded-full" src="../build/images/avatar.jpg"
                                         alt="Ahmed Kamel" />
                                 </button>
 
@@ -297,7 +297,7 @@ include("../process/process_get.php");
                                     :aria-expanded="open ? 'true' : 'false'"
                                     class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                                     <span class="sr-only">User menu</span>
-                                    <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
+                                    <img class="w-10 h-10 rounded-full" src="../build/images/avatar.jpg"
                                         alt="Ahmed Kamel" />
                                 </button>
 
@@ -364,7 +364,7 @@ include("../process/process_get.php");
                                     </a>
                                     <a href="../index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Dashboard 2
+                                        ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                     </a>
                                    
                                 </div>
@@ -411,7 +411,7 @@ include("../process/process_get.php");
                                     </a>
                                     <a href="age.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        age
+                                        อายุของผู้ตอบแบบสอบถาม
                                     </a>
                                     <a href="form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
