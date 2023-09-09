@@ -431,12 +431,12 @@ include("../process/process_get.php");
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ผู้ตอบแบบสอบถาม</h4>
+                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ความคิดเห็นของผู้รับบริการ</h4>
                             </div>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>ลำดับ</th>
                                         <th>รพ.สต.ควรปรับปรุงและพัฒนาในเรื่องใด</th>
                                         <th>ข้อเสนอแนะอื่นๆ ในการปรับปรุงการบริการของ รพ.สต.เรื่องใดบ้าง</th>
                                     </tr>

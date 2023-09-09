@@ -437,7 +437,7 @@ include("../process/process_get.php");
                             <table >
                             <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>ลำดับ</th>
                                         <th>ผู้ตอบแบบสอบถาม</th>
                                     </tr>
                                 </thead>

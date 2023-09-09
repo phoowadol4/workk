@@ -17,6 +17,7 @@ include("./process/process_get.php");
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -577,24 +578,47 @@ include("./process/process_get.php");
                                     // Convert PHP array to JavaScript variables for chart
                                     var dataValuesage = <?php echo json_encode(array_values($valueCountsage)); ?>;
 
+                                    const getTheme = () => {
+                                        if (window.localStorage.getItem('dark')) {
+                                            return JSON.parse(window.localStorage.getItem('dark'));
+                                        }
+                                        return !!window.matchMedia && window.matchMedia(
+                                            '(prefers-color-scheme: dark)').matches;
+                                    };
+
+                                    // Function to set the theme (replace with your actual logic)
+                                    const setTheme = (value) => {
+                                        window.localStorage.setItem('dark', value);
+                                    };
+
+                                    // Convert PHP array to JavaScript variables for chart
+                                    var dataValuesage = <?php echo json_encode(array_values($valueCountsage)); ?>;
+
+                                    // Determine the theme
+                                    const isDarkTheme = getTheme();
+
+                                    // Determine text colors based on the theme
+                                    const textColorY = isDarkTheme ? '#FFFFFF' :
+                                        '#000000'; // Y-axis label text color (white for dark, black for light)
+                                    const textColorX = isDarkTheme ? '#FFFFFF' : '#000000';
+
+                                    // Set Chart.js default color based on the theme
+                                    Chart.defaults.color = isDarkTheme ? '#FFFFFF' : '#000000';
+
                                     // Create the bar chart
                                     var ctx = document.getElementById('barch').getContext('2d');
                                     Chart.defaults.font.family = "Lato";
                                     Chart.defaults.font.size = 14;
-                                    Chart.defaults.color = "#555555";
-                                    var myBarChart = new Chart(ctx, {
 
+                                    var myBarChart = new Chart(ctx, {
                                         type: 'bar',
                                         data: {
                                             labels: ['อายุน้อยกว่า 20 ปี', 'อายุระหว่าง 21-30 ปี',
                                                 'อายุระหว่าง 31-40 ปี', 'อายุระหว่าง 41-50 ปี',
                                                 'อายุมากกว่า 60 ปี'
                                             ],
-                                            font: {
-                                                color: 'blue' // Change the label text color here
-                                            },
                                             datasets: [{
-                                                label: 'จำนวนช่วงอายุของผู้ตอบแบบประเมิน',
+                                                label: 'ช่วงอายุของผู้ตอบแบบสอบถาม',
                                                 data: dataValuesage,
                                                 backgroundColor: [
                                                     'rgb(255, 99, 132)',
@@ -611,11 +635,19 @@ include("./process/process_get.php");
                                             responsive: true,
                                             scales: {
                                                 y: {
-                                                    beginAtZero: true
+                                                    ticks: {
+                                                        color: textColorY, // Set the Y-axis label text color
+                                                        beginAtZero: true
+                                                    }
+                                                },
+                                                x: {
+                                                    ticks: {
+                                                        color: textColorX, // Set the X-axis label text color
+                                                        beginAtZero: true
+                                                    }
                                                 }
                                             }
-                                        },
-
+                                        }
                                     });
                                     </script>
                                 </div>
@@ -635,8 +667,7 @@ include("./process/process_get.php");
                                 var dataLabels = <?php echo json_encode(array_keys($valueCounts)); ?>;
 
                                 Chart.defaults.font.family = "Lato";
-                                Chart.defaults.font.size = 14;
-                                Chart.defaults.color = "#555555";
+                                Chart.defaults.font.size = 16;
 
                                 var ctx = document.getElementById('dataPieChart').getContext('2d');
                                 var myPieChart = new Chart(ctx, {
@@ -678,15 +709,18 @@ include("./process/process_get.php");
                                 <div class="relative p-4">
                                     <canvas id="everchart"></canvas>
                                     <script>
-                                    // Convert PHP array to JavaScript array for chart
+                                    // Convert PHP array data to JavaScript
                                     var dataValuesever = <?php echo json_encode(array_values($valueCountsever)); ?>;
                                     var dataLabelsever = <?php echo json_encode(array_keys($valueCountsever)); ?>;
 
-                                    // Create the pie chart
+                                    // Set chart font options
                                     Chart.defaults.font.family = "Lato";
-                                    Chart.defaults.font.size = 14;
-                                    Chart.defaults.color = "text-black dark:text-light";
+                                    Chart.defaults.font.size = 16;
 
+                                    // Set chart color options
+                                    Chart.defaults.color = isDarkTheme ? '#FFFFFF' :
+                                            '#000000';
+                                    // Get the canvas element and create the pie chart
                                     var ctx = document.getElementById('everchart').getContext('2d');
                                     var myPieChart = new Chart(ctx, {
                                         type: 'pie',
@@ -724,65 +758,106 @@ include("./process/process_get.php");
                                 <div class="relative p-4 items-center">
                                     <canvas id="dataBarChart"></canvas>
                                     <script>
-                                    // Convert PHP array to JavaScript array for chart
-                                    var dataValuespop = <?php echo json_encode(array_values($top5Ratings)); ?>;
-var dataLabelspop = <?php echo json_encode(array_keys($top5Ratings)); ?>;
+                                    function createChart() {
+                                        // Convert PHP array to JavaScript array for chart
+                                        var dataValuespop = <?php echo json_encode(array_values($top5Ratings)); ?>;
+                                        var dataLabelspop = <?php echo json_encode(array_keys($top5Ratings)); ?>;
 
-console.log(dataValuespop);
-console.log(dataLabelspop);
+                                        console.log(dataValuespop);
+                                        console.log(dataLabelspop);
 
-var isDarkTheme = document.body.classList.contains('dark-theme'); // Check if it's a dark theme
+                                        const getTheme = () => {
+                                            if (window.localStorage.getItem('dark')) {
+                                                return JSON.parse(window.localStorage.getItem('dark'));
+                                            }
+                                            return !!window.matchMedia && window.matchMedia(
+                                                '(prefers-color-scheme: dark)').matches;
+                                        };
 
-// Determine text color based on the theme
-var textColor = isDarkTheme ? 'white' : 'black';
+                                        const setTheme = (value) => {
+                                            window.localStorage.setItem('dark', value);
+                                        };
 
-var labelsAdjusted = dataLabelspop.map(label => {
-    var words = label.split(' ');
-    var shortenedLabel = '';
+                                        const isDarkTheme = getTheme();
 
-    // Check if the words array has at least one element
-    if (words.length >= 1) {
-        shortenedLabel = words[0];
-    } else {
-        // If not, use the original label
-        shortenedLabel = label;
-    }
+                                        // Determine text colors based on the theme
+                                        const textColorY = isDarkTheme ? '#FFFFFF' :
+                                            '#000000'; // Y-axis label text color (white for dark, black for light)
+                                        const textColorX = isDarkTheme ? '#FFFFFF' : '#000000';
 
-    return shortenedLabel;
-});
+                                        Chart.defaults.color = isDarkTheme ? '#FFFFFF' :
+                                            '#000000';
 
-// Create the bar chart with the determined text color
-Chart.defaults.font.family = "Lato";
-Chart.defaults.font.size = 12;
+                                        console.log(textColorY);
+                                        console.log(textColorX);
+                                        var labelsAdjusted = dataLabelspop.map(label => {
+                                            var words = label.split(' ');
+                                            var shortenedLabel = '';
 
-var ctx = document.getElementById('dataBarChart').getContext('2d');
-var myBarChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: labelsAdjusted,
-        datasets: [{
-            label: 'ค่าเฉลี่ยมากที่สุด 5 อันดับแรก',
-            data: dataValuespop,
-            backgroundColor: 'rgb(255, 159, 64)',
-            borderColor: 'rgb(255, 159, 64)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            indexAxis: 'y',
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: textColor // Set the text color for y-axis labels
-                }
-            }
-        }
-    }
-});
+                                            // Check if the words array has at least one element
+                                            if (words.length >= 1) {
+                                                shortenedLabel = words[0];
+                                            } else {
+                                                // If not, use the original label
+                                                shortenedLabel = label;
+                                            }
 
+                                            return shortenedLabel;
+                                        });
+
+                                        // Create the bar chart with the determined text color
+                                        Chart.defaults.font.family = "Lato";
+                                        Chart.defaults.font.size = 12;
+
+                                        var ctx = document.getElementById('dataBarChart').getContext('2d');
+                                        var myBarChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: labelsAdjusted,
+                                                datasets: [{
+                                                    label: 'ค่าเฉลี่ยมากที่สุด 5 อันดับแรก',
+                                                    data: dataValuespop,
+                                                    backgroundColor: 'rgb(255, 159, 64)',
+                                                    borderColor: 'rgb(255, 159, 64)',
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                scales: {
+                                                    y: {
+                                                        ticks: {
+                                                            color: textColorY, // Set the Y-axis label text color
+                                                            beginAtZero: true
+                                                        }
+                                                    },
+                                                    x: {
+                                                        ticks: {
+                                                            color: textColorX, // Set the X-axis label text color
+                                                            beginAtZero: true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    }
+
+                                    // Create the chart initially
+                                    createChart();
+
+                                    // Toggle theme function
+                                    const toggleTheme = () => {
+                                        const isDarkTheme = !getTheme();
+                                        setTheme(isDarkTheme);
+
+                                        if (myBarChart) {
+                                            myBarChart.destroy(); // Destroy the existing chart
+                                        }
+
+                                        createChart(); // Re-create the chart with the new theme
+                                    };
                                     </script>
+
 
 
                                 </div>
@@ -807,7 +882,7 @@ var myBarChart = new Chart(ctx, {
                                                     <tr>
                                                         <th
                                                             class="py-2 px-4 border-b border-r border-gray-300 font-semibold text-black dark:text-light">
-                                                            ค่าเฉลี่ยมากที่สุด 5 อันดับแรก</th>
+                                                            การบริการของ รพ.สต.</th>
                                                         <th
                                                             class="py-2 px-4 border-b border-gray-300 font-semibold text-black dark:text-light">
                                                             ค่าเฉลี่ย</th>
@@ -820,7 +895,7 @@ var myBarChart = new Chart(ctx, {
                             $top5RatingsValues = array_values($top5Ratings);
 
                             for ($i = 0; $i < min(15, count($top5Ratings)); $i++) {
-                                echo '<tr class="font-semibold text-black dark:text-light">';
+                                echo '<tr class=" text-black dark:text-light">';
                                 echo '<td class="py-2 px-4 border-b border-r border-gray-300 table-cell">' . $top5RatingsKeys[$i] . '</td>';
                                 echo '<td class="py-2 px-4 border-b border-gray-300 table-cell text-center">' . json_encode($top5RatingsValues[$i]) . '</td>';
                                 echo '<td class="py-2 px-4 border-b border-gray-300 table-cell"></td>';
