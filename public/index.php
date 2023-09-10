@@ -118,7 +118,7 @@ include("./process/process_get.php");
                                 </a>
                                 <a href="pages/form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    คะแนนประเมินแบบสอบถาม
+                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                 </a>
                             </div>
                         </div>
@@ -403,7 +403,7 @@ include("./process/process_get.php");
                                     </a>
                                     <a href="pages/form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        คะแนนประเมินแบบสอบถาม
+                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                     </a>
                                 </div>
                             </div>
@@ -424,7 +424,7 @@ include("./process/process_get.php");
                                         class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
                                         ความคิดเห็นของผู้รับบริการ
                                     </h6>
-                                    <span class="text-md font-semibold">
+                                    <span class="text-sm font-semibold">
                                         <?php
                                         $fImproveCount = 0;
                                         $fOtherCount = 0;
@@ -736,7 +736,7 @@ include("./process/process_get.php");
 
                                     // Set chart color options
                                     Chart.defaults.color = isDarkTheme ? '#FFFFFF' :
-                                            '#000000';
+                                        '#000000';
                                     // Get the canvas element and create the pie chart
                                     var ctx = document.getElementById('everchart').getContext('2d');
                                     var myPieChart = new Chart(ctx, {
@@ -780,8 +780,8 @@ include("./process/process_get.php");
                                         var dataValuespop = <?php echo json_encode(array_values($top5Ratings)); ?>;
                                         var dataLabelspop = <?php echo json_encode(array_keys($top5Ratings)); ?>;
 
-                                        console.log(dataValuespop);
-                                        console.log(dataLabelspop);
+                                        // console.log(dataValuespop);
+                                        // console.log(dataLabelspop);
 
                                         const getTheme = () => {
                                             if (window.localStorage.getItem('dark')) {
@@ -805,8 +805,7 @@ include("./process/process_get.php");
                                         Chart.defaults.color = isDarkTheme ? '#FFFFFF' :
                                             '#000000';
 
-                                        console.log(textColorY);
-                                        console.log(textColorX);
+
                                         var labelsAdjusted = dataLabelspop.map(label => {
                                             var words = label.split(' ');
                                             var shortenedLabel = '';
@@ -818,9 +817,10 @@ include("./process/process_get.php");
                                                 // If not, use the original label
                                                 shortenedLabel = label;
                                             }
-
                                             return shortenedLabel;
                                         });
+
+                                        console.log(labelsAdjusted);
 
                                         // Create the bar chart with the determined text color
                                         Chart.defaults.font.family = "Lato";
@@ -875,8 +875,6 @@ include("./process/process_get.php");
                                     };
                                     </script>
 
-
-
                                 </div>
                             </div>
                         </div>
@@ -884,7 +882,7 @@ include("./process/process_get.php");
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                 <h4 class="text-lg font-semibold text-black dark:text-light">
-                                ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
+                                    ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
                                     ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                                 <div class="flex items-center">
                                 </div>
@@ -1037,7 +1035,8 @@ include("./process/process_get.php");
         </div>
     </div>
     <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
-    <script src="build/js/script.js"></script>
+    <!-- <script src="build/js/script.js"></script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
     <script>
     const setup = () => {

@@ -127,7 +127,7 @@ $keepName;
                                 </a>
                                 <a href="pages/form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    คะแนนประเมินแบบสอบถาม
+                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                 </a>
                             </div>
                         </div>
@@ -405,7 +405,7 @@ $keepName;
                                     </a>
                                     <a href="pages/form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        คะแนนประเมินแบบสอบถาม
+                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                     </a>
                                 </div>
                             </div>

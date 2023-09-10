@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script
         src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js">
     </script>
-    <title>แบบประเมินความพึงพอใจ</title>
+    <title>แบบสอบถามความพึงพอใจ</title>
     <link rel="canonical" href="https://codepen.io/designify-me/pen/qrJWpG">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -421,7 +421,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </ul>
                 <!-- fieldsets -->
                 <fieldset style="transform: scale(1); position: absolute; opacity: 1; display: block;">
-                    <h4 class="fs-title">แบบประเมินความพึงพอใจของผู้รับบริการใน รพ.สต.</h4>
+                    <h4 class="fs-title">แบบสอบถามความพึงพอใจของผู้รับบริการใน รพ.สต.</h4>
                     <h3 class="fs-subtitle text-sm">ข้อมูลนี้เป็นส่วนหนึ่งของการจัดทำระบบคุณภาพบริการของ รพ.สต.
                         โปรดแสดงความคิดเห็นเกี่ยวกับการปฎิบัติงานของเจ้าหน้าที่ใน รพ.สต.
                         เพื่อนำข้อมูลไปพัฒนางานกรุณาตอบแบบประเมิน 3 ตอน</h3>

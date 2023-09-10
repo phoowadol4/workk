@@ -133,7 +133,7 @@ include("../process/process_get.php");
                                 </a>
                                 <a href="form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    คะแนนประเมินแบบสอบถาม
+                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                 </a>
                             </div>
                         </div>
@@ -419,7 +419,7 @@ include("../process/process_get.php");
                                     </a>
                                     <a href="form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        คะแนนประเมินแบบสอบถาม
+                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                     </a>
                                 </div>
                             </div>
@@ -436,18 +436,18 @@ include("../process/process_get.php");
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">คะแนนเฉลี่ยแบบสอบถาม</h4>
+                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2 ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                             </div>
                             <table >
                                 <thead>
                                     <tr>
                                         <th scope="col"
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
-                                            แบบสอบถาม
+                                            การบริการของ รพ.สต.
                                         </th>
                                         <th scope="col"
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
-                                            ผู้ประเมินให้คะแนนเฉลี่ย
+                                            คะแนนความพึงพอใจเฉลี่ย
                                         </th>
                                     </tr>
                                 </thead>
