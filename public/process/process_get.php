@@ -198,16 +198,17 @@ foreach ($dataArray['result'] as $itempop) {
 }
 
 // Calculate the average for each fieldff
-$ratingAverges = array();
+$ratingAverages = array();
 foreach ($ratingTotals as $field => $total) {
-    $ratingAverges[$field] = $total / array_sum($valueCountspop[$field]);
+    $ratingAverages[$field] = round($total / array_sum($valueCountspop[$field]), 3);
 }
 
 // Sort the averages in descending order
-arsort($ratingAverges);
+arsort($ratingAverages);
 
-// Select the top 5 rated fieldffs
-$top5Ratings = array_slice($ratingAverges, 0, 5);
+// Select the top 5 rated fields
+$top5Ratings = array_slice($ratingAverages, 0, 5);
+
 
 // Convert the data for use in JavaScript
 // $top5Data = json_encode($top5Ratings);

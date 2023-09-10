@@ -76,7 +76,7 @@ include("../process/process_get.php");
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="../index.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    รายงานสรุปผลแบบประเมิน
+                                    รายงานสรุปผลการตอบแบบสอบถาม
                                 </a>
                                 <a href="../index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
@@ -360,7 +360,7 @@ include("../process/process_get.php");
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="../index.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        รายงานสรุปผลแบบประเมิน
+                                        รายงานสรุปผลการตอบแบบสอบถาม
                                     </a>
                                     <a href="../index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
@@ -442,14 +442,16 @@ include("../process/process_get.php");
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                        foreach ($dataArray['result'] as $survey) {
+                                <?php
+                                    foreach ($dataArray['result'] as $survey) {
+                                        if (!empty($survey['answerer']) && $survey['answerer'] !== '' && $survey['answerer'] !== 'none') {
                                             echo '<tr>';
                                             echo '<td>' . $survey['id'] . '</td>';
                                             echo '<td>' . $survey['answerer'] . '</td>';
                                             echo '</tr>';
                                         }
-                                        ?>
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

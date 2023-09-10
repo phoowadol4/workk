@@ -65,7 +65,7 @@ include("./process/process_get.php");
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="index.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    รายงานสรุปผลแบบประเมิน
+                                    รายงานสรุปผลการตอบแบบสอบถาม
                                 </a>
                                 <a href="index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
@@ -102,10 +102,12 @@ include("./process/process_get.php");
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="pages/people.php" role="menuitem"
+
+                                <!-- <a href="pages/people.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ผู้ตอบแบบสอบถาม
-                                </a>
+                                </a> -->
+
                                 <a href="pages/comment.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ความคิดเห็นของผู้รับบริการ
@@ -346,7 +348,7 @@ include("./process/process_get.php");
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="index.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        รายงานสรุปผลแบบประเมิน
+                                        รายงานสรุปผลการตอบแบบสอบถาม
                                     </a>
                                     <a href="index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
@@ -384,10 +386,12 @@ include("./process/process_get.php");
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="pages/people.php" role="menuitem"
+
+                                    <!-- <a href="pages/people.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ผู้ตอบแบบสอบถาม
-                                    </a>
+                                    </a> -->
+
                                     <a href="pages/comment.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ความคิดเห็นของผู้รับบริการ
@@ -417,14 +421,27 @@ include("./process/process_get.php");
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
-                                        class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
-
-                                        empty
-
+                                        class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
+                                        ความคิดเห็นของผู้รับบริการ
                                     </h6>
                                     <span class="text-md font-semibold">
                                         <?php
-                                        
+                                        $fImproveCount = 0;
+                                        $fOtherCount = 0;
+
+                                        foreach ($dataArray['result'] as $survey) {
+                                            // Check if f_improve has a value
+                                            if (!empty($survey['f_improve'])) {
+                                                $fImproveCount++;
+                                            }
+                                            // Check if f_other has a value
+                                            if (!empty($survey['f_other'])) {
+                                                $fOtherCount++;
+                                            }
+                                            $countf=$fImproveCount+$fOtherCount;
+                                        }
+                                        // Output the counts
+                                    echo  $countf .'' .'&nbspความคิดเห็น';
                                         ?>
                                     </span>
                                 </div>
@@ -700,7 +717,7 @@ include("./process/process_get.php");
                             <div class="col-span-1 bg-white rounded-md dark:bg-darker">
                                 <!-- Card header -->
                                 <div class="p-4 border-b dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-black  dark:text-light">
+                                    <h4 class="text-lg font-semibold text-center text-black  dark:text-light">
                                         ผู้ป่วยมาใช้บริการที่นี่เป็นครั้งแรก
                                     </h4>
                                 </div>
@@ -749,7 +766,7 @@ include("./process/process_get.php");
                                 <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                     <h4 class="text-lg font-semibold text-black dark:text-light">
-                                        ผู้ประเมินให้คะแนน จากตอนที่ 2
+                                        ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
                                         ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                                     <div class="flex items-center">
                                     </div>
@@ -867,7 +884,7 @@ include("./process/process_get.php");
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                 <h4 class="text-lg font-semibold text-black dark:text-light">
-                                    ผู้ประเมินให้คะแนน จากตอนที่ 2
+                                ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
                                     ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                                 <div class="flex items-center">
                                 </div>

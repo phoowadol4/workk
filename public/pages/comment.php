@@ -60,7 +60,7 @@ include("../process/process_get.php");
                                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> รายงานสรุปผลแบบประเมิน </span>
+                                <span class="ml-2 text-sm"> Dashboard </span>
                                 <span class="ml-auto" aria-hidden="true">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -76,13 +76,13 @@ include("../process/process_get.php");
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="../index.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    รายงานสรุปผลแบบประเมิน
+                                    รายงานสรุปผลการตอบแบบสอบถาม
                                 </a>
                                 <a href="../index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                 </a>
-                                
+
                             </div>
                         </div>
 
@@ -116,10 +116,12 @@ include("../process/process_get.php");
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="people.php" role="menuitem"
+
+                                <!-- <a href="people.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ผู้ตอบแบบสอบถาม
-                                </a>
+                                </a> -->
+
                                 <a href="comment.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ความคิดเห็นของผู้รับบริการ
@@ -360,13 +362,13 @@ include("../process/process_get.php");
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="../index.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        รายงานสรุปผลแบบประเมิน
+                                        รายงานสรุปผลการตอบแบบสอบถาม
                                     </a>
                                     <a href="../index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                     </a>
-                                   
+
                                 </div>
                             </div>
 
@@ -400,10 +402,12 @@ include("../process/process_get.php");
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="people.php" role="menuitem"
+
+                                    <!-- <a href="people.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ผู้ตอบแบบสอบถาม
-                                    </a>
+                                    </a> -->
+
                                     <a href="comment.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ความคิดเห็นของผู้รับบริการ
@@ -431,31 +435,39 @@ include("../process/process_get.php");
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ความคิดเห็นของผู้รับบริการ</h4>
+                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">
+                                    ความคิดเห็นของผู้รับบริการ</h4>
                             </div>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>ลำดับ</th>
                                         <th>รพ.สต.ควรปรับปรุงและพัฒนาในเรื่องใด</th>
                                         <th>ข้อเสนอแนะอื่นๆ ในการปรับปรุงการบริการของ รพ.สต.เรื่องใดบ้าง</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                        foreach ($dataArray['result'] as $survey) {
-                                            echo '<tr>';
-                                            echo '<td>' . $survey['id'] . '</td>';
+                                <?php
+                                    foreach ($dataArray['result'] as $survey) {
+                                        // Check if f_improve has a value and echo it
+                                        if (!empty($survey['f_improve']) && $survey['f_improve'] !== '' && $survey['f_improve'] !== 'none') {
                                             echo '<td>' . $survey['f_improve'] . '</td>';
-                                            echo '<td>' . $survey['f_other'] . '</td>';
-                                            echo '</tr>';
+                                        } else {
                                         }
-                                        ?>
+                                        // Check if f_other has a value and echo it
+                                        if (!empty($survey['f_other']) && $survey['f_other'] !== '' && $survey['f_other'] !== 'none') {
+                                            echo '<td>' . $survey['f_other'] . '</td>';
+                                        } else {
+                                        }
+                                        
+                                        echo '</tr>';
+                                    }
+                                    ?>
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
+            </div>
             </main>
         </div>
 
