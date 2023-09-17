@@ -83,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 curl_close($ch);
 }
 
+
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_SESSION['gender'],  $_SESSION['age'], $_SESSION['date'], $_SESSION['ever'])) {
 

@@ -38,9 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <meta name="apple-mobile-web-app-title" content="CodePen">
 
-    <!-- <link rel="shortcut icon" type="image/x-icon"
-        href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico"> -->
-
+    
     <link rel="mask-icon" type="image/x-icon"
         href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg"
         color="#111">
@@ -517,7 +515,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </li>
                     </ul>
                     </li>
-                    <input type="button" name="next" class="next action-button" value="Next">
+                    <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
                 <fieldset style="display: none; left: 50%; opacity: 0; transform: scale(1); position: absolute;">
                     <h3 class="fs-title">ตอนที่ 2 ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h3>
@@ -538,9 +536,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                                <th class="border px-1 py-1 text-center">ด้านเจ้าหน้าที่ผู้ให้บริการ</th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                            </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">1. ให้การต้อนรับด้วยอัธยาศัยที่ดี
-                                    สุภาพยิ้มแย้มแจ่มใส</td>
+                                <td class="border px-4 py-2 text-left">1. ให้การต้อนรับด้วยอัธยาศัยที่ดี สุภาพยิ้มแย้มแจ่มใส	</td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_1_1" name="rd_1" value="1"
                                         <?php echo ($_SESSION['rd_1'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -597,8 +602,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">
-                                    3.การบริการเป็นไปตามระเบียบปฏิบัติของทางราชการและระบียบอื่นๆ ที่ประกาศ</td>
+                                <td class="border px-4 py-2 text-left">3. เจ้าหน้าที่ให้ความสนใจและเต็มใจช่วยแก้ปัญหาต่างๆให้กับท่าน	</td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_3_1" name="rd_3" value="1"
                                         <?php echo ($_SESSION['rd_3'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -626,8 +630,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">4.
-                                    การบริการเป็นไปตามกำหนดเวลาราชการและ/หรือเวลาที่ประกาศ</td>
+                                <td class="border px-4 py-2 text-left">4. เจ้าหน้าที่ของ รพ.สต. มีความรับผิดชอบและความมุ่งมั่นในการปฏิบัติงาน	</td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_4_1" name="rd_4" value="1"
                                         <?php echo ($_SESSION['rd_4'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -655,7 +658,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">5. ให้บริการด้วยความสะดวก รวดเร็ว</td>
+                                <td class="border px-4 py-2 text-left">5. เจ้าหน้าที่ได้แจ้งขั้นตอนและเงื่อนไขการบริการให้ผู้มาติดต่อ ทราบอย่างชัดเจน	
+                                </td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_5_1" name="rd_5" value="1"
                                         <?php echo ($_SESSION['rd_5'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -683,8 +687,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">6.
-                                    ความเร็วในการให้ความช่วยเหลือเมื่อท่านขอความช่วยเหลือ
+                                <td class="border px-4 py-2 text-left">
+                                6. ระดับความพอใจในการให้บริการของเจ้าหน้าที่	
                                 </td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_6_1" name="rd_6" value="1"
@@ -713,8 +717,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
+                                <th class="border px-1 py-1 text-center">ด้านคุณภาพการให้บริการ	</th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                            </tr>
+                            <tr>
                                 <td class="border px-4 py-2 text-left">
-                                    7. เจ้าหน้าที่ให้ความสนใจและเต็มใจช่วยแก้ปัญหาต่างๆให้กับท่าน
+                                7. การบริการเป็นไปตามระเบียบปฏิบัติของทางราชการและระบียบอื่นๆ ที่ประกาศ	
                                 </td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_7_1" name="rd_7" value="1"
@@ -744,8 +756,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </tbody>
                     </table>
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous">
-                    <input type="button" name="next" class="next action-button" value="Next">
+                    <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
+                    <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
 
                 <fieldset style="display: none; left: 50%; opacity: 0;">
@@ -765,9 +777,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </thead>
                         <tbody>
+                        
                             <tr>
-                                <td class="border px-4 py-2 text-left">8. เจ้าหน้าที่ของ รพ.สต.
-                                    มีความรับผิดชอบและความมุ่งมั่นในการปฏิบัติงาน</td>
+                                <td class="border px-4 py-2 text-left">8. การบริการเป็นไปตามกำหนดเวลาราชการและ/หรือเวลาที่ประกาศ	</td>
                                 <td class="border px-4 py-2 ">
                                     <input type="radio" id="rd_8_1" name="rd_8" value="1"
                                         <?php echo ($_SESSION['rd_8'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -795,8 +807,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">9. ผู้รับบริการสามารถติดต่อสื่อสารกับ รพ.สต.
-                                    ได้สะดวก</td>
+                                <td class="border px-4 py-2 text-left">9. ให้บริการด้วยความสะดวก รวดเร็ว</td>
                                 <td class="border px-4 py-2 ">
                                     <input type="radio" id="rd_9_1" name="rd_9" value="1"
                                         <?php echo ($_SESSION['rd_9'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -824,7 +835,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">10. รพ.สต. ให้บริการตรงต่อเวลาที่นัดหมาย</td>
+                                <td class="border px-4 py-2 text-left">10. ความเร็วในการให้ความช่วยเหลือเมื่อท่านขอความช่วยเหลือ</td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_10_1" name="rd_10" value="1"
                                         <?php echo ($_SESSION['rd_10'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -852,7 +863,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">11. ความสะอาดของสถานที่</td>
+                                <td class="border px-4 py-2 text-left">11. ผู้รับบริการสามารถติดต่อสื่อสารกับ รพ.สต. ได้สะดวก	</td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_11_1" name="rd_11" value="1"
                                         <?php echo ($_SESSION['rd_11'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -880,8 +891,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">12.
-                                    เจ้าหน้าที่ได้แจ้งขั้นตอนและเงื่อนไขการบริการให้ผู้มาติดต่อ ทราบอย่างชัดเจน</td>
+                                <td class="border px-4 py-2 text-left">12. รพ.สต. ให้บริการตรงต่อเวลาที่นัดหมาย	</td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_12_1" name="rd_12" value="1"
                                         <?php echo ($_SESSION['rd_12'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -908,11 +918,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </td>
                             </tr>
-
                             <tr>
-                                <td class="border px-4 py-2 text-left">13. มีสิ่งอำนวยความสะดวกในสถานที่ให้บริการ เช่น
-                                    ป้ายบอกทาง
-                                    ที่นั่งรอ</td>
+                                <th class="border px-1 py-1 text-center">ด้านสถานที่</th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border px-1 py-1 text-center"></th>
+                            </tr>
+                            <tr>
+                                <td class="border px-4 py-2 text-left">13. ความสะอาดของสถานที่	</td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_13_1" name="rd_13" value="1"
                                         <?php echo ($_SESSION['rd_13'] ?? '') === '1' ? 'checked' : ''; ?>
@@ -940,7 +955,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="border px-4 py-2 text-left">14. ระดับความพอใจในการให้บริการของเจ้าหน้าที่
+                                <td class="border px-4 py-2 text-left">14. มีสิ่งอำนวยความสะดวกในสถานที่ให้บริการ เช่น ป้ายบอกทาง ที่นั่งรอ	
                                 </td>
                                 <td class="border px-4 py-2">
                                     <input type="radio" id="rd_14_1" name="rd_14" value="1"
@@ -1000,8 +1015,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </tbody>
                     </table>
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous">
-                    <input type="button" name="next" class="next action-button" value="next">
+                    <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
+                    <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
 
                 <fieldset style="display: none; left: 50%; opacity: 0; transform: scale(1); position: absolute;">
@@ -1023,8 +1038,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         class="block p-1 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="ความคิดเห็น..."></textarea>
 
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous">
-                    <input type="submit" name="submit" class="submit action-button" value="submit">
+                    <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
+                    <input type="submit" name="submit" class="submit action-button" value="ส่งแบบสอบถาม">
                 </fieldset>
 
             </form>
@@ -1226,7 +1241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     function isValidAge(age) {
-        if (isNaN(age) || age <= 8 || age.length > 2) {
+        if (isNaN(age) || age <= 10 || age.length > 2) {
             return false; // Invalid age
         }
         return true; // Valid age

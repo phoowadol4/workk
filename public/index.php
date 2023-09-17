@@ -71,7 +71,6 @@ include("./process/process_get.php");
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                 </a>
-
                             </div>
                         </div>
                         <!-- Pages links -->
@@ -88,7 +87,7 @@ include("./process/process_get.php");
                                             d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Pages </span>
+                                <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                 <span aria-hidden="true" class="ml-auto">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -118,11 +117,42 @@ include("./process/process_get.php");
                                 </a>
                                 <a href="pages/form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                 </a>
                             </div>
                         </div>
-
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                </span>
+                                <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                <span aria-hidden="true" class="ml-auto">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                               
+                                <a href="pages/input_user.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    เพิ่มข้อมูลบ้าน
+                                </a>
+                            </div>
+                        </div>
                     </nav>
                 </div>
             </aside>
@@ -354,7 +384,6 @@ include("./process/process_get.php");
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                     </a>
-
                                 </div>
                             </div>
 
@@ -372,7 +401,7 @@ include("./process/process_get.php");
                                                 d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm "> Pages </span>
+                                    <span class="ml-2 text-sm "> ข้อมูลแบบสอบถาม </span>
                                     <span aria-hidden="true" class="ml-auto">
                                         <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
@@ -403,7 +432,40 @@ include("./process/process_get.php");
                                     </a>
                                     <a href="pages/form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                        ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    </a>
+                                    
+                                </div>
+
+                            </div>
+                            <div x-data="{ isActive: false, open: false }">
+                                <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                                <a href="#" @click="$event.preventDefault(); open = !open"
+                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                    :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                    <span aria-hidden="true">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                    <span aria-hidden="true" class="ml-auto">
+                                        <!-- active class 'rotate-180' -->
+                                        <svg class="w-4 h-4 transition-transform transform"
+                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                                    <a href="pages/input_user.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        เพิ่มข้อมูลบ้าน
                                     </a>
                                 </div>
                             </div>
@@ -754,7 +816,7 @@ include("./process/process_get.php");
                                             }]
                                         },
                                         options: {
-                                            responsive: false
+                                            responsive: true
                                         }
                                     });
                                     </script>
@@ -767,7 +829,7 @@ include("./process/process_get.php");
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                     <h4 class="text-lg font-semibold text-black dark:text-light">
                                         ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
-                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
+                                        ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                                     <div class="flex items-center">
                                     </div>
                                 </div>
@@ -883,7 +945,7 @@ include("./process/process_get.php");
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                 <h4 class="text-lg font-semibold text-black dark:text-light">
                                     ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
-                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
+                                    ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                                 <div class="flex items-center">
                                 </div>
                             </div>
@@ -895,28 +957,69 @@ include("./process/process_get.php");
                                             <table class="w-full bg-transparent border-collapse">
                                                 <thead>
                                                     <tr>
+                                                    <th scope="col"
+                                                        class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light ">
+                                                            
+                                                        </th>
+                                                        <th colspan="2"
+                                                            class="py-2 px-4 border border-gray-300 font-semibold text-black dark:text-light">
+                                                            คะแนนความพึงพอใจ
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                    <th scope="col"
+                                                        class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light ">
+                                                            การบริการของ รพ.สต.
+                                                        </th>
                                                         <th
-                                                            class="py-2 px-4 border-b border-r border-gray-300 font-semibold text-black dark:text-light">
-                                                            การบริการของ รพ.สต.</th>
+                                                            class="py-2 px-4 border border-gray-300 font-semibold text-black dark:text-light">
+                                                            ค่าเฉลี่ย
+                                                        </th>
                                                         <th
-                                                            class="py-2 px-4 border-b border-gray-300 font-semibold text-black dark:text-light">
-                                                            ค่าเฉลี่ย</th>
-                                                        <th class="py-2 px-4 border-b border-gray-300"></th>
+                                                            class="py-2 px-4 border border-gray-300 font-semibold text-black dark:text-light">
+                                                            ส่วนเบี่ยงเบนมาตรฐาน
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-gray-100">
                                                     <?php
-                            $top5RatingsKeys = array_keys($top5Ratings);
-                            $top5RatingsValues = array_values($top5Ratings);
+                                                    $top5RatingsKeys = array_keys($top5Ratingst);
+                                                    $top5RatingsValues = array_values($top5Ratingst);
+                                                    $top5StandardDeviations = array_values($topl);
+                                                    
+                                                    for ($i = 0; $i < min(5, count($top5Ratingst)); $i++) {
+                                                        echo '<tr class="text-black dark:text-light">';
+                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . $top5RatingsKeys[$i] . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . json_encode($top5RatingsValues[$i]) . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $top5StandardDeviations[$i] . '</td>';
+                                                        echo '</tr>';
+                                                    }{
+                                                        echo '<tr class="text-black dark:text-light">';
+                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . 'คะแนนแบบสอบถามความพึงพอใจในแต่ละด้าน' . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . '' . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . '' . '</td>';
 
-                            for ($i = 0; $i < min(15, count($top5Ratings)); $i++) {
-                                echo '<tr class=" text-black dark:text-light">';
-                                echo '<td class="py-2 px-4 border-b border-r border-gray-300 table-cell">' . $top5RatingsKeys[$i] . '</td>';
-                                echo '<td class="py-2 px-4 border-b border-gray-300 table-cell text-center">' . json_encode($top5RatingsValues[$i]) . '</td>';
-                                echo '<td class="py-2 px-4 border-b border-gray-300 table-cell"></td>';
-                                echo '</tr>';
-                            }
-                            ?>
+                                                    }
+                                                    {
+                                                   
+                                                    echo '<tr class="text-black dark:text-light">';
+                                                    echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านเจ้าหน้าที่ผู้ให้บริการ' . '</td>';
+                                                    echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $average_sevice_officer . '</td>';
+                                                    echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $sevice_officer_std . '</td>';
+                                                    }
+                                                    {
+                                                        echo '<tr class="text-black dark:text-light">';
+                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านคุณภาพการให้บริการ	' . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $service_ser . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $sevice_quality_std . '</td>';
+                                                        }
+                                                        {
+                                                            echo '<tr class="text-black dark:text-light">';
+                                                            echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านสถานที่	' . '</td>';
+                                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $average_location_point . '</td>';
+                                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $ser_location_std . '</td>';
+                                                            }
+                                                    ?>
                                                 </tbody>
                                             </table>
                                         </table>
@@ -924,7 +1027,6 @@ include("./process/process_get.php");
 
                                 </div>
                             </div>
-                            <!-- <div class="col-span-12 xl:col-span-6"> -->
 
                         </div>
                 </main>

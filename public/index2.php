@@ -96,7 +96,7 @@ $keepName;
                                             d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Pages </span>
+                                <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                 <span aria-hidden="true" class="ml-auto">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -127,7 +127,39 @@ $keepName;
                                 </a>
                                 <a href="pages/form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                </a>
+                            </div>
+                        </div>
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                </span>
+                                <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                <span aria-hidden="true" class="ml-auto">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                               
+                                <a href="pages/input_user.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    เพิ่มข้อมูลบ้าน
                                 </a>
                             </div>
                         </div>
@@ -151,10 +183,9 @@ $keepName;
                                 </svg>
                             </span>
                         </button>
-
-                        <!-- Brand -->
+                        <span class="inline-block text-lg font-bold tracking-wider uppercase text-primary-dark dark:text-light">ค้นหาเส้นทางไปยังบ้านผู้ป่วย</span>                      
                         <div>
-                            <form class="flex items-center">
+                            <form class="flex items-start">
                                 <div class="relative flex w-full flex-wrap items-stretch">
                                     <input type="search"
                                         class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
@@ -374,7 +405,7 @@ $keepName;
                                                 d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> Pages </span>
+                                    <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                     <span aria-hidden="true" class="ml-auto">
                                         <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
@@ -405,7 +436,38 @@ $keepName;
                                     </a>
                                     <a href="pages/form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                        ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    </a>
+                                </div>
+                            </div>
+                            <div x-data="{ isActive: false, open: false }">
+                                <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                                <a href="#" @click="$event.preventDefault(); open = !open"
+                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                    :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                    <span aria-hidden="true">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                    <span aria-hidden="true" class="ml-auto">
+                                        <!-- active class 'rotate-180' -->
+                                        <svg class="w-4 h-4 transition-transform transform"
+                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                                    <a href="pages/input_user.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        เพิ่มข้อมูลบ้าน
                                     </a>
                                 </div>
                             </div>
@@ -434,7 +496,8 @@ $keepName;
             if (isset($data1['result']) && !empty($data1['result'])) {                                
         $mergedData = array();
         foreach ($data1['result'] as $person) {
-            if ($person['fname'] == $searchQuery || $person['lname'] == $searchQuery ) {
+            $fullName = $person['fname'] . ' ' . $person['lname'];
+            if (stripos($fullName, $searchQuery) !== false) {                
                 $personData = array(
                 'cid' => $person['cid'],
                 'id' => $person['id'],
@@ -528,14 +591,17 @@ $keepName;
 
             
             $sex = $personData['sex'];
+            $namep = $personData['pname'];
 
-            if ($sex == 2){
-                 $sex ="หญิง";
+            if ($sex == 2) {
+                $sex = "หญิง";
+            } elseif ($sex == 1) {
+                $sex = "ชาย";
+            } elseif ($namep == "นาย" || $namep == "ด.ช.") {
+                $sex = "ชาย";
+            } elseif ($namep == "นาง" || $namep == "นางสาว" || $namep == "ด.ญ.") {
+                $sex = "หญิง";
             }
-            else{
-                 $sex = "ชาย";
-            }
-
             echo "
             <div>
                 <span class='font-semibold text-primary-dark'>ชื่อ:</span> {$person['pname']} &nbsp;{$person['fname']} &nbsp;{$person['lname']}<br>
@@ -719,7 +785,7 @@ switch (true) {
                             L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
                                 .bindPopup(
                                     '<p class="font-semibold text-primary-dark text-black text-md">ไม่มีที่อยู่บ้านในพิกัด</p>'
-                                    )
+                                )
                                 .openPopup();
                             <?php
         break;
@@ -736,7 +802,7 @@ switch (true) {
                             L.marker([16.797776693735905, 100.21001478729903]).addTo(defaultMap)
                                 .bindPopup(
                                     '<p class="font-semibold text-primary-dark text-black text-md">ไม่มีที่อยู่บ้านในพิกัด</p>'
-                                    )
+                                )
                                 .openPopup();
                             <?php
         break;

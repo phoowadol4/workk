@@ -102,7 +102,7 @@ include("../process/process_get.php");
                                             d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Pages </span>
+                                <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                 <span aria-hidden="true" class="ml-auto">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -133,11 +133,42 @@ include("../process/process_get.php");
                                 </a>
                                 <a href="form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                 </a>
                             </div>
                         </div>
-
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                </span>
+                                <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                <span aria-hidden="true" class="ml-auto">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                               
+                                <a href="input_user.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    เพิ่มข้อมูลบ้าน
+                                </a>
+                            </div>
+                        </div>
                     </nav>
 
                 </div>
@@ -388,7 +419,7 @@ include("../process/process_get.php");
                                                 d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> Pages </span>
+                                    <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                     <span aria-hidden="true" class="ml-auto">
                                         <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
@@ -419,11 +450,41 @@ include("../process/process_get.php");
                                     </a>
                                     <a href="form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                        ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                     </a>
                                 </div>
                             </div>
-
+                            <div x-data="{ isActive: false, open: false }">
+                                <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                                <a href="#" @click="$event.preventDefault(); open = !open"
+                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                    :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                    <span aria-hidden="true">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                    <span aria-hidden="true" class="ml-auto">
+                                        <!-- active class 'rotate-180' -->
+                                        <svg class="w-4 h-4 transition-transform transform"
+                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                                    <a href="input_user.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        เพิ่มข้อมูลบ้าน
+                                    </a>
+                                </div>
+                            </div>
                         </nav>
                     </div>
                 </header>
@@ -441,22 +502,39 @@ include("../process/process_get.php");
                             <table>
                             <thead>
                                     <tr>
-                                    <th>ลำดับ</th>
-                                        <th>อายุของผู้ตอบแบบสอบถาม</th>
+                                    <th>อายุของผู้ตอบแบบสอบถาม</th>
+                                        <th>จำนวน (คน)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                    foreach ($dataArray['result'] as $survey) {
-                                        // Check if the age field meets the conditions
-                                        if (!empty($survey['age']) && $survey['age'] !== '' && $survey['age'] !== 'none') {
-                                            echo '<tr>';
-                                            echo '<td>' . $survey['id'] . '</td>';
-                                            echo '<td>' . $survey['age'] . '</td>';
-                                            echo '</tr>';
+                                // Initialize an array to store counts for each age group
+                                $ageCounts = array_fill(10, 80, 0); // Initialize counts for ages 10 to 99
+
+                                foreach ($dataArray['result'] as $survey) {
+                                    // Check if the age field meets the conditions
+                                    if (!empty($survey['age']) && $survey['age'] !== '' && $survey['age'] !== 'none') {
+                                        // Check if the age is within the range of 10 to 99 and increment the corresponding counter
+                                        $age = intval($survey['age']); // Convert age to an integer for comparison
+                                        if ($age >= 10 && $age <= 99) {
+                                            $ageCounts[$age]++;
                                         }
                                     }
-                                    ?>
+
+                                    
+                                }
+
+
+                                // Print the counts for each age group
+                                for ($age = 10;  $age <= 80; $age++) {
+                                    if ($ageCounts[$age] > 0) { // Check if the count is greater than 0
+                                    echo '<tr>';
+                                    echo '<td>' . $age . ' &nbspปี</td>';
+                                    echo '<td>' . $ageCounts[$age] . '</td>';
+                                    echo '</tr>';
+                                }
+                            }
+                                ?>
 
                                 </tbody>
                             </table>

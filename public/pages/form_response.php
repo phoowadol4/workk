@@ -12,6 +12,7 @@ include("../process/process_get.php");
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="../build/css/tailwind.css" />
+    
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
@@ -102,7 +103,7 @@ include("../process/process_get.php");
                                             d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Pages </span>
+                                <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                 <span aria-hidden="true" class="ml-auto">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -133,11 +134,42 @@ include("../process/process_get.php");
                                 </a>
                                 <a href="form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                 </a>
                             </div>
                         </div>
-
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                </span>
+                                <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                <span aria-hidden="true" class="ml-auto">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                               
+                                <a href="input_user.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    เพิ่มข้อมูลบ้าน
+                                </a>
+                            </div>
+                        </div>
                     </nav>
 
                 </div>
@@ -388,7 +420,7 @@ include("../process/process_get.php");
                                                 d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> Pages </span>
+                                    <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                     <span aria-hidden="true" class="ml-auto">
                                         <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
@@ -419,11 +451,41 @@ include("../process/process_get.php");
                                     </a>
                                     <a href="form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                        ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                     </a>
                                 </div>
                             </div>
-
+                            <div x-data="{ isActive: false, open: false }">
+                                <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                                <a href="#" @click="$event.preventDefault(); open = !open"
+                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                    :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                    <span aria-hidden="true">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                    <span aria-hidden="true" class="ml-auto">
+                                        <!-- active class 'rotate-180' -->
+                                        <svg class="w-4 h-4 transition-transform transform"
+                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                                    <a href="input_user.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        เพิ่มข้อมูลบ้าน
+                                    </a>
+                                </div>
+                            </div>
                         </nav>
                     </div>
                 </header>
@@ -436,18 +498,32 @@ include("../process/process_get.php");
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
                             <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2 ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
+                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2 ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h4>
                             </div>
                             <table >
                                 <thead>
                                     <tr>
                                         <th scope="col"
-                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light ">
                                             การบริการของ รพ.สต.
+                                        </th>
+                                        <th colspan="2"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            คะแนนความพึงพอใจ
+                                        </th>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light " style="text-align: left;">
+                                            ด้านเจ้าหน้าที่ผู้ให้บริการ                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            ค่าเฉลี่ย
                                         </th>
                                         <th scope="col"
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
-                                            คะแนนความพึงพอใจเฉลี่ย
+                                            ส่วนเบี่ยงเบนมาตรฐาน
                                         </th>
                                     </tr>
                                 </thead>
@@ -464,6 +540,10 @@ include("../process/process_get.php");
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
                                             <?php echo $s_ssmile;?>
                                         </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php echo $s_smileStdDeviation;?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -477,72 +557,18 @@ include("../process/process_get.php");
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
                                             <?php echo $s_swilling;?>
                                         </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">3.การบริการเป็นไปตามระเบียบปฏิบัติของทางราชการและระบียบอื่นๆ
-                                                ที่ประกาศ </span>
-                                        </td>
                                         <td
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
-                                            <?php
-                                                    echo $s_slaw;?>
+                                            <?php echo $s_willingStdDeviation;?>
                                         </td>
 
                                     </tr>
-                                    <tr>
-                                        <td>
-
-                                            <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">4.
-                                                การบริการเป็นไปตามกำหนดเวลาราชการและ/หรือเวลาที่ประกาศ
-                                            </span>
-                                        </td>
-                                        <td
-                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
-                                            <?php
-                                                    
-                                                    echo $s_stime;?>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">5.
-                                                ให้บริการด้วยความสะดวก รวดเร็ว </span>
-                                        </td>
-                                        <td
-                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
-                                            <?php
-                                                    
-                                                    echo $s_sfast;?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">6.
-                                                ความเร็วในการให้ความช่วยเหลือเมื่อท่านขอความช่วยเหลือ
-                                            </span>
-                                        </td>
-                                        <td
-                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
-                                            <?php
-                                                    
-                                                    echo $s_shelp;?>
-                                        </td>
-
-                                    </tr>
+                                    
+                                    
                                     <tr>
                                         <td>
                                             <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">7.
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">3.
                                                 เจ้าหน้าที่ให้ความสนใจและเต็มใจช่วยแก้ปัญหาต่างๆให้กับท่าน
                                             </span>
                                         </td>
@@ -552,12 +578,18 @@ include("../process/process_get.php");
                                                     
                                                     echo $s_ssolve;?>
                                         </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_ssolveStdDeviation;?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
 
                                             <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">8.
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">4.
                                                 เจ้าหน้าที่ของ รพ.สต.
                                                 มีความรับผิดชอบและความมุ่งมั่นในการปฏิบัติงาน
                                             </span>
@@ -568,13 +600,153 @@ include("../process/process_get.php");
                                                     
                                                     echo $s_srespon;?>
                                         </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_sresponStdDeviation;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">5.
+                                                เจ้าหน้าที่ได้แจ้งขั้นตอนและเงื่อนไขการบริการให้ผู้มาติดต่อ
+                                                ทราบอย่างชัดเจน </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_sterm;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_stermStdDeviation;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">6.
+                                                ระดับความพอใจในการให้บริการของเจ้าหน้าที่
+                                            </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $s_staffAverage;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $s_staffAverageStdDeviation;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light" style="text-align: left;">
+                                            ด้านคุณภาพการให้บริการ</th>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            ค่าเฉลี่ย
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            ส่วนเบี่ยงเบนมาตรฐาน
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">7.การบริการเป็นไปตามระเบียบปฏิบัติของทางราชการและระบียบอื่นๆ
+                                                ที่ประกาศ </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $s_slaw;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $s_slawStdDeviation;?>
+                                        </td>
 
                                     </tr>
                                     <tr>
                                         <td>
 
                                             <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">8.
+                                                การบริการเป็นไปตามกำหนดเวลาราชการและ/หรือเวลาที่ประกาศ
+                                            </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_stime;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_stimeStdDeviation;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
                                                 class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">9.
+                                                ให้บริการด้วยความสะดวก รวดเร็ว </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_sfast;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_sfastStdDeviation;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">10.
+                                                ความเร็วในการให้ความช่วยเหลือเมื่อท่านขอความช่วยเหลือ
+                                            </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_shelp;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_shelpStdDeviation;?>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">11.
                                                 ผู้รับบริการสามารถติดต่อสื่อสารกับ รพ.สต.
                                                 ได้สะดวก
                                             </span>
@@ -585,13 +757,18 @@ include("../process/process_get.php");
                                                     
                                                     echo $s_seasy;?>
                                         </td>
-
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_seasyStdDeviation;?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
 
                                             <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">10.
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">12.
                                                 รพ.สต. ให้บริการตรงต่อเวลาที่นัดหมาย </span>
                                         </td>
                                         <td
@@ -600,13 +777,31 @@ include("../process/process_get.php");
                                                     
                                                     echo $s_sappoint;?>
                                         </td>
-
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    
+                                                    echo $s_sappointStdDeviation;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light " style="text-align: left;">
+                                            ด้านสถานที่</th>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            ค่าเฉลี่ย
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            ส่วนเบี่ยงเบนมาตรฐาน
+                                        </th>
                                     </tr>
                                     <tr>
                                         <td>
 
                                             <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">11.
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">13.
                                                 ความสะอาดของสถานที่ </span>
                                         </td>
                                         <td
@@ -615,29 +810,19 @@ include("../process/process_get.php");
                                                     
                                                     echo $s_sclean;?>
                                         </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">12.
-                                                เจ้าหน้าที่ได้แจ้งขั้นตอนและเงื่อนไขการบริการให้ผู้มาติดต่อ
-                                                ทราบอย่างชัดเจน </span>
-                                        </td>
                                         <td
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
                                             <?php
                                                     
-                                                    echo $s_sterm;?>
+                                                    echo $s_scleanStdDeviation;?>
                                         </td>
-
                                     </tr>
+                                    
                                     <tr>
                                         <td>
 
                                             <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">13.
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">14.
                                                 มีสิ่งอำนวยความสะดวกในสถานที่ให้บริการ เช่น
                                                 ป้ายบอกทาง ที่นั่งรอ </span>
                                         </td>
@@ -647,22 +832,15 @@ include("../process/process_get.php");
                                                     
                                                     echo $s_sfacility;?>
                                         </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-
-                                            <span
-                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">14.
-                                                ระดับความพอใจในการให้บริการของเจ้าหน้าที่
-                                            </span>
-                                        </td>
                                         <td
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
                                             <?php
-                                                    echo $s_staffAverage;?>
+                                                    
+                                                    echo $s_sfacilityStdDeviation;?>
                                         </td>
                                     </tr>
+
+                                    
                                     <tr>
                                         <td>
 
@@ -676,6 +854,90 @@ include("../process/process_get.php");
                                             <?php
                                                     echo $s_soverall;?>
                                         </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $s_soverallStdDeviation;?>
+                                        </td>
+                                        <?php
+                                        
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light" style="text-align: left;">
+                                            คะแนนแบบสอบถามความพึงพอใจในแต่ละด้าน</th>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            ค่าเฉลี่ย
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light">
+                                            ส่วนเบี่ยงเบนมาตรฐาน
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light ">
+                                                ด้านเจ้าหน้าที่ผู้ให้บริการ</span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $average_sevice_officer;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $sevice_officer_std;?>
+                                        </td>
+                                        <?php
+                                        
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">ด้านคุณภาพการให้บริการ
+                                            </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $service_ser;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $sevice_quality_std;?>
+                                        </td>
+                                        <?php
+                                        
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <span
+                                                class="flex-none mx-5 ml-3 w-32 text-base font-medium leading-none tracking-wider text-black dark:text-light">ด้านสถานที่
+                                            </span>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $average_location_point;?>
+                                        </td>
+                                        <td
+                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
+                                            <?php
+                                                    echo $ser_location_std;?>
+                                        </td>
+                                        <?php
+                                        
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>

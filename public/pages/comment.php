@@ -102,7 +102,7 @@ include("../process/process_get.php");
                                             d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Pages </span>
+                                <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                 <span aria-hidden="true" class="ml-auto">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -133,11 +133,42 @@ include("../process/process_get.php");
                                 </a>
                                 <a href="form_response.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                 </a>
                             </div>
                         </div>
-
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                </span>
+                                <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                <span aria-hidden="true" class="ml-auto">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                               
+                                <a href="input_user.php" role="menuitem"
+                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    เพิ่มข้อมูลบ้าน
+                                </a>
+                            </div>
+                        </div>
                     </nav>
 
                 </div>
@@ -388,7 +419,7 @@ include("../process/process_get.php");
                                                 d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> Pages </span>
+                                    <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                     <span aria-hidden="true" class="ml-auto">
                                         <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
@@ -419,7 +450,38 @@ include("../process/process_get.php");
                                     </a>
                                     <a href="form_response.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        ความพึงพอใจความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                        ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
+                                    </a>
+                                </div>
+                            </div>
+                            <div x-data="{ isActive: false, open: false }">
+                                <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                                <a href="#" @click="$event.preventDefault(); open = !open"
+                                    class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                    :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
+                                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                    <span aria-hidden="true">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
+                                    <span aria-hidden="true" class="ml-auto">
+                                        <!-- active class 'rotate-180' -->
+                                        <svg class="w-4 h-4 transition-transform transform"
+                                            :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                                    <a href="input_user.php" role="menuitem"
+                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                        เพิ่มข้อมูลบ้าน
                                     </a>
                                 </div>
                             </div>
