@@ -10,11 +10,11 @@ if (isset($_SESSION['token']) && isset($_SESSION['token_timestamp'])) {
         session_unset();
         session_destroy();
         
-        header("Location: /workk/work1/login_form.php?expired=1");
+        header("Location: /workk/work_phoowadol/login/login_form.php?expired=1");
         exit();
     }
 } else {
-    header("Location:  /workk/work1/login_form.php");
+    header("Location:  /workk/work_phoowadol/login/login_form.php");
     exit();
 }
 
@@ -107,8 +107,7 @@ foreach ($dataArray['result'] as $item) {
 ?>
 
 <?php
-// Assuming the JSON data contains an array of objects with a "value" fieldff
-// Example JSON data: [{"value": "A"}, {"value": "B"}, {"value": "A"}, ...]
+
 $valueCountsever = array();
 
 foreach ($dataArray['result'] as $item) {
@@ -220,12 +219,9 @@ arsort($ratingAverages);
 // Select the top 5 rated fields
 $top5Ratings = array_slice($ratingAverages, 0, 5);
 
-// Convert the data for use in JavaScript
-// $top5Data = json_encode($top5Ratings);
 ?>
 
 <!-- table ค่าเฉลี่ย และ ส่วนเบี่ยงเบนมาตรฐาน -->
-
 <?php
 $fieldMappings = array(
     's_smile' => '1.ให้การต้อนรับด้วยอัธยาศัยที่ดี สุภาพยิ้มแย้มแจ่มใส',
@@ -409,24 +405,27 @@ $s_sfacility = $ratingAverages['s_facility'];
 $s_staffAverage = $ratingAverages['s_staff'];
 $s_soverall = $ratingAverages['s_overall'];
 
-// ด้านเจ้าหน้าที่ผู้ให้บริการ		
+// ด้านเจ้าหน้าที่ผู้ให้บริการ		ค่าเฉลี่ย
 $sevice_officer = $s_ssmile + $s_swilling + $s_ssolve + $s_srespon + $s_sterm + $s_staffAverage;
 $average_sevice_officer = number_format($sevice_officer / 6, 2);
 
+// ส่วนเบี่ยงเบนมาตรฐาน
 $officer_std = $s_smileStdDeviation + $s_willingStdDeviation + $s_ssolveStdDeviation + $s_sresponStdDeviation + $s_stermStdDeviation + $s_staffAverageStdDeviation;
 $sevice_officer_std = number_format($officer_std / 6, 2);
 
-// ด้านคุณภาพการให้บริการ	
+// ด้านคุณภาพการให้บริการ	ค่าเฉลี่ย
 $sevice_ser = $s_slaw + $s_stime + $s_sfast + $s_shelp + $s_seasy + $s_sappoint;
 $service_ser = number_format($sevice_ser / 6, 2);
 
+// ส่วนเบี่ยงเบนมาตรฐาน
 $service_std = $s_slawStdDeviation + $s_stimeStdDeviation + $s_sfastStdDeviation + $s_shelpStdDeviation + $s_seasyStdDeviation + $s_sappointStdDeviation;
 $sevice_quality_std = number_format($service_std / 6, 2);
 
-// ด้านสถานที่		
+// ด้านสถานที่		ค่าเฉลี่ย
 $location_point = $s_sclean + $s_sfacility + $s_soverall;
 $average_location_point = number_format($location_point / 3, 2);
 
+// ส่วนเบี่ยงเบนมาตรฐาน
 $location_std = $s_scleanStdDeviation + $s_sfacilityStdDeviation + $s_soverallStdDeviation;
 $ser_location_std = number_format($location_std / 3, 2);
 ?> 

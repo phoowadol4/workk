@@ -8,7 +8,7 @@ $keepName;
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>K-WD Dashboard</title>
+    <title>แผนที่นำทางไปยังบ้านผู้ป่วย</title>
     <link rel="stylesheet" href="build/css/tailwind.css" />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
@@ -76,7 +76,7 @@ $keepName;
                                 </a>
                                 <a href="index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
+                                    แผนที่นำทางไปยังบ้านผู้ป่วย
                                 </a>
 
                             </div>
@@ -156,10 +156,10 @@ $keepName;
                                 </span>
                             </a>
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
-                               
+
                                 <a href="pages/input_user.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    เพิ่มข้อมูลบ้าน
+                                    เพิ่มข้อมูลผู้ย้ายมาอยู่ใหม่
                                 </a>
                             </div>
                         </div>
@@ -183,7 +183,8 @@ $keepName;
                                 </svg>
                             </span>
                         </button>
-                        <span class="inline-block text-lg font-bold tracking-wider uppercase text-primary-dark dark:text-light">ค้นหาเส้นทางไปยังบ้านผู้ป่วย</span>                      
+                        <span
+                            class="inline-block text-lg font-bold tracking-wider uppercase text-primary-dark dark:text-light">ค้นหาเส้นทางไปยังบ้านผู้ป่วย</span>
                         <div>
                             <form class="flex items-start">
                                 <div class="relative flex w-full flex-wrap items-stretch">
@@ -269,7 +270,7 @@ $keepName;
                                         echo $username;
                                         }?>
                                     </a>
-                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                    <a href="../logout/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         ออกจากระบบ
                                     </a>
@@ -337,7 +338,7 @@ $keepName;
                                         echo $username;
                                         }?>
                                     </a>
-                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                    <a href="../logout/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         ออกจากระบบ
                                     </a>
@@ -467,7 +468,7 @@ $keepName;
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <a href="pages/input_user.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        เพิ่มข้อมูลบ้าน
+                                        เพิ่มข้อมูลผู้ย้ายมาอยู่ใหม่
                                     </a>
                                 </div>
                             </div>
@@ -697,7 +698,7 @@ switch (true) {
         $latitude = json_encode($latitude);
         $longitude = json_encode($longitude);
 ?>
-                            console.log('location', <?= $latitude; ?>);
+                            // console.log('location', <?= $latitude; ?>);
 
                             var map = L.map('map').setView([<?= $latitude; ?>, <?= $longitude; ?>], 13);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -766,10 +767,9 @@ switch (true) {
                                 }, function() {});
                             } else {}
                             <?php
-        break;
-    case $cid && $latitude == 'None':
-        ?>
-
+            break;
+        case $cid && $latitude == 'None':
+    ?>
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
@@ -788,10 +788,10 @@ switch (true) {
                                 )
                                 .openPopup();
                             <?php
-        break;
+                    break;
     default:
         ?>
-                            console.log('log-no', <?= json_encode($cid); ?>);
+                            // console.log('log-no', <?= json_encode($cid); ?>);
 
                             var defaultMap = L.map('map').setView([16.797776693735905, 100.21001478729903], 13);
 

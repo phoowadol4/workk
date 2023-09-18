@@ -1170,7 +1170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     comments16: $("#comments_rd16").val(),
                     comments17: $("#comments_rd17").val(),
                 };
-                console.log(formData);
+                // console.log(formData);
                 // if (isAnyFieldEmpty(formData)) {
                 //     alert('กรุณากรอกข้อมูลให้ครบถ้วน.');
                 //     event.preventDefault(); // Prevent form submission
@@ -1211,7 +1211,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 dataType: "json",
                 encode: true,
             }).done(function(response) {
-                console.log(response);
+                // console.log(response);
                 if (response.success) {
                     Swal.fire({
                         icon: 'success',

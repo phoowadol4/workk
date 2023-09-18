@@ -8,7 +8,7 @@ include("../process/process_get.php");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>K-WD Dashboard</title>
+    <title>ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="../build/css/tailwind.css" />
@@ -166,7 +166,7 @@ include("../process/process_get.php");
                                
                                 <a href="input_user.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    เพิ่มข้อมูลบ้าน
+                                    เพิ่มข้อมูลผู้ย้ายมาอยู่ใหม่
                                 </a>
                             </div>
                         </div>
@@ -273,7 +273,7 @@ include("../process/process_get.php");
                                         echo $username;
                                         }?>
                                     </a>
-                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                    <a href="/work_phoowadol/logout/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         ออกจากระบบ
                                     </a>
@@ -352,7 +352,7 @@ include("../process/process_get.php");
                                         echo $username;
                                         }?>
                                     </a>
-                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                    <a href="/work_phoowadol/logout/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         ออกจากระบบ
                                     </a>
@@ -482,7 +482,7 @@ include("../process/process_get.php");
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <a href="input_user.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        เพิ่มข้อมูลบ้าน
+                                        เพิ่มข้อมูลผู้ย้ายมาอยู่ใหม่
                                     </a>
                                 </div>
                             </div>
@@ -929,6 +929,7 @@ include("../process/process_get.php");
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">
                                             <?php
                                                     echo $average_location_point;?>
+                                                    
                                         </td>
                                         <td
                                             class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light text-center">

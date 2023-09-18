@@ -198,8 +198,6 @@ curl_close($ch);
     // exit();
 
 curl_close($ch);
-
-    // Clear session data after processing
     
      } else {
     echo "Data is missing. Please go back and fill in all required fields.";

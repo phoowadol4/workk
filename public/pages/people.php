@@ -239,7 +239,7 @@ include("../process/process_get.php");
                                         echo $username;
                                         }?>
                                     </a>
-                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                    <a href="/work_phoowadol/logout/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         ออกจากระบบ
                                     </a>
@@ -318,7 +318,7 @@ include("../process/process_get.php");
                                         echo $username;
                                         }?>
                                     </a>
-                                    <a href="/workk/work1/logout.php" role="menuitem"
+                                    <a href="/work_phoowadol/logout/logout.php" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         ออกจากระบบ
                                     </a>

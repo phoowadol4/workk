@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script
         src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js">
     </script>
-    <title>เพิ่มข้อมูลผู้ย้ายมาใหม่</title>
+    <title>เพิ่มข้อมูลผู้ย้ายมาอยู่ใหม่</title>
     <link rel="canonical" href="https://codepen.io/designify-me/pen/qrJWpG">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -643,7 +643,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 latitude: $("#latitude").val(),
                 longitude: $("#longitude").val(),
             };
-            console.log(formData);
+            // console.log(formData);
             
             if (isAnyFieldEmpty(formData)) {
                 Swal.fire({
@@ -675,7 +675,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     dataType: "json",
                     encode: true,
                 }).done(function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.success) {
                         Swal.fire({
                             icon: 'success',
