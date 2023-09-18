@@ -754,8 +754,6 @@ switch (true) {
                                                 // Fallback for other devices or browsers
                                                 mapsURL =
                                                     `https://www.google.com/maps/dir/?api=1&origin=${destinationLatitude},${destinationLongitude}&destination=${latitude},${longitude}`;
-
-
                                                 break;
                                         }
                                         // Open the URL in a new tab/window
@@ -913,6 +911,7 @@ switch (true) {
                     </div>
                 </section>
             </div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
 
             <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
             <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script> -->

@@ -23,11 +23,11 @@
       <img class="h-20" src="../รูป/รพสต.png" alt="รพสต">
       <h2 class="text-2xl text-center mb-6">เข้าสู่ระบบ</h2>
       <form method="post" action="loginp.php">
-        <label class="block text-gray-700 text-sm font-bold mb-2 " for="username">Username:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="username" id="username" placeholder="@ล็อกอิน" required><br><br>
+        <label class="block text-gray-700 text-sm font-bold mb-2 " for="username">ชื่อผู้ใช้:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="username" id="username" placeholder="@ชื่อผู้ใช้" required><br><br>
 
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password" id="password" placeholder="@ใส่รหัสผ่าน" required><br><br>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">รหัสผ่าน:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password" id="password" placeholder="@ใรหัสผ่าน" required><br><br>
 
         <input type="submit" class="text-white bg-indigo-700 shadow-lg shadow-indigo-700/50 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="ล็อกอิน">
      

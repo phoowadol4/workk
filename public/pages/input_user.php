@@ -657,6 +657,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     title: 'Oops...',
                     text: 'กรุณากรอกเลขบัตรประชาชนให้ถูกต้อง',
                 });
+            } else if (!isValidpname(formData.pname)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'กรุณากรอกชื่อ',
+                });
             } else {
                 Swal.fire({
                     icon: 'success',

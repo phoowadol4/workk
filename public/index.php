@@ -940,8 +940,9 @@ include("./process/process_get.php");
                                 </div>
                             </div>
                         </div>
+
+                        <!-- table แสดงคะแนนความพึงพอใจ  มากที่สุด 5 อันดับแรก -->
                         <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
-                            <!-- Card header -->
                             <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                 <h4 class="text-lg font-semibold text-black dark:text-light">
                                     ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
@@ -949,7 +950,6 @@ include("./process/process_get.php");
                                 <div class="flex items-center">
                                 </div>
                             </div>
-                            <!-- Chart -->
                             <div class="relative p-4 items-center">
                                 <div>
                                     <div class="block w-full overflow-x-auto">
@@ -968,7 +968,7 @@ include("./process/process_get.php");
                                                     </tr>
                                                     <tr>
                                                     <th scope="col"
-                                                        class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light ">
+                                                        class="p-4 text-base border border-gray-300 font-medium leading-none tracking-wider text-black dark:text-light ">
                                                             การบริการของ รพ.สต.
                                                         </th>
                                                         <th
@@ -996,8 +996,10 @@ include("./process/process_get.php");
                                                     }{
                                                         echo '<tr class="text-black dark:text-light">';
                                                         echo '<td class="py-2 px-4 border border-gray-300 ">' . 'คะแนนแบบสอบถามความพึงพอใจในแต่ละด้าน' . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . '' . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . '' . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300 text-center">' . '
+                                                        ค่าเฉลี่ย' . '</td>';
+                                                        echo '<td class="py-2 px-4 border border-gray-300 text-center ">' . '
+                                                        ส่วนเบี่ยงเบนมาตรฐาน' . '</td>';
 
                                                     }
                                                     {
