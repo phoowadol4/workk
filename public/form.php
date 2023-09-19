@@ -524,25 +524,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         น้อยที่สุด = 1</h5>
                     <h4 class="fs-subtitle"></h4>
 
+                    <div class="table-responsive">
                     <table class="w-center">
                         <thead>
                             <tr>
-                                <th class="border px-1 py-1 text-center">การบริการของ รพ.สต.</th>
-                                <th class="border px-1 py-1 text-center">1</th>
-                                <th class="border px-1 py-1 text-center">2</th>
-                                <th class="border px-1 py-1 text-center">3</th>
-                                <th class="border px-1 py-1 text-center">4</th>
-                                <th class="border px-1 py-1 text-center">5</th>
+                                <th class="border  text-center">การบริการของ รพ.สต.</th>
+                                <th class="border  text-center">1</th>
+                                <th class="border  text-center">2</th>
+                                <th class="border  text-center">3</th>
+                                <th class="border  text-center">4</th>
+                                <th class="border  text-center">5</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
-                                <th class="border px-1 py-1 text-center">ด้านเจ้าหน้าที่ผู้ให้บริการ</th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border  text-center">ด้านเจ้าหน้าที่ผู้ให้บริการ</th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
                             </tr>
                             <tr>
                                 <td class="border px-4 py-2 text-left">1. ให้การต้อนรับด้วยอัธยาศัยที่ดี สุภาพยิ้มแย้มแจ่มใส	</td>
@@ -717,12 +718,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <th class="border px-1 py-1 text-center">ด้านคุณภาพการให้บริการ	</th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border  text-center">ด้านคุณภาพการให้บริการ	</th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
                             </tr>
                             <tr>
                                 <td class="border px-4 py-2 text-left">
@@ -756,6 +757,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                     <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
                     <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
@@ -765,15 +767,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h3 class="fs-subtitle">โปรดเลือก ช่องที่ตรงกับความเห็นของท่าน</h3>
                     <h5 class="fs-subtitle text-left">*หมายเหตุ มากที่สุด = 5 , มาก = 4 , ปานกลาง = 3 , น้อย = 2 ,
                         น้อยที่สุด = 1</h5>
+
+                    <div class="table-responsive">
                     <table class="w-center">
                         <thead>
                             <tr>
-                                <th class="border px-1 py-1 text-center">การบริการของ รพ.สต.</th>
-                                <th class="border px-1 py-1 text-center">1</th>
-                                <th class="border px-1 py-1 text-center">2</th>
-                                <th class="border px-1 py-1 text-center">3</th>
+                                <th class="border  text-center">การบริการของ รพ.สต.</th>
+                                <th class="border  text-center">1</th>
+                                <th class="border  text-center">2</th>
+                                <th class="border  text-center">3</th>
                                 <th class="border px-2 py-1 text-center">4</th>
-                                <th class="border px-1 py-1 text-center">5</th>
+                                <th class="border  text-center">5</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -919,12 +923,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </td>
                             </tr>
                             <tr>
-                                <th class="border px-1 py-1 text-center">ด้านสถานที่</th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
-                                <th class="border px-1 py-1 text-center"></th>
+                                <th class="border  text-center">ด้านสถานที่</th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
+                                <th class="border  text-center"></th>
                             </tr>
                             <tr>
                                 <td class="border px-4 py-2 text-left">13. ความสะอาดของสถานที่	</td>
@@ -1015,13 +1019,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                     <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
                     <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
 
                 <fieldset style="display: none; left: 50%; opacity: 0; transform: scale(1); position: absolute;">
+                
                     <h2 class="fs-title">ตอนที่ 3 ความคิดเห็นของผู้รับบริการ</h2>
-
                     <label for="comments_rd16"
                         class="block mb-2 text-md font-medium text-gray-900 dark:text-white text-left">16.
                         ตามที่ท่านได้มารับบริการที่ รพ.สตแห่งนี้ ท่านคิดว่า รพ.สต.ควรปรับปรุงและพัฒนาในเรื่องใด</label>

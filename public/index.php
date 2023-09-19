@@ -5,8 +5,8 @@ include("./process/process_get.php");
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รายงานสรุปผลการตอบแบบสอบถาม</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
@@ -146,7 +146,7 @@ include("./process/process_get.php");
                                 </span>
                             </a>
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
-                               
+
                                 <a href="pages/input_user.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     เพิ่มข้อมูลผู้ย้ายมาอยู่ใหม่
@@ -434,7 +434,7 @@ include("./process/process_get.php");
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                     </a>
-                                    
+
                                 </div>
 
                             </div>
@@ -687,7 +687,8 @@ include("./process/process_get.php");
                                     // Create the bar chart
                                     var ctx = document.getElementById('barch').getContext('2d');
                                     Chart.defaults.font.family = "Lato";
-                                    Chart.defaults.font.size = 14;
+                                    Chart.defaults.font.size = 11.5;
+
 
                                     var myBarChart = new Chart(ctx, {
                                         type: 'bar',
@@ -746,7 +747,8 @@ include("./process/process_get.php");
                                 var dataLabels = <?php echo json_encode(array_keys($valueCounts)); ?>;
 
                                 Chart.defaults.font.family = "Lato";
-                                Chart.defaults.font.size = 16;
+                                Chart.defaults.font.size = 11.5;
+
 
                                 var ctx = document.getElementById('dataPieChart').getContext('2d');
                                 var myPieChart = new Chart(ctx, {
@@ -794,7 +796,7 @@ include("./process/process_get.php");
 
                                     // Set chart font options
                                     Chart.defaults.font.family = "Lato";
-                                    Chart.defaults.font.size = 16;
+                                    Chart.defaults.font.size = 11.5;
 
                                     // Set chart color options
                                     Chart.defaults.color = isDarkTheme ? '#FFFFFF' :
@@ -835,7 +837,7 @@ include("./process/process_get.php");
                                 </div>
                                 <!-- Chart -->
                                 <div class="relative p-4 items-center">
-                                    <canvas id="dataBarChart"></canvas>
+                                    <canvas id="dataBarChart" width="140" height= "60"></canvas>
                                     <script>
                                     function createChart() {
                                         // Convert PHP array to JavaScript array for chart
@@ -886,7 +888,8 @@ include("./process/process_get.php");
 
                                         // Create the bar chart with the determined text color
                                         Chart.defaults.font.family = "Lato";
-                                        Chart.defaults.font.size = 12;
+                                        Chart.defaults.font.size = 11.5;
+
 
                                         var ctx = document.getElementById('dataBarChart').getContext('2d');
                                         var myBarChart = new Chart(ctx, {
@@ -903,6 +906,7 @@ include("./process/process_get.php");
                                             },
                                             options: {
                                                 responsive: true,
+
                                                 scales: {
                                                     y: {
                                                         ticks: {
@@ -957,9 +961,9 @@ include("./process/process_get.php");
                                             <table class="w-full bg-transparent border-collapse">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col"
-                                                        class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light ">
-                                                            
+                                                        <th scope="col"
+                                                            class="p-4 text-base font-medium leading-none tracking-wider text-black dark:text-light ">
+
                                                         </th>
                                                         <th colspan="2"
                                                             class="py-2 px-4 border border-gray-300 font-semibold text-black dark:text-light">
@@ -967,8 +971,8 @@ include("./process/process_get.php");
                                                         </th>
                                                     </tr>
                                                     <tr>
-                                                    <th scope="col"
-                                                        class="p-4 text-base border border-gray-300 font-medium leading-none tracking-wider text-black dark:text-light ">
+                                                        <th scope="col"
+                                                            class="p-4 text-base border border-gray-300 font-medium leading-none tracking-wider text-black dark:text-light ">
                                                             การบริการของ รพ.สต.
                                                         </th>
                                                         <th
