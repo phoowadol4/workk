@@ -58,7 +58,7 @@ include("../process/process_get.php");
                                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> ระบบแสดงผลข้อมูล </span>
+                                <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน </span>
                                 <span class="ml-auto" aria-hidden="true">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -98,7 +98,6 @@ include("../process/process_get.php");
                                 </span>
                                 <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                 <span aria-hidden="true" class="ml-auto">
-                                    <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -138,7 +137,6 @@ include("../process/process_get.php");
                                 </span>
                                 <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
                                 <span aria-hidden="true" class="ml-auto">
-                                    <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -162,7 +160,7 @@ include("../process/process_get.php");
                 <!-- Navbar -->
                 <header class="relative bg-white dark:bg-darker">
                     <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
-                        <!-- Mobile menu button -->
+                        <!-- ปุ่มเมนูมือถือ -->
                         <button @click="isMobileMainMenuOpen = !isMobileMainMenuOpen"
                             class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
                             <span class="sr-only">Open main manu</span>
@@ -177,7 +175,7 @@ include("../process/process_get.php");
                         <!-- ชื่อระบบ -->
                         <a href="../index.php"
                             class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">
-                            ระบบแสดงผลข้อมูล
+                            ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน
                         </a>
                         <!-- ปุ่มเมนูมือถือ -->
                         <button @click="isMobileSubMenuOpen = !isMobileSubMenuOpen"
@@ -354,7 +352,7 @@ include("../process/process_get.php");
                                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> ระบบแสดงผลข้อมูล </span>
+                                    <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน </span>
                                     <span class="ml-auto" aria-hidden="true">
                                         <svg class="w-4 h-4 transition-transform transform"
                                             :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"

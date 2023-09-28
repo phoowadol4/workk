@@ -58,7 +58,7 @@ $token = $_SESSION['token'];
                                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> ระบบแสดงผลข้อมูล </span>
+                                <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน </span>
                                 <span class="ml-auto" aria-hidden="true">
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -161,7 +161,7 @@ $token = $_SESSION['token'];
                 <!-- Navbar -->
                 <header class="relative bg-white dark:bg-darker">
                     <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
-                        <!-- Mobile menu button -->
+                        <!-- ปุ่มเมนูมือถือ -->
                         <button @click="isMobileMainMenuOpen = !isMobileMainMenuOpen"
                             class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
                             <span class="sr-only">Open main manu</span>
@@ -199,7 +199,7 @@ $token = $_SESSION['token'];
                         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
                         </form>
 
-                        <!-- Mobile sub menu button -->
+                        <!-- ปุ่มเมนูมือถือ -->
                         <button @click="isMobileSubMenuOpen = !isMobileSubMenuOpen"
                             class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
                             <span class="sr-only">Open sub manu</span>
@@ -211,11 +211,9 @@ $token = $_SESSION['token'];
                                 </svg>
                             </span>
                         </button>
-
-                        <!-- Desktop Right buttons -->
                         <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
-                            <!-- Toggle dark theme button -->
-                            <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
+                                <!-- ปุ่มสลับธีม dark / light -->
+                                <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
                                 <div
                                     class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter">
                                 </div>
@@ -233,7 +231,7 @@ $token = $_SESSION['token'];
                                     </svg>
                                 </div>
                             </button>
-                            <!-- User avatar button -->
+                            <!-- ปุ่มรูปภาพของผู้ใช้ -->
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
                                     type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
@@ -242,7 +240,7 @@ $token = $_SESSION['token'];
                                     <img class="w-10 h-10 rounded-full" src="build/images/de.jpg" alt="Ahmed Kamel" />
                                 </button>
 
-                                <!-- User dropdown menu -->
+                                <!-- เมนูของผู้ใข้ -->
                                 <div x-show="open" x-ref="userMenu"
                                     x-transition:enter="transition-all transform ease-out"
                                     x-transition:enter-start="translate-y-1/2 opacity-0"
@@ -352,7 +350,7 @@ $token = $_SESSION['token'];
                                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> ระบบแสดงผลข้อมูล </span>
+                                    <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน </span>
                                     <span class="ml-auto" aria-hidden="true">
                                         <svg class="w-4 h-4 transition-transform transform"
                                             :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
