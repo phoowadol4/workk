@@ -1,22 +1,28 @@
 <?php
+// รวมไฟล์ process_get.php เพื่อใช้งานฟังก์ชันและตัวแปรที่อยู่ในไฟล์นี้
 include("../process/process_get.php");
 
+// ตรวจสอบว่ามีตัวแปร $_SESSION['token'] อยู่หรือไม่
 if (isset($_SESSION['token'])) {
     $token = $_SESSION['token'];
 }
-session_start();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['house_id'])&& isset($_POST['cid']) && isset($_POST['pname'])&& isset($_POST['fname'])&& isset($_POST['lname'])&& isset($_POST['address']) && isset($_POST['latitude'])&& isset($_POST['longitude'])) {
 
-        $_SESSION['house_id']=$_POST['house_id'];
+// เริ่มเซสชันใหม่ (หากยังไม่ได้เริ่ม)
+session_start();
+
+// ตรวจสอบว่าเป็นการร้องขอแบบ POST หรือไม่
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // ตรวจสอบความถูกต้องของข้อมูลที่รับมา
+    if (isset($_POST['house_id']) && isset($_POST['cid']) && isset($_POST['pname']) && isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address']) && isset($_POST['latitude']) && isset($_POST['longitude'])) {
+        // กำหนดค่าข้อมูลที่รับมาให้กับตัวแปรในเซสชัน
+        $_SESSION['house_id'] = $_POST['house_id'];
         $_SESSION['cid'] = $_POST['cid'];
-        $_SESSION['pname']=$_POST['pname'];
-        $_SESSION['fname']=$_POST['fname'];
-        $_SESSION['lname']=$_POST['lname'];
-        $_SESSION['address']=$_POST['address'];
+        $_SESSION['pname'] = $_POST['pname'];
+        $_SESSION['fname'] = $_POST['fname'];
+        $_SESSION['lname'] = $_POST['lname'];
+        $_SESSION['address'] = $_POST['address'];
         $_SESSION['latitude'] = $_POST['latitude'];
         $_SESSION['longitude'] = $_POST['longitude'];
-
     }
 }
 ?>
@@ -46,11 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- กำหนดรูปแบบของ form เพิ่มข้อมูล -->
     <style>
     /*custom font*/
+    /* เริ่มการกำหนดรูปแบบสำหรับฟอนต์ที่กำหนดเอง */
     @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
     /*basic reset*/
+    /* รีเซ็ตค่าเริ่มต้นของ HTML และ Body ให้ไม่มีการกำหนดค่า margin และ padding */
     * {
         margin: 0;
         padding: 0;
@@ -59,17 +68,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     html {
         height: 100%;
         background: #6441A5;
+        /* สีพื้นหลังสำหรับ HTML */
         /* fallback for old browsers */
         background: -webkit-linear-gradient(to left, #6441A5, #2a0845);
+        /* สีพื้นหลังสำหรับเบราว์เซอร์เก่า */
         /* Chrome 10-25, Safari 5.1-6 */
     }
 
     body {
         font-family: montserrat, arial, verdana;
         background: transparent;
+        /* กำหนดฟอนต์และสีพื้นหลังสำหรับ Body */
     }
 
     /*form styles*/
+    /* กำหนดรูปแบบสำหรับฟอร์ม */
     #msform {
         text-align: center;
         position: relative;
@@ -87,15 +100,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         margin: 0 10%;
 
         /*stacking fieldsets above each other*/
+        /* การวางฟิลด์เซ็ตหนึ่งตัวเหนือกัน */
         position: relative;
     }
 
     /*Hide all except first fieldset*/
+    /* ซ่อนฟิลด์เซ็ตทั้งหมดยกเว้นฟิลด์เซ็ตแรก */
     #msform fieldset:not(:first-of-type) {
         display: none;
     }
 
     /*inputs*/
+    /* กำหนดรูปแบบสำหรับอินพุตและเท็กส์เอรียของฟอร์ม */
     #msform input,
     #msform textarea {
         padding: 15px;
@@ -123,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*buttons*/
+    /* กำหนดรูปแบบสำหรับปุ่มในฟอร์ม */
     #msform .action-button {
         width: 100px;
         background: #ee0979;
@@ -158,6 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*headings*/
+    /* กำหนดรูปแบบสำหรับหัวเรื่อง */
     .fs-title {
         font-size: 18px;
         text-transform: uppercase;
@@ -175,6 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*progressbar*/
+    /* กำหนดรูปแบบสำหรับแถบความคืบหน้า */
     #progressbar {
         display: flex;
         justify-content: center;
@@ -215,6 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*progressbar connectors*/
+    /* กำหนดรูปแบบสำหรับเส้นต่อขั้นบันไดของแถบความคืบหน้า */
     #progressbar li:after {
         content: '';
         width: 100%;
@@ -233,6 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*marking active/completed steps green*/
+    /* กำหนดสีเขียวสำหรับขั้นบันไดที่กำลังทำงานหรือเสร็จสิ้น */
     /*The number of the step and the connector before it = green*/
     #progressbar li.active:before,
     #progressbar li.active:after {
@@ -240,8 +261,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         color: white;
     }
 
-
     /* Not relevant to this form */
+    /* ไม่เกี่ยวข้องกับฟอร์มนี้ */
     .dme_link {
         margin-top: 30px;
         text-align: center;
@@ -268,9 +289,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         margin: 0;
         padding: 0;
         font-family: sans-serif;
-
     }
 
+    /* กำหนดรูปแบบสำหรับอินพุตแบบราดิโอ */
     input[type="radio"]+label span {
         transition: background .2s,
             transform .2s;
@@ -282,15 +303,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     input[type="radio"]:checked+label span {
-        background-color: #3490DC; //bg-blue
+        background-color: #3490DC;
+        /* สีพื้นหลังเมื่อถูกเลือก */
         box-shadow: 0px 0px 0px 2px white inset;
     }
 
-
     input[type="radio"]:checked+label {
-        color: #3490DC; //text-blue
+        color: #3490DC;
+        /* สีข้อความเมื่อถูกเลือก */
     }
 
+    /* สนับสนุนสำหรับการกำหนดรูปแบบสำหรับอินพุตแบบราดิโอ */
     @supports(-webkit-appearance: none) or (-moz-appearance: none) {
         input[type='radio'] {
             --active: #275EFE;
@@ -366,6 +389,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    /* กำหนดรูปแบบสำหรับอินพุตแบบราดิโอที่ไม่ใช่สวิตช์ */
     input[type='radio'] {
         border-radius: 50%;
 
@@ -383,6 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    /* ส่วนสำหรับกำหนดรูปแบบสำหรับแสดงการแจ้งเตือนแบบกำหนดเอง */
     #custom-alert {
         transition: opacity 0.3s ease;
     }
@@ -399,122 +424,111 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body translate="no">
-    <!-- MultiStep Form -->
+    <!-- แบบฟอร์มหลายขั้นตอน -->
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form id="msform" method="post">
-                <!-- progressbar -->
+            <form id="msform" method="POST">
+                <!-- แถบความคืบหน้า -->
                 <ul id="progressbar">
                     <li class="">ข้อมูลผู้มาใหม่</li>
-                    <li class="active">ข้อมูลบ้าน</li>
+                    <li class="active">ข้อมูลบ้าน </li>
                 </ul>
-                <!-- fieldsets -->
+                <!-- ส่วนของ fieldsets เพิ่มข้อมูลผู้มาใหม่ -->
                 <fieldset style="transform: scale(1); position: absolute; opacity: 1; display: block;">
                     <h4 class="fs-title">ข้อมูลผู้มาใหม่</h4>
                     <h3 class="fs-subtitle text-sm">ข้อมูลนี้เป็นส่วนหนึ่งของการจัดทำระบบคุณภาพบริการของ รพ.สต.
                         เพื่อการบริการในชุมชน</h3>
-                        <div>
+
+                    <!-- ช่องกรอกรหัสบ้าน -->
+                    <div>
                         <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">รหัสบ้าน</h5>
                         <input type="text" id="house_id" name="house_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="รหัสบ้าน">
                     </div>
-                        <div>
-                        <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">เลขบัตรประจำตัวประชาชน</h5>
+
+                    <!-- ช่องกรอกเลขบัตรประจำตัวประชาชน -->
+                    <div>
+                        <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">เลขบัตรประจำตัวประชาชน
+                        </h5>
                         <input type="text" id="cid" name="cid"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="x-xxxxx-xxxxx-xx-x">
                     </div>
-                    <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">
-                        คำนำหน้าชื่อ</h5>
+
+                    <!-- เลือกคำนำหน้าชื่อ -->
+                    <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">คำนำหน้าชื่อ</h5>
                     <ul class="grid w-full gap-4 md:grid-cols-3">
                         <li>
-                            <input type="radio" id="pname1" name="pname" value="นาย"
-                                <?php echo ($_SESSION['pname'] ?? '') === 'นาย' ? 'checked' : ''; ?>
-                                class="hidden peer">
+                            <input type="radio" id="pname1" name="pname" value="นาย" class="hidden peer">
                             <label for="pname1"
                                 class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-
                                 <div class="w-full">นาย</div>
-
                             </label>
                         </li>
                         <li>
-                            <input type="radio" id="pname2" name="pname" value="นาง"
-                                <?php echo ($_SESSION['pname'] ?? '') === 'นาง' ? 'checked' : ''; ?>
-                                class="hidden peer">
+                            <input type="radio" id="pname2" name="pname" value="นาง" class="hidden peer">
                             <label for="pname2"
                                 class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <div class="block">
-                                    <div class="w-full">นาง</div>
-                                </div>
+                                <div class="w-full">นาง</div>
                             </label>
                         </li>
                         <li>
-                            <input type="radio" id="pname3" name="pname" value="นางสาว"
-                                <?php echo ($_SESSION['pname'] ?? '') === 'นางสาว' ? 'checked' : ''; ?>
-                                class="hidden peer">
+                            <input type="radio" id="pname3" name="pname" value="น.ส." class="hidden peer">
                             <label for="pname3"
                                 class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <div class="block">
-                                    <div class="w-full">นางสาว</div>
-                                </div>
+                                <div class="w-full">น.ส.</div>
                             </label>
                         </li>
                         <li>
-                            <input type="radio" id="pname4" name="pname" value="ด.ช."
-                                <?php echo ($_SESSION['pname'] ?? '') === 'ด.ช.' ? 'checked' : ''; ?>
-                                class="hidden peer">
+                            <input type="radio" id="pname4" name="pname" value="ด.ช." class="hidden peer">
                             <label for="pname4"
                                 class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <div class="block">
-                                    <div class="w-full">ด.ช.</div>
-                                </div>
+                                <div class="w-full">ด.ช.</div>
                             </label>
                         </li>
                         <li>
-                            <input type="radio" id="pname5" name="pname" value="ด.ญ."
-                                <?php echo ($_SESSION['pname'] ?? '') === 'ด.ญ.' ? 'checked' : ''; ?>
-                                class="hidden peer">
+                            <input type="radio" id="pname5" name="pname" value="ด.ญ." class="hidden peer">
                             <label for="pname5"
                                 class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <div class="block">
-                                    <div class="w-full">ด.ญ.</div>
-                                </div>
+                                <div class="w-full">ด.ญ.</div>
                             </label>
                         </li>
                     </ul>
-                    
+
+                    <!-- ช่องกรอกชื่อ -->
                     <div>
                         <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">ชื่อ</h5>
-                        <input type="text" id="fname" name="fname" 
-
+                        <input type="text" id="fname" name="fname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="ชื่อ">
                     </div>
-                        <div>
+
+                    <!-- ช่องกรอกนามสกุล -->
+                    <div>
                         <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">นามสกุล</h5>
                         <input type="text" id="lname" name="lname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="นามสกุล">
                     </div>
-                    </li>
-                    </ul>
-                    </li>
+
+                    <!-- ปุ่มกลับไปหน้าหลักและปุ่มถัดไป -->
                     <a href="../index2.php" class="previous action-button-previous">หน้าหลัก</a>
                     <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
+
+                <!-- ส่วนของ fieldsets เพิ่มข้อมูลบ้าน -->
                 <fieldset style="display: none; left: 50%; opacity: 0;">
                     <h3 class="fs-title">ข้อมูลบ้าน</h3>
-                    <h3 class="fs-subtitle text-sm">ในกรณีที่ผู้มาใหม่ มาอยู่บ้านที่มีที่อยู่ในฐานข้อมูลแล้ว ไม่จำเป็นต้องกรอกในส่วนนี้ สามารถส่งเฉพาะข้อมูลผู้ย้ายมาใหม่ได้</h3>
-                        <div>
+                    <h3 class="fs-subtitle text-sm">ในกรณีที่ผู้มาใหม่ มาอยู่บ้านที่มีที่อยู่ในฐานข้อมูลแล้ว
+                        ไม่จำเป็นต้องกรอกในส่วนนี้ สามารถส่งเฉพาะข้อมูลผู้ย้ายมาใหม่ได้</h3>
+                    <div>
                         <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">บ้านเลขที่</h5>
-                        <input type="text" id="address" name="address" 
-
+                        <input type="text" id="address" name="address"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="บ้านเลขที่">
                     </div>
-                        <div>
+                    <div>
                         <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">ละติจูด</h5>
                         <input type="text" id="latitude" name="latitude"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -532,42 +546,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </div>
-    <!-- /.MultiStep Form -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script>
-    // jQuery time
 
-    //jQuery time
-    var current_fs, next_fs, previous_fs; //fieldsets
-    var left, opacity, scale; //fieldset properties which we will animate
-    var animating; //flag to prevent quick multi-click glitches
+    <script>
+    var current_fs, next_fs, previous_fs;
+    var left, opacity, scale; // คุณสมบัติของ fieldset ที่เราจะทำการ animate
+    var animating; // สถานะเพื่อป้องกันปัญหาการคลิกซ้ำอย่างรวดเร็ว
+
 
     $(".next").click(function() {
-        if (animating) return false;
+        if (animating) return false; // ถ้ากำลัง animate อยู่ กลับมาไม่ทำงาน
+
         animating = true;
 
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
 
-        //activate next step on progressbar using the index of next_fs
+        // ใช้งานขั้นตอนถัดไปบน progressbar โดยใช้ index ของ next_fs
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-        //show the next fieldset
+        // แสดง fieldset ถัดไป
         next_fs.show();
-        //hide the current fieldset with style
+        // ซ่อน fieldset ปัจจุบันด้วยอนิเมชัน
         current_fs.animate({
             opacity: 0
         }, {
             step: function(now, mx) {
-                //as the opacity of current_fs reduces to 0 - stored in "now"
-                //1. scale current_fs down to 80%
                 scale = 1 - (1 - now) * 0.2;
-                //2. bring next_fs from the right(50%)
                 left = (now * 50) + "%";
-                //3. increase opacity of next_fs to 1 as it moves in
                 opacity = 1 - now;
                 current_fs.css({
                     'transform': 'scale(' + scale + ')',
@@ -583,34 +592,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 current_fs.hide();
                 animating = false;
             },
-            //this comes from the custom easing plugin
             easing: 'easeInOutBack'
         });
     });
 
+    // เมื่อคลิกปุ่ม "ก่อนหน้า"
     $(".previous").click(function() {
         if (animating) return false;
+
         animating = true;
 
         current_fs = $(this).parent();
         previous_fs = $(this).parent().prev();
 
-        //de-activate current step on progressbar
+        // ยกเลิกขั้นตอนปัจจุบันบน progressbar
         $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-        //show the previous fieldset
+        // แสดง fieldset ก่อนหน้า
         previous_fs.show();
-        //hide the current fieldset with style
+        // ซ่อน fieldset ปัจจุบันด้วยอนิเมชัน
         current_fs.animate({
             opacity: 0
         }, {
             step: function(now, mx) {
-                //as the opacity of current_fs reduces to 0 - stored in "now"
-                //1. scale previous_fs from 80% to 100%
                 scale = 0.8 + (1 - now) * 0.2;
-                //2. take current_fs to the right(50%) - from 0%
                 left = ((1 - now) * 50) + "%";
-                //3. increase opacity of previous_fs to 1 as it moves in
                 opacity = 1 - now;
                 current_fs.css({
                     'left': left
@@ -625,14 +631,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 current_fs.hide();
                 animating = false;
             },
-            //this comes from the custom easing plugin
             easing: 'easeInOutBack'
         });
     });
 
     $(document).ready(function() {
-        $("#msform").submit(function(event) {
-
+        $("#msform").submit(function() {
+            // เก็บข้อมูลจากฟอร์มลงในตัวแปร formData
             var formData = {
                 house_id: $("#house_id").val(),
                 cid: $("#cid").val(),
@@ -643,8 +648,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 latitude: $("#latitude").val(),
                 longitude: $("#longitude").val(),
             };
-            // console.log(formData);
-            
+            //แสดงการแจ้งเตือนเพื่อตรวจสอบข้อมูล
             if (isAnyFieldEmpty(formData)) {
                 Swal.fire({
                     icon: 'error',
@@ -657,12 +661,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     title: 'Oops...',
                     text: 'กรุณากรอกเลขบัตรประชาชนให้ถูกต้อง',
                 });
-            } else if (!isValidpname(formData.pname)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'กรุณากรอกชื่อ',
-                });
             } else {
                 Swal.fire({
                     icon: 'success',
@@ -671,9 +669,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     showConfirmButton: false,
                     timer: 2000,
                 }).then(() => {
-                    // Redirect the user to another pfname after the timer expires
-                    window.location.href = 'input_user.php'; // Replace with the actual URL
+                    // นำผู้ใช้ไปยังหน้าแรกของ การเพิ่มข้อมูล
+                    window.location.href = 'input_user.php';
                 });
+
+                // ทำการส่งข้อมูลโดยใช้ Ajax ไปยังไฟล์ process_post_data_user.php และจัดการกับการตอบกลับจากเซิร์ฟเวอร์
                 $.ajax({
                     method: 'POST',
                     url: '../process/process_post_data_user.php',
@@ -681,7 +681,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     dataType: "json",
                     encode: true,
                 }).done(function(response) {
-                    // console.log(response);
                     if (response.success) {
                         Swal.fire({
                             icon: 'success',
@@ -694,28 +693,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             title: 'Oops...',
                             text: 'Form submission failed. Please try again.',
                         });
-                }
-            });
-        }
-        event.preventDefault();
+                    }
+                });
+            }
+            event.preventDefault();
+        });
     });
-});
 
-        function isAnyFieldEmpty(formData) {
-            for (var key in formData) {
-                if (formData.hasOwnProperty(key) && (formData[key] === null || formData[key] === undefined)) {
-                    return true; // Found an empty field
-                }
+    function isAnyFieldEmpty(formData) {
+        for (var key in formData) {
+            if (formData.hasOwnProperty(key) && (formData[key] === null || formData[key] === undefined)) {
+                return true; // พบฟิลด์ว่าง
             }
-            return false; // All fields are filled
         }
+        return false; // ทุกฟิลด์กรอกครบ
+    }
 
-        function isValidAge(cid) {
-            if (isNaN(cid) || cid.length !== 13) {
-                return false; // Invalid CID
-            }
-            return true; // Valid CID
+    function isValidAge(cid) {
+        if (isNaN(cid) || cid.length !== 13) {
+            return false; // หมายเลขบัตรประชาชนไม่ถูกต้อง
         }
+        return true; // หมายเลขบัตรประชาชนถูกต้อง
+    }
     </script>
 
 </body>

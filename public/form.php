@@ -1,6 +1,6 @@
 <?php
 session_start();
-// Handle form submission
+//เก็บข้อมูลจากฟอร์มไว้ภายใน session
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['gender']) && isset($_POST['people'])&& isset($_POST['age'])&& isset($_POST['date'])&& isset($_POST['ever'])&& isset($_POST['rd_1']) && isset($_POST['rd_2'])&& isset($_POST['rd_3'])&& isset($_POST['rd_4'])&& isset($_POST['rd_5'])&& isset($_POST['rd_6'])&& isset($_POST['rd_7']) &&isset($_POST['rd_8']) && isset($_POST['rd_9'])&& isset($_POST['rd_10'])&& isset($_POST['rd_11'])&& isset($_POST['rd_12'])&& isset($_POST['rd_13'])&& isset($_POST['rd_14'])&& isset($_POST['rd_15']) &&isset($_POST['comments16']) &&isset($_POST['comments17'])) {
         $_SESSION['gender']=$_POST['gender'];
@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -38,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <meta name="apple-mobile-web-app-title" content="CodePen">
 
-    
     <link rel="mask-icon" type="image/x-icon"
         href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg"
         color="#111">
@@ -55,9 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <style>
     /*custom font*/
+    /* เริ่มการกำหนดรูปแบบสำหรับฟอนต์ที่กำหนดเอง */
     @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
     /*basic reset*/
+    /* รีเซ็ตค่าเริ่มต้นของ HTML และ Body ให้ไม่มีการกำหนดค่า margin และ padding */
     * {
         margin: 0;
         padding: 0;
@@ -66,17 +68,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     html {
         height: 100%;
         background: #6441A5;
+        /* สีพื้นหลังสำหรับ HTML */
         /* fallback for old browsers */
         background: -webkit-linear-gradient(to left, #6441A5, #2a0845);
+        /* สีพื้นหลังสำหรับเบราว์เซอร์เก่า */
         /* Chrome 10-25, Safari 5.1-6 */
     }
 
     body {
         font-family: montserrat, arial, verdana;
         background: transparent;
+        /* กำหนดฟอนต์และสีพื้นหลังสำหรับ Body */
     }
 
     /*form styles*/
+    /* กำหนดรูปแบบสำหรับฟอร์ม */
     #msform {
         text-align: center;
         position: relative;
@@ -94,15 +100,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         margin: 0 10%;
 
         /*stacking fieldsets above each other*/
+        /* การวางฟิลด์เซ็ตหนึ่งตัวเหนือกัน */
         position: relative;
     }
 
     /*Hide all except first fieldset*/
+    /* ซ่อนฟิลด์เซ็ตทั้งหมดยกเว้นฟิลด์เซ็ตแรก */
     #msform fieldset:not(:first-of-type) {
         display: none;
     }
 
     /*inputs*/
+    /* กำหนดรูปแบบสำหรับอินพุตและเท็กส์เอรียของฟอร์ม */
     #msform input,
     #msform textarea {
         padding: 15px;
@@ -130,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*buttons*/
+    /* กำหนดรูปแบบสำหรับปุ่มในฟอร์ม */
     #msform .action-button {
         width: 100px;
         background: #ee0979;
@@ -165,6 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*headings*/
+    /* กำหนดรูปแบบสำหรับหัวเรื่อง */
     .fs-title {
         font-size: 18px;
         text-transform: uppercase;
@@ -182,6 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*progressbar*/
+    /* กำหนดรูปแบบสำหรับแถบความคืบหน้า */
     #progressbar {
         display: flex;
         justify-content: center;
@@ -222,6 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*progressbar connectors*/
+    /* กำหนดรูปแบบสำหรับเส้นต่อขั้นบันไดของแถบความคืบหน้า */
     #progressbar li:after {
         content: '';
         width: 100%;
@@ -240,6 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /*marking active/completed steps green*/
+    /* กำหนดสีเขียวสำหรับขั้นบันไดที่กำลังทำงานหรือเสร็จสิ้น */
     /*The number of the step and the connector before it = green*/
     #progressbar li.active:before,
     #progressbar li.active:after {
@@ -247,8 +261,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         color: white;
     }
 
-
     /* Not relevant to this form */
+    /* ไม่เกี่ยวข้องกับฟอร์มนี้ */
     .dme_link {
         margin-top: 30px;
         text-align: center;
@@ -275,9 +289,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         margin: 0;
         padding: 0;
         font-family: sans-serif;
-
     }
 
+    /* กำหนดรูปแบบสำหรับอินพุตแบบราดิโอ */
     input[type="radio"]+label span {
         transition: background .2s,
             transform .2s;
@@ -289,15 +303,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     input[type="radio"]:checked+label span {
-        background-color: #3490DC; //bg-blue
+        background-color: #3490DC;
+        /* สีพื้นหลังเมื่อถูกเลือก */
         box-shadow: 0px 0px 0px 2px white inset;
     }
 
-
     input[type="radio"]:checked+label {
-        color: #3490DC; //text-blue
+        color: #3490DC;
+        /* สีข้อความเมื่อถูกเลือก */
     }
 
+    /* สนับสนุนสำหรับการกำหนดรูปแบบสำหรับอินพุตแบบราดิโอ */
     @supports(-webkit-appearance: none) or (-moz-appearance: none) {
         input[type='radio'] {
             --active: #275EFE;
@@ -373,6 +389,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    /* กำหนดรูปแบบสำหรับอินพุตแบบราดิโอที่ไม่ใช่สวิตช์ */
     input[type='radio'] {
         border-radius: 50%;
 
@@ -390,6 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    /* ส่วนสำหรับกำหนดรูปแบบสำหรับแสดงการแจ้งเตือนแบบกำหนดเอง */
     #custom-alert {
         transition: opacity 0.3s ease;
     }
@@ -406,18 +424,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body translate="no">
-    <!-- MultiStep Form -->
+    <!-- แบบฟอร์มหลายขั้นตอน -->
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form id="msform" method="post">
-                <!-- progressbar -->
+                <!-- แถบความคืบหน้า -->
                 <ul id="progressbar">
                     <li class="active">ตอนที่ 1 ข้อมูลทั่วไป</li>
                     <li class="">ตอนที่ 2 ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</li>
                     <li class="">ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</li>
                     <li class="">ตอนที่ 3 ความคิดเห็นของผู้รับบริการ</li>
                 </ul>
-                <!-- fieldsets -->
+                <!-- หัวเรื่องตอนที่ 1 -->
                 <fieldset style="transform: scale(1); position: absolute; opacity: 1; display: block;">
                     <h4 class="fs-title">แบบสอบถามความพึงพอใจของผู้รับบริการใน รพ.สต.</h4>
                     <h3 class="fs-subtitle text-sm">ข้อมูลนี้เป็นส่วนหนึ่งของการจัดทำระบบคุณภาพบริการของ รพ.สต.
@@ -476,7 +494,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </label>
                         </li>
                     </ul>
-                    <!-- </li> -->
                     <div>
                         <h5 class="mb-4 font-semibold text-gray-900 dark:text-white text-left">อายุ</h5>
                         <input type="number" id="age" name="age"
@@ -524,508 +541,526 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         น้อยที่สุด = 1</h5>
                     <h4 class="fs-subtitle"></h4>
 
+                    <!-- ตารางการให้คะแนน -->
                     <div class="table-responsive">
-                    <table class="w-center">
-                        <thead>
-                            <tr>
-                                <th class="border  text-center">การบริการของ รพ.สต.</th>
-                                <th class="border  text-center">1</th>
-                                <th class="border  text-center">2</th>
-                                <th class="border  text-center">3</th>
-                                <th class="border  text-center">4</th>
-                                <th class="border  text-center">5</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <th class="border  text-center">ด้านเจ้าหน้าที่ผู้ให้บริการ</th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">1. ให้การต้อนรับด้วยอัธยาศัยที่ดี สุภาพยิ้มแย้มแจ่มใส	</td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_1_1" name="rd_1" value="1"
-                                        <?php echo ($_SESSION['rd_1'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_1_2" name="rd_1" value="2"
-                                        <?php echo ($_SESSION['rd_1'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_1_3" name="rd_1" value="3"
-                                        <?php echo ($_SESSION['rd_1'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_1_4" name="rd_1" value="4"
-                                        <?php echo ($_SESSION['rd_1'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_1_5" name="rd_1" value="5"
-                                        <?php echo ($_SESSION['rd_1'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">2. ให้บริการด้วยความเต็มใจ ยินดี กระตือรือร้น
-                                </td>
-                                <td class="border px-4 py-2 ">
-                                    <input type="radio" id="rd_2_1" name="rd_2" value="1"
-                                        <?php echo ($_SESSION['rd_2'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2 ">
-                                    <input type="radio" id="rd_2_2" name="rd_2" value="2"
-                                        <?php echo ($_SESSION['rd_2'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_2_3" name="rd_2" value="3"
-                                        <?php echo ($_SESSION['rd_2'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_2_4" name="rd_2" value="4"
-                                        <?php echo ($_SESSION['rd_2'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_2_5" name="rd_2" value="5"
-                                        <?php echo ($_SESSION['rd_2'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">3. เจ้าหน้าที่ให้ความสนใจและเต็มใจช่วยแก้ปัญหาต่างๆให้กับท่าน	</td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_3_1" name="rd_3" value="1"
-                                        <?php echo ($_SESSION['rd_3'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_3_2" name="rd_3" value="2"
-                                        <?php echo ($_SESSION['rd_3'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_3_3" name="rd_3" value="3"
-                                        <?php echo ($_SESSION['rd_3'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_3_4" name="rd_3" value="4"
-                                        <?php echo ($_SESSION['rd_3'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_3_5" name="rd_3" value="5"
-                                        <?php echo ($_SESSION['rd_3'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">4. เจ้าหน้าที่ของ รพ.สต. มีความรับผิดชอบและความมุ่งมั่นในการปฏิบัติงาน	</td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_4_1" name="rd_4" value="1"
-                                        <?php echo ($_SESSION['rd_4'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_4_2" name="rd_4" value="2"
-                                        <?php echo ($_SESSION['rd_4'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_4_3" name="rd_4" value="3"
-                                        <?php echo ($_SESSION['rd_4'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_4_4" name="rd_4" value="4"
-                                        <?php echo ($_SESSION['rd_4'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_4_5" name="rd_4" value="5"
-                                        <?php echo ($_SESSION['rd_4'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">5. เจ้าหน้าที่ได้แจ้งขั้นตอนและเงื่อนไขการบริการให้ผู้มาติดต่อ ทราบอย่างชัดเจน	
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_5_1" name="rd_5" value="1"
-                                        <?php echo ($_SESSION['rd_5'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_5_2" name="rd_5" value="2"
-                                        <?php echo ($_SESSION['rd_5'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_5_3" name="rd_5" value="3"
-                                        <?php echo ($_SESSION['rd_5'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_5_4" name="rd_5" value="4"
-                                        <?php echo ($_SESSION['rd_5'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_5_5" name="rd_5" value="5"
-                                        <?php echo ($_SESSION['rd_5'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">
-                                6. ระดับความพอใจในการให้บริการของเจ้าหน้าที่	
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_6_1" name="rd_6" value="1"
-                                        <?php echo ($_SESSION['rd_6'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_6_2" name="rd_6" value="2"
-                                        <?php echo ($_SESSION['rd_6'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_6_3" name="rd_6" value="3"
-                                        <?php echo ($_SESSION['rd_6'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_6_4" name="rd_6" value="4"
-                                        <?php echo ($_SESSION['rd_6'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_6_5" name="rd_6" value="5"
-                                        <?php echo ($_SESSION['rd_6'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="border  text-center">ด้านคุณภาพการให้บริการ	</th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">
-                                7. การบริการเป็นไปตามระเบียบปฏิบัติของทางราชการและระบียบอื่นๆ ที่ประกาศ	
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_7_1" name="rd_7" value="1"
-                                        <?php echo ($_SESSION['rd_7'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_7_2" name="rd_7" value="2"
-                                        <?php echo ($_SESSION['rd_7'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_7_3" name="rd_7" value="3"
-                                        <?php echo ($_SESSION['rd_7'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_7_4" name="rd_7" value="4"
-                                        <?php echo ($_SESSION['rd_7'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_7_5" name="rd_7" value="5"
-                                        <?php echo ($_SESSION['rd_7'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table class="w-center">
+                            <thead>
+                                <tr>
+                                    <th class="border  text-center">การบริการของ รพ.สต.</th>
+                                    <th class="border  text-center">1</th>
+                                    <th class="border  text-center">2</th>
+                                    <th class="border  text-center">3</th>
+                                    <th class="border  text-center">4</th>
+                                    <th class="border  text-center">5</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="border  text-center">ด้านเจ้าหน้าที่ผู้ให้บริการ</th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                </tr>
+                                <tr>
+
+                                    <td class="border px-4 py-2 text-left">1. ให้การต้อนรับด้วยอัธยาศัยที่ดี
+                                        สุภาพยิ้มแย้มแจ่มใส </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_1_1" name="rd_1" value="1"
+                                            <?php echo ($_SESSION['rd_1'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_1_2" name="rd_1" value="2"
+                                            <?php echo ($_SESSION['rd_1'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_1_3" name="rd_1" value="3"
+                                            <?php echo ($_SESSION['rd_1'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_1_4" name="rd_1" value="4"
+                                            <?php echo ($_SESSION['rd_1'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_1_5" name="rd_1" value="5"
+                                            <?php echo ($_SESSION['rd_1'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">2. ให้บริการด้วยความเต็มใจ ยินดี กระตือรือร้น
+                                    </td>
+                                    <td class="border px-4 py-2 ">
+                                        <input type="radio" id="rd_2_1" name="rd_2" value="1"
+                                            <?php echo ($_SESSION['rd_2'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2 ">
+                                        <input type="radio" id="rd_2_2" name="rd_2" value="2"
+                                            <?php echo ($_SESSION['rd_2'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_2_3" name="rd_2" value="3"
+                                            <?php echo ($_SESSION['rd_2'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_2_4" name="rd_2" value="4"
+                                            <?php echo ($_SESSION['rd_2'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_2_5" name="rd_2" value="5"
+                                            <?php echo ($_SESSION['rd_2'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">3.
+                                        เจ้าหน้าที่ให้ความสนใจและเต็มใจช่วยแก้ปัญหาต่างๆให้กับท่าน </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_3_1" name="rd_3" value="1"
+                                            <?php echo ($_SESSION['rd_3'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_3_2" name="rd_3" value="2"
+                                            <?php echo ($_SESSION['rd_3'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_3_3" name="rd_3" value="3"
+                                            <?php echo ($_SESSION['rd_3'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_3_4" name="rd_3" value="4"
+                                            <?php echo ($_SESSION['rd_3'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_3_5" name="rd_3" value="5"
+                                            <?php echo ($_SESSION['rd_3'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">4. เจ้าหน้าที่ของ รพ.สต.
+                                        มีความรับผิดชอบและความมุ่งมั่นในการปฏิบัติงาน </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_4_1" name="rd_4" value="1"
+                                            <?php echo ($_SESSION['rd_4'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_4_2" name="rd_4" value="2"
+                                            <?php echo ($_SESSION['rd_4'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_4_3" name="rd_4" value="3"
+                                            <?php echo ($_SESSION['rd_4'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_4_4" name="rd_4" value="4"
+                                            <?php echo ($_SESSION['rd_4'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_4_5" name="rd_4" value="5"
+                                            <?php echo ($_SESSION['rd_4'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">5.
+                                        เจ้าหน้าที่ได้แจ้งขั้นตอนและเงื่อนไขการบริการให้ผู้มาติดต่อ ทราบอย่างชัดเจน
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_5_1" name="rd_5" value="1"
+                                            <?php echo ($_SESSION['rd_5'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_5_2" name="rd_5" value="2"
+                                            <?php echo ($_SESSION['rd_5'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_5_3" name="rd_5" value="3"
+                                            <?php echo ($_SESSION['rd_5'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_5_4" name="rd_5" value="4"
+                                            <?php echo ($_SESSION['rd_5'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_5_5" name="rd_5" value="5"
+                                            <?php echo ($_SESSION['rd_5'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">
+                                        6. ระดับความพอใจในการให้บริการของเจ้าหน้าที่
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_6_1" name="rd_6" value="1"
+                                            <?php echo ($_SESSION['rd_6'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_6_2" name="rd_6" value="2"
+                                            <?php echo ($_SESSION['rd_6'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_6_3" name="rd_6" value="3"
+                                            <?php echo ($_SESSION['rd_6'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_6_4" name="rd_6" value="4"
+                                            <?php echo ($_SESSION['rd_6'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_6_5" name="rd_6" value="5"
+                                            <?php echo ($_SESSION['rd_6'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="border  text-center">ด้านคุณภาพการให้บริการ </th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">
+                                        7. การบริการเป็นไปตามระเบียบปฏิบัติของทางราชการและระบียบอื่นๆ ที่ประกาศ
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_7_1" name="rd_7" value="1"
+                                            <?php echo ($_SESSION['rd_7'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_7_2" name="rd_7" value="2"
+                                            <?php echo ($_SESSION['rd_7'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_7_3" name="rd_7" value="3"
+                                            <?php echo ($_SESSION['rd_7'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_7_4" name="rd_7" value="4"
+                                            <?php echo ($_SESSION['rd_7'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_7_5" name="rd_7" value="5"
+                                            <?php echo ($_SESSION['rd_7'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+
+                    <!-- ปุ่มกลับและถัดไป -->
                     <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
                     <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
 
+                <!-- หัวเรื่องตอนที่ 2 -->
                 <fieldset style="display: none; left: 50%; opacity: 0;">
                     <h3 class="fs-title">ตอนที่ 2 ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่</h3>
                     <h3 class="fs-subtitle">โปรดเลือก ช่องที่ตรงกับความเห็นของท่าน</h3>
                     <h5 class="fs-subtitle text-left">*หมายเหตุ มากที่สุด = 5 , มาก = 4 , ปานกลาง = 3 , น้อย = 2 ,
                         น้อยที่สุด = 1</h5>
 
+                    <!-- ตารางการให้คะแนน -->
                     <div class="table-responsive">
-                    <table class="w-center">
-                        <thead>
-                            <tr>
-                                <th class="border  text-center">การบริการของ รพ.สต.</th>
-                                <th class="border  text-center">1</th>
-                                <th class="border  text-center">2</th>
-                                <th class="border  text-center">3</th>
-                                <th class="border px-2 py-1 text-center">4</th>
-                                <th class="border  text-center">5</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        
-                            <tr>
-                                <td class="border px-4 py-2 text-left">8. การบริการเป็นไปตามกำหนดเวลาราชการและ/หรือเวลาที่ประกาศ	</td>
-                                <td class="border px-4 py-2 ">
-                                    <input type="radio" id="rd_8_1" name="rd_8" value="1"
-                                        <?php echo ($_SESSION['rd_8'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_8_2" name="rd_8" value="2"
-                                        <?php echo ($_SESSION['rd_8'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_8_3" name="rd_8" value="3"
-                                        <?php echo ($_SESSION['rd_8'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_8_4" name="rd_8" value="4"
-                                        <?php echo ($_SESSION['rd_8'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_8_5" name="rd_8" value="5"
-                                        <?php echo ($_SESSION['rd_8'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">9. ให้บริการด้วยความสะดวก รวดเร็ว</td>
-                                <td class="border px-4 py-2 ">
-                                    <input type="radio" id="rd_9_1" name="rd_9" value="1"
-                                        <?php echo ($_SESSION['rd_9'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2 ">
-                                    <input type="radio" id="rd_9_2" name="rd_9" value="2"
-                                        <?php echo ($_SESSION['rd_9'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_9_3" name="rd_9" value="3"
-                                        <?php echo ($_SESSION['rd_9'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_9_4" name="rd_9" value="4"
-                                        <?php echo ($_SESSION['rd_9'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_9_5" name="rd_9" value="5"
-                                        <?php echo ($_SESSION['rd_9'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">10. ความเร็วในการให้ความช่วยเหลือเมื่อท่านขอความช่วยเหลือ</td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_10_1" name="rd_10" value="1"
-                                        <?php echo ($_SESSION['rd_10'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_10_2" name="rd_10" value="2"
-                                        <?php echo ($_SESSION['rd_10'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_10_3" name="rd_10" value="3"
-                                        <?php echo ($_SESSION['rd_10'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_10_4" name="rd_10" value="4"
-                                        <?php echo ($_SESSION['rd_10'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_10_5" name="rd_10" value="5"
-                                        <?php echo ($_SESSION['rd_10'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">11. ผู้รับบริการสามารถติดต่อสื่อสารกับ รพ.สต. ได้สะดวก	</td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_11_1" name="rd_11" value="1"
-                                        <?php echo ($_SESSION['rd_11'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_11_2" name="rd_11" value="2"
-                                        <?php echo ($_SESSION['rd_11'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_11_3" name="rd_11" value="3"
-                                        <?php echo ($_SESSION['rd_11'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_11_4" name="rd_11" value="4"
-                                        <?php echo ($_SESSION['rd_11'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_11_5" name="rd_11" value="5"
-                                        <?php echo ($_SESSION['rd_11'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">12. รพ.สต. ให้บริการตรงต่อเวลาที่นัดหมาย	</td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_12_1" name="rd_12" value="1"
-                                        <?php echo ($_SESSION['rd_12'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_12_2" name="rd_12" value="2"
-                                        <?php echo ($_SESSION['rd_12'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_12_3" name="rd_12" value="3"
-                                        <?php echo ($_SESSION['rd_12'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_12_4" name="rd_12" value="4"
-                                        <?php echo ($_SESSION['rd_12'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_12_5" name="rd_12" value="5"
-                                        <?php echo ($_SESSION['rd_12'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="border  text-center">ด้านสถานที่</th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                                <th class="border  text-center"></th>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">13. ความสะอาดของสถานที่	</td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_13_1" name="rd_13" value="1"
-                                        <?php echo ($_SESSION['rd_13'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_13_2" name="rd_13" value="2"
-                                        <?php echo ($_SESSION['rd_13'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_13_3" name="rd_13" value="3"
-                                        <?php echo ($_SESSION['rd_13'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_13_4" name="rd_13" value="4"
-                                        <?php echo ($_SESSION['rd_13'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_13_5" name="rd_13" value="5"
-                                        <?php echo ($_SESSION['rd_13'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">14. มีสิ่งอำนวยความสะดวกในสถานที่ให้บริการ เช่น ป้ายบอกทาง ที่นั่งรอ	
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_14_1" name="rd_14" value="1"
-                                        <?php echo ($_SESSION['rd_14'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_14_2" name="rd_14" value="2"
-                                        <?php echo ($_SESSION['rd_14'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_14_3" name="rd_14" value="3"
-                                        <?php echo ($_SESSION['rd_14'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_14_4" name="rd_14" value="4"
-                                        <?php echo ($_SESSION['rd_14'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_14_5" name="rd_14" value="5"
-                                        <?php echo ($_SESSION['rd_14'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2 text-left">15. ความพึงพอใจโดยรวมที่ได้รับจากการบริการจาก
-                                    รพ.สต.
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_15_1" name="rd_15" value="1"
-                                        <?php echo ($_SESSION['rd_15'] ?? '') === '1' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_15_2" name="rd_15" value="2"
-                                        <?php echo ($_SESSION['rd_15'] ?? '') === '2' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_15_3" name="rd_15" value="3"
-                                        <?php echo ($_SESSION['rd_15'] ?? '') === '3' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_15_4" name="rd_15" value="4"
-                                        <?php echo ($_SESSION['rd_15'] ?? '') === '4' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <input type="radio" id="rd_15_5" name="rd_15" value="5"
-                                        <?php echo ($_SESSION['rd_15'] ?? '') === '5' ? 'checked' : ''; ?>
-                                        class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table class="w-center">
+                            <thead>
+                                <tr>
+                                    <th class="border  text-center">การบริการของ รพ.สต.</th>
+                                    <th class="border  text-center">1</th>
+                                    <th class="border  text-center">2</th>
+                                    <th class="border  text-center">3</th>
+                                    <th class="border px-2 py-1 text-center">4</th>
+                                    <th class="border  text-center">5</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">8.
+                                        การบริการเป็นไปตามกำหนดเวลาราชการและ/หรือเวลาที่ประกาศ </td>
+                                    <td class="border px-4 py-2 ">
+                                        <input type="radio" id="rd_8_1" name="rd_8" value="1"
+                                            <?php echo ($_SESSION['rd_8'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_8_2" name="rd_8" value="2"
+                                            <?php echo ($_SESSION['rd_8'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_8_3" name="rd_8" value="3"
+                                            <?php echo ($_SESSION['rd_8'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_8_4" name="rd_8" value="4"
+                                            <?php echo ($_SESSION['rd_8'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_8_5" name="rd_8" value="5"
+                                            <?php echo ($_SESSION['rd_8'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">9. ให้บริการด้วยความสะดวก รวดเร็ว</td>
+                                    <td class="border px-4 py-2 ">
+                                        <input type="radio" id="rd_9_1" name="rd_9" value="1"
+                                            <?php echo ($_SESSION['rd_9'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2 ">
+                                        <input type="radio" id="rd_9_2" name="rd_9" value="2"
+                                            <?php echo ($_SESSION['rd_9'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_9_3" name="rd_9" value="3"
+                                            <?php echo ($_SESSION['rd_9'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_9_4" name="rd_9" value="4"
+                                            <?php echo ($_SESSION['rd_9'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_9_5" name="rd_9" value="5"
+                                            <?php echo ($_SESSION['rd_9'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">10.
+                                        ความเร็วในการให้ความช่วยเหลือเมื่อท่านขอความช่วยเหลือ</td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_10_1" name="rd_10" value="1"
+                                            <?php echo ($_SESSION['rd_10'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_10_2" name="rd_10" value="2"
+                                            <?php echo ($_SESSION['rd_10'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_10_3" name="rd_10" value="3"
+                                            <?php echo ($_SESSION['rd_10'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_10_4" name="rd_10" value="4"
+                                            <?php echo ($_SESSION['rd_10'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_10_5" name="rd_10" value="5"
+                                            <?php echo ($_SESSION['rd_10'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">11. ผู้รับบริการสามารถติดต่อสื่อสารกับ รพ.สต.
+                                        ได้สะดวก </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_11_1" name="rd_11" value="1"
+                                            <?php echo ($_SESSION['rd_11'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_11_2" name="rd_11" value="2"
+                                            <?php echo ($_SESSION['rd_11'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_11_3" name="rd_11" value="3"
+                                            <?php echo ($_SESSION['rd_11'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_11_4" name="rd_11" value="4"
+                                            <?php echo ($_SESSION['rd_11'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_11_5" name="rd_11" value="5"
+                                            <?php echo ($_SESSION['rd_11'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">12. รพ.สต. ให้บริการตรงต่อเวลาที่นัดหมาย
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_12_1" name="rd_12" value="1"
+                                            <?php echo ($_SESSION['rd_12'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_12_2" name="rd_12" value="2"
+                                            <?php echo ($_SESSION['rd_12'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_12_3" name="rd_12" value="3"
+                                            <?php echo ($_SESSION['rd_12'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_12_4" name="rd_12" value="4"
+                                            <?php echo ($_SESSION['rd_12'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_12_5" name="rd_12" value="5"
+                                            <?php echo ($_SESSION['rd_12'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="border  text-center">ด้านสถานที่</th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                    <th class="border  text-center"></th>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">13. ความสะอาดของสถานที่ </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_13_1" name="rd_13" value="1"
+                                            <?php echo ($_SESSION['rd_13'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_13_2" name="rd_13" value="2"
+                                            <?php echo ($_SESSION['rd_13'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_13_3" name="rd_13" value="3"
+                                            <?php echo ($_SESSION['rd_13'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_13_4" name="rd_13" value="4"
+                                            <?php echo ($_SESSION['rd_13'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_13_5" name="rd_13" value="5"
+                                            <?php echo ($_SESSION['rd_13'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">14. มีสิ่งอำนวยความสะดวกในสถานที่ให้บริการ
+                                        เช่น ป้ายบอกทาง ที่นั่งรอ
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_14_1" name="rd_14" value="1"
+                                            <?php echo ($_SESSION['rd_14'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_14_2" name="rd_14" value="2"
+                                            <?php echo ($_SESSION['rd_14'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_14_3" name="rd_14" value="3"
+                                            <?php echo ($_SESSION['rd_14'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_14_4" name="rd_14" value="4"
+                                            <?php echo ($_SESSION['rd_14'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_14_5" name="rd_14" value="5"
+                                            <?php echo ($_SESSION['rd_14'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2 text-left">15. ความพึงพอใจโดยรวมที่ได้รับจากการบริการจาก
+                                        รพ.สต.
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_15_1" name="rd_15" value="1"
+                                            <?php echo ($_SESSION['rd_15'] ?? '') === '1' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_15_2" name="rd_15" value="2"
+                                            <?php echo ($_SESSION['rd_15'] ?? '') === '2' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_15_3" name="rd_15" value="3"
+                                            <?php echo ($_SESSION['rd_15'] ?? '') === '3' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_15_4" name="rd_15" value="4"
+                                            <?php echo ($_SESSION['rd_15'] ?? '') === '4' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <input type="radio" id="rd_15_5" name="rd_15" value="5"
+                                            <?php echo ($_SESSION['rd_15'] ?? '') === '5' ? 'checked' : ''; ?>
+                                            class="shrink-0 mt-0.5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+
+                    <!-- ปุ่มกลับและถัดไป -->
                     <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
                     <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
 
+                <!-- หัวเรื่องตอนที่ 3 -->
                 <fieldset style="display: none; left: 50%; opacity: 0; transform: scale(1); position: absolute;">
-                
+
                     <h2 class="fs-title">ตอนที่ 3 ความคิดเห็นของผู้รับบริการ</h2>
                     <label for="comments_rd16"
                         class="block mb-2 text-md font-medium text-gray-900 dark:text-white text-left">16.
@@ -1043,6 +1078,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         class="block p-1 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="ความคิดเห็น..."></textarea>
 
+                    <!-- ปุ่มกลับและถัดไป -->
                     <input type="button" name="previous" class="previous action-button-previous" value="กลับ">
                     <input type="submit" name="submit" class="submit action-button" value="ส่งแบบสอบถาม">
                 </fieldset>
@@ -1050,19 +1086,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </div>
-    <!-- /.MultiStep Form -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script>
-    // jQuery time
+    // ตัวแปรที่ใช้ในการเคลื่อนไหว fieldsets
+    var current_fs, next_fs, previous_fs;
+    var left, opacity, scale; // คุณสมบัติของ fieldset ที่เราจะใช้ในการเคลื่อนไหว
+    var animating; // ตัวแปร flag เพื่อป้องกันปัญหาการคลิกหลายครั้ง
 
-    //jQuery time
-    var current_fs, next_fs, previous_fs; //fieldsets
-    var left, opacity, scale; //fieldset properties which we will animate
-    var animating; //flag to prevent quick multi-click glitches
-
+    // เมื่อคลิกปุ่ม "ถัดไป"
     $(".next").click(function() {
         if (animating) return false;
         animating = true;
@@ -1070,22 +1104,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
 
-        //activate next step on progressbar using the index of next_fs
+        // เปิดขั้นตอนถัดไปบน progressbar โดยใช้ index ของ next_fs
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-        //show the next fieldset
+        // แสดง fieldset ถัดไป
         next_fs.show();
-        //hide the current fieldset with style
         current_fs.animate({
             opacity: 0
         }, {
             step: function(now, mx) {
-                //as the opacity of current_fs reduces to 0 - stored in "now"
-                //1. scale current_fs down to 80%
                 scale = 1 - (1 - now) * 0.2;
-                //2. bring next_fs from the right(50%)
                 left = (now * 50) + "%";
-                //3. increase opacity of next_fs to 1 as it moves in
                 opacity = 1 - now;
                 current_fs.css({
                     'transform': 'scale(' + scale + ')',
@@ -1101,11 +1130,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 current_fs.hide();
                 animating = false;
             },
-            //this comes from the custom easing plugin
+            // นี้มาจากปลั๊กอินการเคลื่อนไหวที่กำหนดเอง
             easing: 'easeInOutBack'
         });
     });
 
+    // เมื่อคลิกปุ่ม "ก่อนหน้า"
     $(".previous").click(function() {
         if (animating) return false;
         animating = true;
@@ -1113,22 +1143,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         current_fs = $(this).parent();
         previous_fs = $(this).parent().prev();
 
-        //de-activate current step on progressbar
+        // ยกเลิกขั้นตอนปัจจุบันบน progressbar
         $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-        //show the previous fieldset
+        // แสดง fieldset ก่อนหน้า
         previous_fs.show();
-        //hide the current fieldset with style
+        // ซ่อน fieldset ปัจจุบันด้วยอนิเมชั่น
         current_fs.animate({
             opacity: 0
         }, {
             step: function(now, mx) {
-                //as the opacity of current_fs reduces to 0 - stored in "now"
-                //1. scale previous_fs from 80% to 100%
                 scale = 0.8 + (1 - now) * 0.2;
-                //2. take current_fs to the right(50%) - from 0%
                 left = ((1 - now) * 50) + "%";
-                //3. increase opacity of previous_fs to 1 as it moves in
                 opacity = 1 - now;
                 current_fs.css({
                     'left': left
@@ -1143,7 +1169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 current_fs.hide();
                 animating = false;
             },
-            //this comes from the custom easing plugin
+            // นี้มาจากปลั๊กอินการเคลื่อนไหวที่กำหนดเอง
             easing: 'easeInOutBack'
         });
     });
@@ -1151,106 +1177,98 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $(document).ready(function() {
         $("#msform").submit(function(event) {
 
-                var formData = {
-                    gender: $("input[name='gen']:checked").val(),
-                    people: $("input[name='people']:checked").val(),
-                    age: $("#age").val(),
-                    date: $("#date").val(),
-                    ever: $("input[name='ev']:checked").val(),
-                    rd_1: $("input[name='rd_1']:checked").val(),
-                    rd_2: $("input[name='rd_2']:checked").val(),
-                    rd_3: $("input[name='rd_3']:checked").val(),
-                    rd_4: $("input[name='rd_4']:checked").val(),
-                    rd_5: $("input[name='rd_5']:checked").val(),
-                    rd_6: $("input[name='rd_6']:checked").val(),
-                    rd_7: $("input[name='rd_7']:checked").val(),
-                    rd_8: $("input[name='rd_8']:checked").val(),
-                    rd_9: $("input[name='rd_9']:checked").val(),
-                    rd_10: $("input[name='rd_10']:checked").val(),
-                    rd_11: $("input[name='rd_11']:checked").val(),
-                    rd_12: $("input[name='rd_12']:checked").val(),
-                    rd_13: $("input[name='rd_13']:checked").val(),
-                    rd_14: $("input[name='rd_14']:checked").val(),
-                    rd_15: $("input[name='rd_15']:checked").val(),
-                    comments16: $("#comments_rd16").val(),
-                    comments17: $("#comments_rd17").val(),
-                };
-                // console.log(formData);
-                // if (isAnyFieldEmpty(formData)) {
-                //     alert('กรุณากรอกข้อมูลให้ครบถ้วน.');
-                //     event.preventDefault(); // Prevent form submission
-                // } else if (!isValidAge(formData.age)) {
-                // alert('กรุณากรอกอายุให้ถูกต้อง.');
-                // event.preventDefault(); // Prevent form submission
+            // เก็บข้อมูลจากฟอร์มลงในตัวแปร formData
+            var formData = {
+                gender: $("input[name='gen']:checked").val(),
+                people: $("input[name='people']:checked").val(),
+                age: $("#age").val(),
+                date: $("#date").val(),
+                ever: $("input[name='ev']:checked").val(),
+                rd_1: $("input[name='rd_1']:checked").val(),
+                rd_2: $("input[name='rd_2']:checked").val(),
+                rd_3: $("input[name='rd_3']:checked").val(),
+                rd_4: $("input[name='rd_4']:checked").val(),
+                rd_5: $("input[name='rd_5']:checked").val(),
+                rd_6: $("input[name='rd_6']:checked").val(),
+                rd_7: $("input[name='rd_7']:checked").val(),
+                rd_8: $("input[name='rd_8']:checked").val(),
+                rd_9: $("input[name='rd_9']:checked").val(),
+                rd_10: $("input[name='rd_10']:checked").val(),
+                rd_11: $("input[name='rd_11']:checked").val(),
+                rd_12: $("input[name='rd_12']:checked").val(),
+                rd_13: $("input[name='rd_13']:checked").val(),
+                rd_14: $("input[name='rd_14']:checked").val(),
+                rd_15: $("input[name='rd_15']:checked").val(),
+                comments16: $("#comments_rd16").val(),
+                comments17: $("#comments_rd17").val(),
+            };
 
-                // } else {
-                //     alert('กรอกข้อมูลสำเร็จ');
-
-                if (isAnyFieldEmpty(formData)) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                    });
-                } else if (!isValidAge(formData.age)) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'กรุณากรอกอายุให้ถูกต้อง',
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'กรอกข้อมูลสำเร็จ',
-                        text: 'ขอบคุณสำหรับการตอบแบบสอบถาม',
-                        showConfirmButton: false,
-                        timer: 2000,
-                    }).then(() => {
-                        // Redirect the user to another page after the timer expires
-                        window.location.href ='form.php'; // Replace with the actual URL
-                    });
-            $.ajax({
-                method: 'POST',
-                url: './process/process_post.php',
-                data: formData,
-                dataType: "json",
-                encode: true,
-            }).done(function(response) {
-                // console.log(response);
-                if (response.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'Form submitted successfully!',
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Form submission failed. Please try again.',
-                    });
-                }
-            });
-
-        }
-        event.preventDefault();
-    });
-
-    function isAnyFieldEmpty(formData) {
-        for (var key in formData) {
-            if (formData.hasOwnProperty(key) && (formData[key] === null || formData[key] === undefined)) {
-                return true; // Found an empty field
+            //แสดงการแจ้งเตือนตรวจสอบข้อมูล
+            if (isAnyFieldEmpty(formData)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                });
+            } else if (!isValidAge(formData.age)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'กรุณากรอกอายุให้ถูกต้อง',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'กรอกข้อมูลสำเร็จ',
+                    text: 'ขอบคุณสำหรับการตอบแบบสอบถาม',
+                    showConfirmButton: false,
+                    timer: 2000,
+                }).then(() => {
+                    // นำผู้ใช้ไปยังหน้าตอบแบบสอบถามส่วนแรกหลังจากที่ตัวจับเวลาหมดเวลา
+                    window.location.href = 'form.php';
+                });
+                
+                // ทำการส่งข้อมูลโดยใช้ Ajax ไปยังไฟล์ process_get.php และจัดการกับการตอบกลับจากเซิร์ฟเวอร์
+                $.ajax({
+                    method: 'POST', // ใช้เมธอด POST
+                    url: './process/process_get.php', // URL ของไฟล์ process_get.php
+                    data: formData, // ข้อมูลที่จะส่งไปยังเซิร์ฟเวอร์
+                    dataType: "json", // รูปแบบของข้อมูลที่รับกลับมาจากเซิร์ฟเวอร์เป็น JSON
+                    encode: true, // เข้ารหัสข้อมูลเพื่อส่งไปยังเซิร์ฟเวอร์
+                }).done(function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Form submitted successfully!',
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Form submission failed. Please try again.',
+                        });
+                    }
+                });
             }
-        }
-        return false; // All fields are filled
-    }
+            event.preventDefault();
+        });
 
-    function isValidAge(age) {
-        if (isNaN(age) || age <= 10 || age.length > 2) {
-            return false; // Invalid age
+        function isAnyFieldEmpty(formData) {
+            for (var key in formData) {
+                if (formData.hasOwnProperty(key) && (formData[key] === null || formData[key] === undefined)) {
+                    return true; // พบฟิลด์ที่ว่างเปล่า
+                }
+            }
+            return false; // ฟิลด์ทั้งหมดถูกกรอก
         }
-        return true; // Valid age
-    }
+
+        function isValidAge(age) {
+            if (isNaN(age) || age <= 10 || age.length > 2) {
+                return false; // อายุไม่ถูกต้อง
+            }
+            return true; // อายุถูกต้อง
+        }
     });
     </script>
 

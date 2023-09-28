@@ -1,24 +1,25 @@
 <?php
+// เริ่มต้นเซสชัน
 session_start();
 
-// Delete token and token expiration session variables
+// ลบตัวแปรเซสชันที่เกี่ยวข้องกับการเข้าสู่ระบบ
 unset($_SESSION['username']);
 unset($_SESSION['password']);
 unset($_SESSION['token']);
 unset($_SESSION['token_expiration']);
 
-    session_unset();
-    
-    // Destroy the session
-    session_destroy();
+// ล้างตัวแปรเซสชันทั้งหมด
+session_unset();
 
-    
-    // Redirect the user to the login page or any other desired page
-    header("Location: ../login/login_form.php"); // You might replace this with your actual login page URL
-    exit();
- 
-    header("Cache-Control: no-cache, no-store, must-revalidate");
+// ทำลายเซสชัน
+session_destroy();
+
+// ส่งผู้ใช้ไปยังหน้าเข้าสู่ระบบ
+header("Location: ../login/login_form.php");
+exit();
+
+// กำหนดค่า HTTP headers เพื่อป้องกันการแคชข้อมูล
+header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
-
-?> 
+?>

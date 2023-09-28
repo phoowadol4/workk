@@ -12,32 +12,41 @@ include("./process/process_get.php");
         rel="stylesheet" />
     <link rel="stylesheet" href="build/css/tailwind.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"  rel="stylesheet" /> -->
+
+    <style>
+    .filter-controls {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+    }
+    </style>
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 
 </head>
 
 <body>
     <div x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark}">
         <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
-            <!-- Loading screen -->
+            <!-- หน้าจอแสดง Loading -->
             <div x-ref="loading"
                 class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-primary-darker">
                 Loading.....
             </div>
 
-            <!-- Sidebar -->
+            <!-- แถบเมนูด้านข้าง -->
             <aside
                 class="flex-shrink-0 hidden w-64 bg-white border-r dark:border-primary-darker dark:bg-darker md:block">
                 <div class="flex flex-col h-full">
-                    <!-- Sidebar links -->
+                    <!-- ลิงก์เมนู -->
                     <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
-                        <!-- Dashboards links -->
+                        <!-- ลิงก์สู่หน้าแสดงข้อมูล-->
                         <div x-data="{ isActive: true, open: true}">
-                            <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
                             <a href="#" @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                 :class="{'bg-primary-100 dark:bg-primary': isActive || open}" role="button"
@@ -49,9 +58,8 @@ include("./process/process_get.php");
                                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Dashboards </span>
+                                <span class="ml-2 text-sm"> ระบบแสดงผลข้อมูล </span>
                                 <span class="ml-auto" aria-hidden="true">
-                                    <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -60,22 +68,21 @@ include("./process/process_get.php");
                                     </svg>
                                 </span>
                             </a>
+
+                            <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                             <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a href="index.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     รายงานสรุปผลการตอบแบบสอบถาม
                                 </a>
                                 <a href="index2.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
+                                    ค้นหาเส้นทางไปยังบ้านผู้ป่วย
                                 </a>
                             </div>
                         </div>
-                        <!-- Pages links -->
+                        <!-- ลิงก์สู่หน้าแสดงข้อมูลแบบสอบถาม -->
                         <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
                             <a href="#" @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                 :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
@@ -89,7 +96,6 @@ include("./process/process_get.php");
                                 </span>
                                 <span class="ml-2 text-sm"> ข้อมูลแบบสอบถาม </span>
                                 <span aria-hidden="true" class="ml-auto">
-                                    <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -98,15 +104,8 @@ include("./process/process_get.php");
                                     </svg>
                                 </span>
                             </a>
+                            <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-
-                                <!-- <a href="pages/people.php" role="menuitem"
-                                    class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    ผู้ตอบแบบสอบถาม
-                                </a> -->
-
                                 <a href="pages/comment.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ความคิดเห็นของผู้รับบริการ
@@ -121,8 +120,8 @@ include("./process/process_get.php");
                                 </a>
                             </div>
                         </div>
+                        <!-- ลิงก์สู่หน้าเพิ่มข้อมูล -->
                         <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
                             <a href="#" @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                 :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
@@ -136,7 +135,6 @@ include("./process/process_get.php");
                                 </span>
                                 <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
                                 <span aria-hidden="true" class="ml-auto">
-                                    <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -145,6 +143,7 @@ include("./process/process_get.php");
                                     </svg>
                                 </span>
                             </a>
+                            <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
 
                                 <a href="pages/input_user.php" role="menuitem"
@@ -156,12 +155,11 @@ include("./process/process_get.php");
                     </nav>
                 </div>
             </aside>
-
             <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
                 <!-- Navbar -->
                 <header class="relative bg-white dark:bg-darker">
                     <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
-                        <!-- Mobile menu button -->
+                        <!-- ปุ่มเมนูมือถือ -->
                         <button @click="isMobileMainMenuOpen = !isMobileMainMenuOpen"
                             class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
                             <span class="sr-only">Open main manu</span>
@@ -173,14 +171,12 @@ include("./process/process_get.php");
                                 </svg>
                             </span>
                         </button>
-
-                        <!-- Brand -->
+                        <!-- ชื่อระบบ -->
                         <a href="index.php"
                             class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">
-                            Dashboard
+                            ระบบแสดงผลข้อมูล
                         </a>
-
-                        <!-- Mobile sub menu button -->
+                        <!-- ปุ่มเมนูมือถือ -->
                         <button @click="isMobileSubMenuOpen = !isMobileSubMenuOpen"
                             class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
                             <span class="sr-only">Open sub manu</span>
@@ -192,10 +188,8 @@ include("./process/process_get.php");
                                 </svg>
                             </span>
                         </button>
-
-                        <!-- Desktop Right buttons -->
                         <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
-                            <!-- Toggle dark theme button -->
+                            <!-- ปุ่มสลับธีม dark / light -->
                             <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
                                 <div
                                     class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter">
@@ -214,7 +208,7 @@ include("./process/process_get.php");
                                     </svg>
                                 </div>
                             </button>
-                            <!-- Settings button -->
+                            <!-- ปุ่มเปิดเมนูการตั้งค่า -->
                             <button @click="openSettingsPanel"
                                 class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
                                 <span class="sr-only">Open settings panel</span>
@@ -227,17 +221,16 @@ include("./process/process_get.php");
                                 </svg>
                             </button>
 
-                            <!-- User avatar button -->
+                            <!-- ปุ่มรูปภาพของผู้ใช้ -->
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
                                     type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
                                     class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                                     <span class="sr-only">User menu</span>
-                                    <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
-                                        alt="Ahmed Kamel" />
+                                    <img class="w-10 h-10 rounded-full" src="./build/images/de.jpg" alt="Ahmed Kamel" />
                                 </button>
 
-                                <!-- User dropdown menu -->
+                                <!-- เมนูของผู้ใข้ -->
                                 <div x-show="open" x-ref="userMenu"
                                     x-transition:enter="transition-all transform ease-out"
                                     x-transition:enter-start="translate-y-1/2 opacity-0"
@@ -264,8 +257,7 @@ include("./process/process_get.php");
                                 </div>
                             </div>
                         </nav>
-
-                        <!-- Mobile sub menu -->
+                        <!-- เมนูย่อยมือถือ -->
                         <nav x-transition:enter="transition duration-200 ease-in-out transform sm:duration-500"
                             x-transition:enter-start="-translate-y-full opacity-0"
                             x-transition:enter-end="translate-y-0 opacity-100"
@@ -276,7 +268,7 @@ include("./process/process_get.php");
                             class="absolute flex items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker top-16 inset-x-4 md:hidden"
                             aria-label="Secondary">
                             <div class="space-x-2">
-                                <!-- Toggle dark theme button -->
+                                <!-- ปุ่มสลับธีม dark / light -->
                                 <button aria-hidden="true" class="relative focus:outline-none" x-cloak
                                     @click="toggleTheme">
                                     <div
@@ -296,7 +288,7 @@ include("./process/process_get.php");
                                         </svg>
                                     </div>
                                 </button>
-                                <!-- Settings button -->
+                                <!-- ปุ่มเปิดเมนูการตั้งค่า -->
                                 <button @click="openSettingsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })"
                                     class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
                                     <span class="sr-only">Open settings panel</span>
@@ -309,17 +301,16 @@ include("./process/process_get.php");
                                     </svg>
                                 </button>
                             </div>
-                            <!-- User avatar button -->
+                            <!-- ปุ่มรูปภาพของผู้ใช้ -->
                             <div class="relative ml-auto" x-data="{ open: false }">
                                 <button @click="open = !open" type="button" aria-haspopup="true"
                                     :aria-expanded="open ? 'true' : 'false'"
                                     class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                                     <span class="sr-only">User menu</span>
-                                    <img class="w-10 h-10 rounded-full" src="build/images/avatar.jpg"
-                                        alt="Ahmed Kamel" />
+                                    <img class="w-10 h-10 rounded-full" src="./build/images/de.jpg" alt="" />
                                 </button>
 
-                                <!-- User dropdown menu -->
+                                <!-- เมนูของผู้ใข้ -->
                                 <div x-show="open" x-transition:enter="transition-all transform ease-out"
                                     x-transition:enter-start="translate-y-1/2 opacity-0"
                                     x-transition:enter-end="translate-y-0 opacity-100"
@@ -344,13 +335,12 @@ include("./process/process_get.php");
                             </div>
                         </nav>
                     </div>
-                    <!-- Mobile main manu -->
+                    <!-- ปุ่มเมนูมือถือ -->
                     <div class="border-b md:hidden dark:border-primary-darker" x-show="isMobileMainMenuOpen"
                         @click.away="isMobileMainMenuOpen = false">
                         <nav aria-label="Main" class="px-2 py-4 space-y-2">
-                            <!-- Dashboards links -->
+                            <!-- ลิงก์สู่หน้าแสดงข้อมูล-->
                             <div x-data="{ isActive: true, open: true}">
-                                <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
                                 <a href="#" @click="$event.preventDefault(); open = !open"
                                     class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                     :class="{'bg-primary-100 dark:bg-primary': isActive || open}" role="button"
@@ -362,9 +352,8 @@ include("./process/process_get.php");
                                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> Dashboards </span>
+                                    <span class="ml-2 text-sm"> ระบบแสดงผลข้อมูล </span>
                                     <span class="ml-auto" aria-hidden="true">
-                                        <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
                                             :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -373,23 +362,21 @@ include("./process/process_get.php");
                                         </svg>
                                     </span>
                                 </a>
+                                <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                                 <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                     <a href="index.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         รายงานสรุปผลการตอบแบบสอบถาม
                                     </a>
                                     <a href="index2.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
+                                        ค้นหาเส้นทางไปยังบ้านผู้ป่วย
+
                                     </a>
                                 </div>
                             </div>
-
-                            <!-- Pages links -->
+                            <!-- ลิงก์สู่หน้าแสดงข้อมูลแบบสอบถาม -->
                             <div x-data="{ isActive: false, open: false }">
-                                <!-- active classes 'bg-primary-100 dark:bg-primary' -->
                                 <a href="#" @click="$event.preventDefault(); open = !open"
                                     class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                     :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
@@ -403,7 +390,6 @@ include("./process/process_get.php");
                                     </span>
                                     <span class="ml-2 text-sm "> ข้อมูลแบบสอบถาม </span>
                                     <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
                                             :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -412,15 +398,8 @@ include("./process/process_get.php");
                                         </svg>
                                     </span>
                                 </a>
+                                <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
-                                    <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                    <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-
-                                    <!-- <a href="pages/people.php" role="menuitem"
-                                        class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        ผู้ตอบแบบสอบถาม
-                                    </a> -->
-
                                     <a href="pages/comment.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ความคิดเห็นของผู้รับบริการ
@@ -434,12 +413,10 @@ include("./process/process_get.php");
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ความพึงพอใจต่อการปฎิบัติงานของเจ้าหน้าที่
                                     </a>
-
                                 </div>
-
                             </div>
+                            <!-- ลิงก์สู่หน้าเพิ่มข้อมูล -->
                             <div x-data="{ isActive: false, open: false }">
-                                <!-- active classes 'bg-primary-100 dark:bg-primary' -->
                                 <a href="#" @click="$event.preventDefault(); open = !open"
                                     class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                     :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
@@ -453,7 +430,6 @@ include("./process/process_get.php");
                                     </span>
                                     <span class="ml-2 text-sm"> เพิ่มข้อมูล </span>
                                     <span aria-hidden="true" class="ml-auto">
-                                        <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
                                             :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -462,6 +438,7 @@ include("./process/process_get.php");
                                         </svg>
                                     </span>
                                 </a>
+                                <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
                                     <a href="pages/input_user.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
@@ -474,74 +451,67 @@ include("./process/process_get.php");
                 </header>
                 <!-- Main content -->
                 <main>
-                    <!-- Content header -->
-                    <!-- Content -->
+                    <!-- ตัวควบคุมการกรอง -->
+                    <div class="filter-controls">
+                        <!-- เลือกเดือนในการกรอง -->
+                        <select id="filterMonth"
+                            class="bg-gray-50 border border-gray-300 text-black  text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="filterMonth">
+                            <option selected>เลือกเพื่อดูข้อมูลในแต่ละเดือน</option>
+                            <option value="1">มกราคม</option>
+                            <option value="2">กุมภาพันธ์</option>
+                            <option value="3">มีนาคม</option>
+                            <option value="4">เมษายน</option>
+                            <option value="5">พฤษภาคม</option>
+                            <option value="6">มิถุนายน</option>
+                            <option value="7">กรกฎาคม</option>
+                            <option value="8">สิงหาคม</option>
+                            <option value="9">กันยายน</option>
+                            <option value="10">ตุลาคม</option>
+                            <option value="11">พฤศจิกายน</option>
+                            <option value="12">ธันวาคม</option>
+                        </select>
+                        <!-- ปุ่มค้นหา -->
+                        <button id="applyFilter"
+                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-80 focus:outline-none focus:bg-opacity-80">
+                            ค้นหา
+                        </button>
+                    </div>
                     <div class="mt-2">
-                        <!-- State cards -->
+                        <!-- การแสดงผลสถานะ -->
+                        <!-- การแสดงผลรายละเอียดของการกรอง -->
                         <div class="grid grid-cols-1 gap-8 p-4 lg:grid-cols-2 xl:grid-cols-4">
-                            <!-- Value card -->
+                            <!-- การแสดงผลค่าความคิดเห็น -->
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
                                         class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
                                         ความคิดเห็นของผู้รับบริการ
                                     </h6>
-                                    <span class="text-sm font-semibold">
+                                    <span class="text-sm font-semibold" id="comment_user">
                                         <?php
-                                        $fImproveCount = 0;
-                                        $fOtherCount = 0;
-
-                                        foreach ($dataArray['result'] as $survey) {
-                                            // Check if f_improve has a value
-                                            if (!empty($survey['f_improve'])) {
-                                                $fImproveCount++;
-                                            }
-                                            // Check if f_other has a value
-                                            if (!empty($survey['f_other'])) {
-                                                $fOtherCount++;
-                                            }
-                                            $countf=$fImproveCount+$fOtherCount;
-                                        }
-                                        // Output the counts
-                                    echo  $countf .'' .'&nbspความคิดเห็น';
-                                        ?>
+                            echo $countAll . ' ความคิดเห็น';
+                        ?>
                                     </span>
                                 </div>
-                                <!-- <div>
-                                    <span>
-                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                                d="M10.25,2.375c-4.212,0-7.625,3.413-7.625,7.625s3.413,7.625,7.625,7.625s7.625-3.413,7.625-7.625S14.462,2.375,10.25,2.375M10.651,16.811v-0.403c0-0.221-0.181-0.401-0.401-0.401s-0.401,0.181-0.401,0.401v0.403c-3.443-0.201-6.208-2.966-6.409-6.409h0.404c0.22,0,0.401-0.181,0.401-0.401S4.063,9.599,3.843,9.599H3.439C3.64,6.155,6.405,3.391,9.849,3.19v0.403c0,0.22,0.181,0.401,0.401,0.401s0.401-0.181,0.401-0.401V3.19c3.443,0.201,6.208,2.965,6.409,6.409h-0.404c-0.22,0-0.4,0.181-0.4,0.401s0.181,0.401,0.4,0.401h0.404C16.859,13.845,14.095,16.609,10.651,16.811 M12.662,12.412c-0.156,0.156-0.409,0.159-0.568,0l-2.127-2.129C9.986,10.302,9.849,10.192,9.849,10V5.184c0-0.221,0.181-0.401,0.401-0.401s0.401,0.181,0.401,0.401v4.651l2.011,2.008C12.818,12.001,12.818,12.256,12.662,12.412" />
-                                        </svg>
-                                    </span>
-                                </div> -->
                             </div>
-                            <!-- Users card -->
+
+                            <!-- การแสดงผลจำนวนผู้ตอบแบบสอบถาม -->
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h6
                                         class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
                                         จำนวนผู้ตอบแบบสอบถาม
                                     </h6>
-                                    <span class="text-md font-semibold"> <?php
-                                          foreach ($dataArray['result'] as $survey){
-                                        } echo $survey['id']."&nbspคน";?></span>
-                                </div>
-                                <!-- <div>
-                                    <span>
-                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                                        </svg>
+                                    <span class="text-md font-semibold" id="user">
+                                        <?php
+                            echo "จำนวน " . $people_all . " คน";
+                        ?>
                                     </span>
-                                </div> -->
+                                </div>
                             </div>
 
-                            <!-- Orders card -->
+                            <!-- การแสดงผลจำนวนผู้ตอบแบบสอบถาม (ญาติ) -->
                             <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <span
@@ -552,43 +522,17 @@ include("./process/process_get.php");
                                         class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
                                         (ญาติ)
                                     </span>
-                                    <span class="text-md font-semibold">
+                                    <span class="text-md font-semibold" id="relativeCount">
                                         <?php
-                                        // Initialize an array to store the count for 'ผู้ป่วย'
-                                        $valueCountspeople11 = array(
-                                            'ญาติ' => 0,
-                                        );
-
-                                        foreach ($dataArray['result'] as $people) {
-                                            $people11 = $people['answerer'];
-
-                                            if ($people11 == 'ญาติ') {
-                                                $valueCountspeople11['ญาติ']++;
-                                            }
-                                        }
-
-                                        // Access the count from the PHP array
-                                        $count = $valueCountspeople11['ญาติ'];
-
-                                        // Print the result in the desired format
-                                        echo "จำนวน $count คน";
-                                        ?>
+                            // แสดงผลในรูปแบบที่ต้องการ
+                            echo "จำนวน " . $countRelative . " คน";
+                        ?>
                                     </span>
-
                                 </div>
-                                <!-- <div>
-                                    <span>
-                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                        </svg>
-                                    </span>
-                                </div> -->
                             </div>
-                            <!-- Tickets card -->
-                            <a class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
+
+                            <!-- การแสดงผลจำนวนผู้ตอบแบบสอบถาม (ผู้ป่วย) -->
+                            <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
                                 <div>
                                     <h3
                                         class="text-sm font-semibold leading-none tracking-wider text-black dark:text-light">
@@ -597,52 +541,42 @@ include("./process/process_get.php");
                                     <h6
                                         class="text-xs font-semibold leading-none tracking-wider text-black dark:text-light">
                                         (ผู้ป่วย)
-
                                     </h6>
-                                    <span class="text-md font-semibold">
+                                    <span class="text-md font-semibold" id="patientCount">
                                         <?php
-                                        // Initialize an array to store the count for 'ผู้ป่วย'
-                                        $valueCountspeople12 = array(
-                                            'ผู้ป่วย' => 0,
-                                        );
-
-                                        foreach ($dataArray['result'] as $people) {
-                                            $people12 = $people['answerer'];
-
-                                            if ($people12 == 'ผู้ป่วย') {
-                                                $valueCountspeople12['ผู้ป่วย']++;
-                                            }
-                                        }
-
-                                        // Access the count from the PHP array
-                                        $count = $valueCountspeople12['ผู้ป่วย'];
-
-                                        // Print the result in the desired format
-                                        echo "จำนวน $count คน";
-                                        ?>
-
-
+                            echo "จำนวน " . $countPatient . " คน";
+                        ?>
                                     </span>
-
                                 </div>
-                                <!-- <div>
-                                    <span>
-                                        <svg class="w-12 h-12 text-black dark:text-primary-dark"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-                                        </svg>
-                                    </span>
-                                </div> -->
-                            </a>
-                        </div>
+                            </div>
+                            <!-- สคริปต์ JavaScript -->
+                            <script>
+                            // เมื่อคลิกที่ปุ่ม "ค้นหา"
+                            document.getElementById('applyFilter').addEventListener('click', function() {
+                                const selectedMonth = document.getElementById('filterMonth').value;
 
-                        <!-- Charts -->
+                                // อัปเดตแสดงผลใน HTML ด้วยข้อมูลจากอาร์เรย์ของ 'ญาติ' และ 'ผู้ป่วย'
+                                const relativeCount = <?php echo json_encode($valueCountsRelativeByMonth); ?>[
+                                    selectedMonth];
+                                const patientCount = <?php echo json_encode($valueCountsPatientByMonth); ?>[
+                                    selectedMonth];
+                                const comment_user = <?php echo json_encode($countf); ?>[selectedMonth];
+
+                                const userC = <?php echo json_encode($monthlyCounts); ?>[selectedMonth];
+
+                                // อัปเดตข้อมูลในแต่ละส่วนของ HTML
+                                document.getElementById('relativeCount').textContent =
+                                    `จำนวน ${relativeCount} คน`;
+                                document.getElementById('patientCount').textContent =
+                                    `จำนวน ${patientCount} คน`;
+                                document.getElementById('comment_user').textContent =
+                                    `${comment_user} ความคิดเห็น`;
+                                document.getElementById('user').textContent = `จำนวน ${userC} คน`;
+                            });
+                            </script>
+                        </div>
                         <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
-                            <!-- Bar chart card -->
                             <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
-                                <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                     <h4 class="text-lg font-semibold text-black dark:text-light">
                                         ช่วงอายุของผู้ตอบแบบสอบถาม</h4>
@@ -652,11 +586,12 @@ include("./process/process_get.php");
                                 <!-- Chart -->
                                 <div class="relative p-4">
                                     <canvas id="barch"></canvas>
-
                                     <script>
-                                    // Convert PHP array to JavaScript variables for chart
-                                    var dataValuesage = <?php echo json_encode(array_values($valueCountsage)); ?>;
+                                    <?php if (!empty($dataByMonth)) { ?>
+                                    // แปลงอาเรย์ PHP เป็นตัวแปร JavaScript สำหรับกราฟ
+                                    var dataByMonth = <?php echo json_encode($dataByMonth); ?>;
 
+                                    var dataByMonth_all = <?php echo json_encode($valueCountsage); ?>;
                                     const getTheme = () => {
                                         if (window.localStorage.getItem('dark')) {
                                             return JSON.parse(window.localStorage.getItem('dark'));
@@ -665,103 +600,145 @@ include("./process/process_get.php");
                                             '(prefers-color-scheme: dark)').matches;
                                     };
 
-                                    // Function to set the theme (replace with your actual logic)
+                                    // ฟังก์ชันในการตั้งค่าธีม
                                     const setTheme = (value) => {
                                         window.localStorage.setItem('dark', value);
                                     };
 
-                                    // Convert PHP array to JavaScript variables for chart
-                                    var dataValuesage = <?php echo json_encode(array_values($valueCountsage)); ?>;
-
-                                    // Determine the theme
+                                    // กำหนดธีม
                                     const isDarkTheme = getTheme();
 
-                                    // Determine text colors based on the theme
+                                    // กำหนดสีข้อความตามธีม
                                     const textColorY = isDarkTheme ? '#FFFFFF' :
-                                        '#000000'; // Y-axis label text color (white for dark, black for light)
+                                        '#000000'; // สีข้อความแนวตั้ง (ขาวสำหรับธีมมืด ดำสำหรับธีมสว่าง)
                                     const textColorX = isDarkTheme ? '#FFFFFF' : '#000000';
 
-                                    // Set Chart.js default color based on the theme
+                                    // กำหนดสีเริ่มต้นของ Chart.js ตามธีม
                                     Chart.defaults.color = isDarkTheme ? '#FFFFFF' : '#000000';
 
-                                    // Create the bar chart
-                                    var ctx = document.getElementById('barch').getContext('2d');
-                                    Chart.defaults.font.family = "Lato";
-                                    Chart.defaults.font.size = 11.5;
+                                    // สร้างกราฟแท่งเริ่มต้นทั้งหมด
+                                    function createInitialChart() {
+                                        const ctx = document.getElementById('barch').getContext('2d');
 
+                                        // กำหนดป้ายชื่อของกราฟ
+                                        const labels = ['อายุน้อยกว่า 20 ปี', 'อายุระหว่าง 21-30 ปี',
+                                            'อายุระหว่าง 31-40 ปี', 'อายุระหว่าง 41-50 ปี',
+                                            'อายุมากกว่า 50 ปีขึ้นไป'
+                                        ];
 
-                                    var myBarChart = new Chart(ctx, {
-                                        type: 'bar',
-                                        data: {
-                                            labels: ['อายุน้อยกว่า 20 ปี', 'อายุระหว่าง 21-30 ปี',
-                                                'อายุระหว่าง 31-40 ปี', 'อายุระหว่าง 41-50 ปี',
-                                                'อายุมากกว่า 60 ปี'
+                                        // กำหนดข้อมูลของกราฟ
+                                        const dataset = {
+                                            label: 'ช่วงอายุของผู้ตอบแบบสอบถาม',
+                                            data: Object.values(
+                                                dataByMonth_all
+                                            ), // ใช้ข้อมูล dataByMonth_all เพื่อแสดงช่วงอายุของผู้ตอบแบบสอบถามทั้งหมด
+                                            backgroundColor: [
+                                                'rgb(255, 99, 132)',
+                                                'rgb(255, 159, 64)',
+                                                'rgb(255, 205, 86)',
+                                                'rgb(75, 192, 192)',
+                                                'rgb(54, 162, 235)',
                                             ],
-                                            datasets: [{
-                                                label: 'ช่วงอายุของผู้ตอบแบบสอบถาม',
-                                                data: dataValuesage,
-                                                backgroundColor: [
-                                                    'rgb(255, 99, 132)',
-                                                    'rgb(255, 159, 64)',
-                                                    'rgb(255, 205, 86)',
-                                                    'rgb(75, 192, 192)',
-                                                    'rgb(54, 162, 235)'
-                                                    // Add more colors here if needed
-                                                ],
-                                                borderWidth: 1
-                                            }]
-                                        },
-                                        options: {
-                                            responsive: true,
-                                            scales: {
-                                                y: {
-                                                    ticks: {
-                                                        color: textColorY, // Set the Y-axis label text color
-                                                        beginAtZero: true
-                                                    }
+                                            borderWidth: 1,
+                                        };
+
+                                        // สร้างกราฟแรกเริ่มต้น
+                                        window.myBarChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: labels,
+                                                datasets: [dataset],
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true,
+                                                        ticks: {
+                                                            color: textColorY,
+                                                        },
+                                                    },
+                                                    x: {
+                                                        beginAtZero: true,
+                                                        ticks: {
+                                                            color: textColorX,
+                                                        },
+                                                    },
                                                 },
-                                                x: {
-                                                    ticks: {
-                                                        color: textColorX, // Set the X-axis label text color
-                                                        beginAtZero: true
-                                                    }
-                                                }
-                                            }
-                                        }
+                                            },
+                                        });
+                                    }
+
+                                    // ตัวฟังก์ชันสำหรับการฟังอีเวนต์ของปุ่ม "ค้นหา"
+                                    document.getElementById('applyFilter').addEventListener('click', function() {
+                                        const selectedMonth = document.getElementById('filterMonth').value;
+                                        // อัพเดทกราฟตามเดือนที่ถูกเลือก
+                                        updateBarChart(selectedMonth);
                                     });
+
+                                    // สร้างกราฟแรกเริ่มต้นทั้งหมด
+                                    createInitialChart();
+
+                                    // ฟังก์ชันสำหรับการอัพเดทกราฟตามเดือนที่เลือก
+                                    function updateBarChart(selectedMonth) {
+                                        // ดึงข้อมูลสำหรับเดือนที่เลือก
+                                        const selectedData = dataByMonth[selectedMonth] || {
+                                            'age20': 0,
+                                            'age30': 0,
+                                            'age40': 0,
+                                            'age50': 0,
+                                            'age51': 0,
+                                        };
+
+                                        // อัพเดทข้อมูลในกราฟ
+                                        window.myBarChart.data.datasets[0].data = Object.values(selectedData);
+
+                                        // อัพเดทกราฟ
+                                        window.myBarChart.update();
+                                    }
+                                    <?php } ?>
                                     </script>
+
+
                                 </div>
                             </div>
-                            <!-- Doughnut chart card -->
                             <div class="bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
-                                <!-- Card header -->
+                                <!-- ส่วนหัวของกราฟวงกลม  เพศ  -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-black dark:text-light">เพศ</h4>
+                                    <h4 class="text-lg font-semibold text-black dark:text-light"> เพศ </h4>
                                 </div>
-                                <!-- Chart -->
-                                <div class="relative p-4"></div>
-                                <canvas id="dataPieChart"></canvas>
-                                <script>
-                                // Convert PHP array to JavaScript array for chart
-                                var dataValues = <?php echo json_encode(array_values($valueCounts)); ?>;
-                                var dataLabels = <?php echo json_encode(array_keys($valueCounts)); ?>;
 
+                                <!-- แผนภูมิวงกลม  เพศ  -->
+                                <div class="relative p-4">
+                                    <canvas id="dataPieChart"></canvas>
+                                </div>
+
+                                <!-- โค้ด JavaScript สำหรับแผนภูมิวงกลม  เพศ  -->
+                                <script>
+                                <?php if (!empty($sexByMonth)) { ?>
+
+                                // แปลงอาเรย์ PHP เป็นตัวแปร JavaScript สำหรับกราฟ
+                                var sexByMonth = <?php echo json_encode($sexByMonth); ?>;
+                                // 
+                                var sex_all = <?php echo json_encode($sex_all); ?>;
+
+                                // กำหนดค่าเริ่มต้นของกราฟวงกลม เพศ 
                                 Chart.defaults.font.family = "Lato";
                                 Chart.defaults.font.size = 11.5;
 
-
                                 var ctx = document.getElementById('dataPieChart').getContext('2d');
-                                var myPieChart = new Chart(ctx, {
+                                var myPieChart;
+
+                                // กำหนดค่าเริ่มต้นของกราฟวงกลม เพศ 
+                                myPieChart = new Chart(ctx, {
                                     type: 'pie',
                                     data: {
-                                        labels: dataLabels,
+                                        labels: ['ชาย', 'หญิง'],
                                         datasets: [{
-                                            data: dataValues,
+                                            data: Object.values(sex_all),
                                             backgroundColor: [
                                                 'rgba(63, 122, 99)',
                                                 'rgba(242, 140, 137)',
-                                                // 'rgba(255, 206, 86, 0.7)',
-                                                // Add more colors here if you have more data points
                                             ],
                                             borderWidth: 1
                                         }]
@@ -770,50 +747,77 @@ include("./process/process_get.php");
                                         responsive: true
                                     }
                                 });
+
+                                // กำหนดตัวฟังก์ชันสำหรับการกดปุ่ม "ค้นหา" สำหรับกราฟวงกลม เพศ 
+                                document.getElementById('applyFilter').addEventListener('click', function() {
+                                    const selectedMonth = document.getElementById('filterMonth').value;
+                                    // อัปเดตกราฟวงกลม เพศ ตามเดือนที่เลือก
+                                    updatePieChart(selectedMonth);
+                                });
+
+                                createInitialChart();
+
+                                // ฟังก์ชันสำหรับการอัปเดตกราฟวงกลม เพศ ตามเดือนที่เลือก
+                                function updatePieChart(selectedMonth) {
+
+                                    // ดึงข้อมูลสำหรับเดือนที่เลือก
+                                    const selectedData = sexByMonth[selectedMonth] || {
+                                        'ชาย': 0,
+                                        'หญิง': 0,
+                                    };
+
+                                    // อัปเดตข้อมูลกราฟวงกลม เพศ 
+                                    myPieChart.data.datasets[0].data = Object.values(selectedData);
+
+                                    // อัปเดตกราฟวงกลม เพศ 
+                                    myPieChart.update();
+                                }
+
+                                // ตั้งค่าแสดงข้อมูลเริ่มต้นสำหรับทุกเดือนสำหรับกราฟวงกลม เพศ 
+                                updatePieChart();
+                                <?php } ?>
                                 </script>
-
                             </div>
-                        </div>
 
-                        <!-- Two grid columns -->
-                        <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
-                            <!-- Active users chart -->
-                            <div class="col-span-1 bg-white rounded-md dark:bg-darker">
-                                <!-- Card header -->
-                                <div class="p-4 border-b dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-center text-black  dark:text-light">
-                                        ผู้ป่วยมาใช้บริการที่นี่เป็นครั้งแรก
-                                    </h4>
-                                </div>
+                            <div class="bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
+                                <div class="col-span-1 bg-white rounded-md dark:bg-darker">
+                                    <!-- ส่วนหัวของการ์ดสำหรับ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก -->
+                                    <div class="p-4 border-b dark:border-primary">
+                                        <h4 class="text-lg font-semibold text-center text-black dark:text-light">
+                                            ผู้ป่วยมาใช้บริการที่นี่เป็นครั้งแรก
+                                        </h4>
+                                    </div>
 
-                                <!-- Chart -->
-                                <div class="relative p-4">
-                                    <canvas id="everchart"></canvas>
+                                    <!-- ส่วนของ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก -->
+                                    <div class="relative p-4">
+                                        <canvas id="everchart"></canvas>
+                                    </div>
+
+                                    <!-- โค้ด JavaScript สำหรับ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก -->
                                     <script>
-                                    // Convert PHP array data to JavaScript
-                                    var dataValuesever = <?php echo json_encode(array_values($valueCountsever)); ?>;
-                                    var dataLabelsever = <?php echo json_encode(array_keys($valueCountsever)); ?>;
+                                    <?php if (!empty($everByMonth)) { ?>
+                                    // แปลง PHP array เป็นตัวแปร JavaScript สำหรับกราฟ
+                                    var everByMonth = <?php echo json_encode($everByMonth); ?>;
+                                    var ever_all = <?php echo json_encode($ever_all); ?>;
 
-                                    // Set chart font options
+                                    // กำหนดค่าตัวเลือกสำหรับกราฟ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก
                                     Chart.defaults.font.family = "Lato";
                                     Chart.defaults.font.size = 11.5;
 
-                                    // Set chart color options
-                                    Chart.defaults.color = isDarkTheme ? '#FFFFFF' :
-                                        '#000000';
-                                    // Get the canvas element and create the pie chart
-                                    var ctx = document.getElementById('everchart').getContext('2d');
-                                    var myPieChart = new Chart(ctx, {
-                                        type: 'pie',
+                                    // กำหนดค่าสีสำหรับกราฟอิงกับตัวแปร 'isDarkTheme' (ตรวจสอบให้แน่ใจว่ามีการกำหนดค่า)
+                                    var chartColors = isDarkTheme ? ['rgba(255, 203, 79)', 'rgba(41, 94, 164)'] : [
+                                        'rgba(41, 94, 164)', 'rgba(255, 203, 79)'
+                                    ];
+
+                                    // รับองค์ประกอบ canvas และสร้าง Pie Chart สำหรับ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก
+                                    var everCtx = document.getElementById('everchart').getContext('2d');
+                                    var everPieChart = new Chart(everCtx, {
+                                        type: 'doughnut',
                                         data: {
-                                            labels: dataLabelsever,
+                                            labels: ['ใช่', 'ไม่'],
                                             datasets: [{
-                                                data: dataValuesever,
-                                                backgroundColor: [
-                                                    'rgba(41, 94, 164)',
-                                                    'rgba(255, 203, 79)',
-                                                    // Add more colors here if you have more data points
-                                                ],
+                                                data: Object.values(ever_all),
+                                                backgroundColor: chartColors,
                                                 borderWidth: 1
                                             }]
                                         },
@@ -821,13 +825,40 @@ include("./process/process_get.php");
                                             responsive: true
                                         }
                                     });
+
+                                    // ตัวฟังก์ชันตรวจสอบการคลิกที่ปุ่ม "ค้นหา" เพื่ออัปเดต Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก
+                                    document.getElementById('applyFilter').addEventListener('click', function() {
+                                        const selectedMonth = document.getElementById('filterMonth').value;
+                                        // อัปเดต Pie Chart ความถี่ของผู้ใช้บริการครั้งแรกตามเดือนที่เลือก
+                                        updateEverPieChart(selectedMonth);
+                                    });
+
+                                    // ฟังก์ชันสร้างกราฟเริ่มต้น
+                                    createInitialChart();
+
+                                    // ฟังก์ชันอัปเดต Pie Chart ความถี่ของผู้ใช้บริการครั้งแรกตามเดือนที่เลือก
+                                    function updateEverPieChart(selectedMonth) {
+                                        // ดึงข้อมูลสำหรับเดือนที่เลือก
+                                        const selectedData = everByMonth[selectedMonth] || {
+                                            'ใช่': 0,
+                                            'ไม่': 0,
+                                        };
+
+                                        // อัปเดตข้อมูลกราฟสำหรับ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก
+                                        everPieChart.data.datasets[0].data = Object.values(selectedData);
+
+                                        // อัปเดต Pie Chart สำหรับ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก
+                                        everPieChart.update();
+                                    }
+
+                                    // เริ่มต้นแสดงข้อมูลสำหรับทุกเดือน สำหรับ Pie Chart ความถี่ของผู้ใช้บริการครั้งแรก
+                                    updateEverPieChart();
+                                    <?php } ?>
                                     </script>
                                 </div>
                             </div>
 
-                            <!-- Line chart card -->
                             <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
-                                <!-- Card header -->
                                 <div class="flex items-center justify-between p-4 border-b dark:border-primary">
                                     <h4 class="text-lg font-semibold text-black dark:text-light">
                                         ผู้ตอบแบบสอบถามให้คะแนน จากตอนที่ 2
@@ -837,15 +868,12 @@ include("./process/process_get.php");
                                 </div>
                                 <!-- Chart -->
                                 <div class="relative p-4 items-center">
-                                    <canvas id="dataBarChart" width="140" height= "60"></canvas>
+                                    <canvas id="dataBarChart" width="140" height="60"></canvas>
                                     <script>
                                     function createChart() {
-                                        // Convert PHP array to JavaScript array for chart
+                                        // แปลง PHP array เป็นตัวแปร JavaScript สำหรับกราฟ
                                         var dataValuespop = <?php echo json_encode(array_values($top5Ratings)); ?>;
                                         var dataLabelspop = <?php echo json_encode(array_keys($top5Ratings)); ?>;
-
-                                        // console.log(dataValuespop);
-                                        // console.log(dataLabelspop);
 
                                         const getTheme = () => {
                                             if (window.localStorage.getItem('dark')) {
@@ -861,35 +889,31 @@ include("./process/process_get.php");
 
                                         const isDarkTheme = getTheme();
 
-                                        // Determine text colors based on the theme
+                                        // กำหนดสีข้อความขึ้นอยู่กับธีม
                                         const textColorY = isDarkTheme ? '#FFFFFF' :
-                                            '#000000'; // Y-axis label text color (white for dark, black for light)
+                                            '#000000';
                                         const textColorX = isDarkTheme ? '#FFFFFF' : '#000000';
 
                                         Chart.defaults.color = isDarkTheme ? '#FFFFFF' :
                                             '#000000';
 
-
                                         var labelsAdjusted = dataLabelspop.map(label => {
                                             var words = label.split(' ');
                                             var shortenedLabel = '';
 
-                                            // Check if the words array has at least one element
+                                            // ตรวจสอบว่าอาเรย์ words มีความยาวอย่างน้อยหนึ่งสมาชิกหรือไม่
                                             if (words.length >= 1) {
                                                 shortenedLabel = words[0];
                                             } else {
-                                                // If not, use the original label
+                                                // หากไม่มี ให้ใช้ข้อมูลเดิม
                                                 shortenedLabel = label;
                                             }
                                             return shortenedLabel;
                                         });
 
-                                        // console.log(labelsAdjusted);
-
-                                        // Create the bar chart with the determined text color
+                                        // สร้างกราฟแท่งโดยกำหนดสีข้อความตามธีม
                                         Chart.defaults.font.family = "Lato";
                                         Chart.defaults.font.size = 11.5;
-
 
                                         var ctx = document.getElementById('dataBarChart').getContext('2d');
                                         var myBarChart = new Chart(ctx, {
@@ -910,13 +934,13 @@ include("./process/process_get.php");
                                                 scales: {
                                                     y: {
                                                         ticks: {
-                                                            color: textColorY, // Set the Y-axis label text color
+                                                            color: textColorY, // กำหนดสีข้อความบนแกน Y
                                                             beginAtZero: true
                                                         }
                                                     },
                                                     x: {
                                                         ticks: {
-                                                            color: textColorX, // Set the X-axis label text color
+                                                            color: textColorX, // กำหนดสีข้อความบนแกน X
                                                             beginAtZero: true
                                                         }
                                                     }
@@ -925,22 +949,21 @@ include("./process/process_get.php");
                                         });
                                     }
 
-                                    // Create the chart initially
+                                    // สร้างกราฟเมื่อเริ่มต้น
                                     createChart();
 
-                                    // Toggle theme function
+                                    // ฟังก์ชันสลับธีม
                                     const toggleTheme = () => {
                                         const isDarkTheme = !getTheme();
                                         setTheme(isDarkTheme);
 
                                         if (myBarChart) {
-                                            myBarChart.destroy(); // Destroy the existing chart
+                                            myBarChart.destroy(); // ทำลายกราฟที่มีอยู่
                                         }
 
-                                        createChart(); // Re-create the chart with the new theme
+                                        createChart(); // สร้างกราฟใหม่โดยใช้ธีมใหม่
                                     };
                                     </script>
-
                                 </div>
                             </div>
                         </div>
@@ -985,71 +1008,69 @@ include("./process/process_get.php");
                                                         </th>
                                                     </tr>
                                                 </thead>
+                                                <!-- เริ่มต้นส่วนข้อมูลในตาราง -->
                                                 <tbody class="divide-y divide-gray-100">
                                                     <?php
-                                                    $top5RatingsKeys = array_keys($top5Ratingst);
-                                                    $top5RatingsValues = array_values($top5Ratingst);
-                                                    $top5StandardDeviations = array_values($topl);
-                                                    
-                                                    for ($i = 0; $i < min(5, count($top5Ratingst)); $i++) {
-                                                        echo '<tr class="text-black dark:text-light">';
-                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . $top5RatingsKeys[$i] . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . json_encode($top5RatingsValues[$i]) . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $top5StandardDeviations[$i] . '</td>';
-                                                        echo '</tr>';
-                                                    }{
-                                                        echo '<tr class="text-black dark:text-light">';
-                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . 'คะแนนแบบสอบถามความพึงพอใจในแต่ละด้าน' . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300 text-center">' . '
-                                                        ค่าเฉลี่ย' . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300 text-center ">' . '
-                                                        ส่วนเบี่ยงเบนมาตรฐาน' . '</td>';
+                                            // ส่วนของ PHP สำหรับการดึงข้อมูลและแสดงในตาราง
+                                            $top5RatingsKeys = array_keys($top5Ratingst);
+                                            $top5RatingsValues = array_values($top5Ratingst);
+                                            $top5StandardDeviations = array_values($topl);
+                                            
+                                            // วนลูปเพื่อแสดงข้อมูล
+                                            for ($i = 0; $i < min(5, count($top5Ratingst)); $i++) {
+                                                echo '<tr class="text-black dark:text-light">';
+                                                echo '<td class="py-2 px-4 border border-gray-300 ">' . $top5RatingsKeys[$i] . '</td>';
+                                                echo '<td class="py-2 px-4 border border-gray-300  text-center">' . json_encode($top5RatingsValues[$i]) . '</td>';
+                                                echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $top5StandardDeviations[$i] . '</td>';
+                                                echo '</tr>';
+                                            }
+                                            
+                                            // เพิ่มข้อมูลแถวสุดท้าย
+                                            echo '<tr class="text-black dark:text-light">';
+                                            echo '<td class="py-2 px-4 border border-gray-300 ">' . 'คะแนนแบบสอบถามความพึงพอใจในแต่ละด้าน' . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300 text-center">' . 'ค่าเฉลี่ย' . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300 text-center ">' . 'ส่วนเบี่ยงเบนมาตรฐาน' . '</td>';
+                                            echo '</tr>';
 
-                                                    }
-                                                    {
-                                                   
-                                                    echo '<tr class="text-black dark:text-light">';
-                                                    echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านเจ้าหน้าที่ผู้ให้บริการ' . '</td>';
-                                                    echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $average_sevice_officer . '</td>';
-                                                    echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $sevice_officer_std . '</td>';
-                                                    }
-                                                    {
-                                                        echo '<tr class="text-black dark:text-light">';
-                                                        echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านคุณภาพการให้บริการ	' . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $service_ser . '</td>';
-                                                        echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $sevice_quality_std . '</td>';
-                                                        }
-                                                        {
-                                                            echo '<tr class="text-black dark:text-light">';
-                                                            echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านสถานที่	' . '</td>';
-                                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $average_location_point . '</td>';
-                                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $ser_location_std . '</td>';
-                                                            }
-                                                    ?>
+                                            // เพิ่มข้อมูลเกี่ยวกับด้านเจ้าหน้าที่ผู้ให้บริการ
+                                            echo '<tr class="text-black dark:text-light">';
+                                            echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านเจ้าหน้าที่ผู้ให้บริการ' . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $average_sevice_officer . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $sevice_officer_std . '</td>';
+                                            echo '</tr>';
+
+                                            // เพิ่มข้อมูลเกี่ยวกับคุณภาพการให้บริการ
+                                            echo '<tr class="text-black dark:text-light">';
+                                            echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านคุณภาพการให้บริการ	' . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $service_ser . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $sevice_quality_std . '</td>';
+                                            echo '</tr>';
+
+                                            // เพิ่มข้อมูลเกี่ยวกับสถานที่
+                                            echo '<tr class="text-black dark:text-light">';
+                                            echo '<td class="py-2 px-4 border border-gray-300 ">' . 'ด้านสถานที่	' . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $average_location_point . '</td>';
+                                            echo '<td class="py-2 px-4 border border-gray-300  text-center">' . $ser_location_std . '</td>';
+                                            echo '</tr>';
+                                            ?>
                                                 </tbody>
+                                                <!-- สิ้นสุดส่วนข้อมูลในตาราง -->
                                             </table>
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                 </main>
-
-
             </div>
-
-            <!-- Panels -->
-
-            <!-- Settings Panel -->
-            <!-- Backdrop -->
+            <!-- พื้นหลังสีที่ใช้ในการแสดง Panel ของการตั้งค่า -->
             <div x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="isSettingsPanelOpen"
                 @click="isSettingsPanelOpen = false" class="fixed inset-0 z-10 bg-primary-darker" style="opacity: 0.5"
                 aria-hidden="true"></div>
-            <!-- Panel -->
+
+            <!-- ส่วนแสดง Panel การตั้งค่า -->
             <section x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
                 x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
                 x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
@@ -1058,7 +1079,7 @@ include("./process/process_get.php");
                 class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
                 aria-labelledby="settinsPanelLabel">
                 <div class="absolute left-0 p-2 transform -translate-x-full">
-                    <!-- Close button -->
+                    <!-- ปุ่มปิด Panel -->
                     <button @click="isSettingsPanelOpen = false"
                         class="p-2 text-white rounded-md focus:outline-none focus:ring">
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -1068,9 +1089,9 @@ include("./process/process_get.php");
                         </svg>
                     </button>
                 </div>
-                <!-- Panel content -->
+                <!-- เนื้อหาของ Panel -->
                 <div class="flex flex-col h-screen">
-                    <!-- Panel header -->
+                    <!-- ส่วนหัวของ Panel -->
                     <div
                         class="flex flex-col items-center justify-center flex-shrink-0 px-4 py-8 space-y-4 border-b dark:border-primary-dark">
                         <span aria-hidden="true" class="text-gray-500 dark:text-primary">
@@ -1080,16 +1101,17 @@ include("./process/process_get.php");
                                     d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                             </svg>
                         </span>
-                        <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-500 dark:text-light">Settings
+                        <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-500 dark:text-light">
+                            การตั้งค่า
                         </h2>
                     </div>
-                    <!-- Content -->
+                    <!-- เนื้อหา -->
                     <div class="flex-1 overflow-hidden hover:overflow-y-auto">
-                        <!-- Theme -->
+                        <!-- ส่วนเลือกโหมด (Light/Dark) -->
                         <div class="p-4 space-y-4 md:p-8">
-                            <h6 class="text-lg font-medium text-gray-400 dark:text-light">Mode</h6>
+                            <h6 class="text-lg font-medium text-gray-400 dark:text-light">โหมด</h6>
                             <div class="flex items-center space-x-8">
-                                <!-- Light button -->
+                                <!-- ปุ่มโหมด Light -->
                                 <button @click="setLightTheme"
                                     class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
                                     :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': !isDark, 'text-gray-500 dark:text-primary-light': isDark }">
@@ -1102,8 +1124,7 @@ include("./process/process_get.php");
                                     </span>
                                     <span>Light</span>
                                 </button>
-
-                                <!-- Dark button -->
+                                <!-- ปุ่มโหมด Dark -->
                                 <button @click="setDarkTheme"
                                     class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
                                     :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': isDark, 'text-gray-500 dark:text-primary-light': !isDark }">
@@ -1119,9 +1140,9 @@ include("./process/process_get.php");
                             </div>
                         </div>
 
-                        <!-- Colors -->
+                        <!-- ส่วนเลือกสี -->
                         <div class="p-4 space-y-4 md:p-8">
-                            <h6 class="text-lg font-medium text-gray-400 dark:text-light">Colors</h6>
+                            <h6 class="text-lg font-medium text-gray-400 dark:text-light">สี</h6>
                             <div>
                                 <button @click="setColors('cyan')" class="w-10 h-10 rounded-full"
                                     style="background-color: var(--color-cyan)"></button>
@@ -1142,12 +1163,12 @@ include("./process/process_get.php");
             </section>
         </div>
     </div>
-    <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
-    <!-- <script src="build/js/script.js"></script> -->
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+
+    <!--ส่วนของการตั้งค่า theme, setting, color และ menu -->
     <script>
     const setup = () => {
+        // ฟังก์ชัน getTheme ใช้ในการตรวจสอบโหมดสีที่ผู้ใช้เลือก
         const getTheme = () => {
             if (window.localStorage.getItem('dark')) {
                 return JSON.parse(window.localStorage.getItem('dark'))
@@ -1155,17 +1176,18 @@ include("./process/process_get.php");
 
             return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         }
-
+        // ฟังก์ชัน setTheme ใช้ในการตั้งค่าโหมดสี
         const setTheme = (value) => {
             window.localStorage.setItem('dark', value)
         }
-
+        // ฟังก์ชัน getColor ใช้ในการรับค่าสีที่ผู้ใช้เลือก
         const getColor = () => {
             if (window.localStorage.getItem('color')) {
                 return window.localStorage.getItem('color')
             }
             return 'cyan'
         }
+        // ฟังก์ชัน setColors ใช้ในการตั้งค่าสีที่ผู้ใช้เลือก
         const setColors = (color) => {
             const root = document.documentElement
             root.style.setProperty('--color-primary', `var(--color-${color})`)
@@ -1177,7 +1199,9 @@ include("./process/process_get.php");
             root.style.setProperty('--color-primary-darker', `var(--color-${color}-darker)`)
             this.selectedColor = color
             window.localStorage.setItem('color', color)
+            //
         }
+
         return {
             loading: true,
             isDark: getTheme(),
@@ -1196,10 +1220,12 @@ include("./process/process_get.php");
             color: getColor(),
             selectedColor: 'cyan',
             setColors,
+            // ส่วนของการเปิด/ปิดเมนูไซด์บาร์
             toggleSidbarMenu() {
                 this.isSidebarOpen = !this.isSidebarOpen
             },
             isSettingsPanelOpen: false,
+            // ส่วนของการเปิดตัวเลือกการตั้งค่า
             openSettingsPanel() {
                 this.isSettingsPanelOpen = true
                 this.$nextTick(() => {
@@ -1207,6 +1233,7 @@ include("./process/process_get.php");
                 })
             },
             isMobileSubMenuOpen: false,
+            // ส่วนของการเปิดเมนูย่อยบนมือถือ
             openMobileSubMenu() {
                 this.isMobileSubMenuOpen = true
                 this.$nextTick(() => {
@@ -1214,12 +1241,13 @@ include("./process/process_get.php");
                 })
             },
             isMobileMainMenuOpen: false,
+            // ส่วนของการเปิดเมนูหลักบนมือถือ
             openMobileMainMenu() {
                 this.isMobileMainMenuOpen = true
                 this.$nextTick(() => {
                     this.$refs.mobileMainMenu.focus()
                 })
-            },
+            }
         }
     }
     </script>
