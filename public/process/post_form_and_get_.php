@@ -4,7 +4,7 @@ session_start();
 
 // ตรวจสอบว่ามีตัวแปรเซสชัน 'token' และ 'token_timestamp' ถูกตั้งค่าหรือไม่
 if (isset($_SESSION['token']) && isset($_SESSION['token_timestamp'])) {
-    // ตรวจสอบว่าโทเค็น (token) หมดอายุหรือไม่ (ในกรณีนี้ 1 ชั่วโมง)
+    // ตรวจสอบว่าโทเค็น (token) หมดอายุหรือไม่
     $token = $_SESSION['token'];
     $tokenExpiration = $_SESSION['token_timestamp'] + 3600; // 1 ชั่วโมง
     

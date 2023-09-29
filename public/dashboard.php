@@ -160,7 +160,7 @@ include("./process/post_form_and_get_.php");
                         </div>
                     </nav>
                     <div class=" mx-2 mb-4 mt-4 p-2">
-                        <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศภาคเหนือตอนล่าง</div>
+                        <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศ ภาคเหนือตอนล่าง</div>
                     </div>
                 </div>
             </aside>
@@ -462,7 +462,7 @@ include("./process/post_form_and_get_.php");
                             </div>
                         </nav>
                         <div class=" mx-4 mb-4 mt-4 p-2">
-                            <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศภาคเหนือตอนล่าง
+                            <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศ ภาคเหนือตอนล่าง
                             </div>
                         </div>
                     </div>
