@@ -1,6 +1,6 @@
 <?php
 // รวมไฟล์ process_get.php เพื่อใช้งานฟังก์ชันและตัวแปรที่อยู่ในไฟล์นี้
-include("../process/process_get.php");
+include("../process/post_form_and_get_.php");
 
 // ตรวจสอบว่ามีตัวแปร $_SESSION['token'] อยู่หรือไม่
 if (isset($_SESSION['token'])) {
@@ -41,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="mask-icon" type="imfname/x-icon"
         href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg"
         color="#111">
+    <link rel="shortcut icon" type="image/x-icon" href="../build/images/รพสต.png">
+
     <script
         src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js">
     </script>
@@ -513,7 +515,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <!-- ปุ่มกลับไปหน้าหลักและปุ่มถัดไป -->
-                    <a href="../index2.php" class="previous action-button-previous">หน้าหลัก</a>
+                    <a href="../navigator.php" class="previous action-button-previous">หน้าหลัก</a>
                     <input type="button" name="next" class="next action-button" value="ถัดไป">
                 </fieldset>
 
@@ -673,10 +675,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location.href = 'input_user.php';
                 });
 
-                // ทำการส่งข้อมูลโดยใช้ Ajax ไปยังไฟล์ process_post_data_user.php และจัดการกับการตอบกลับจากเซิร์ฟเวอร์
+                // ทำการส่งข้อมูลโดยใช้ Ajax ไปยังไฟล์ post_data_user.php และจัดการกับการตอบกลับจากเซิร์ฟเวอร์
                 $.ajax({
                     method: 'POST',
-                    url: '../process/process_post_data_user.php',
+                    url: '../process/post_data_user.php',
                     data: formData,
                     dataType: "json",
                     encode: true,

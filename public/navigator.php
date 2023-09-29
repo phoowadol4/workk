@@ -1,5 +1,5 @@
 <?php
-include("./process/process_get.php");
+include("./process/post_form_and_get_.php");
 $keepName;
 $token = $_SESSION['token'];
 ?>
@@ -14,6 +14,7 @@ $token = $_SESSION['token'];
     <link rel="stylesheet" href="build/css/tailwind.css" />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="./build/images/รพสต.png">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
@@ -45,6 +46,12 @@ $token = $_SESSION['token'];
                 <div class="flex flex-col h-full">
                     <!-- ลิงก์เมนู -->
                     <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
+                        <span aria-hidden="true" class="flex">
+                            <img class="h-16" src="./build/images/รพสต.png" alt="รพสต">
+                            <img class="mx-4 my-3 h-10" src="./build/images/gistnu.png" alt="รพสต">
+
+                        </span>
+
                         <!-- ลิงก์สู่หน้าแสดงข้อมูลแบบสอบถาม -->
                         <div x-data="{ isActive: true, open: true}">
                             <a href="#" @click="$event.preventDefault(); open = !open"
@@ -70,11 +77,11 @@ $token = $_SESSION['token'];
                             </a>
                             <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                             <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                                <a href="index.php" role="menuitem"
+                                <a href="dashboard.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     รายงานสรุปผลการตอบแบบสอบถาม
                                 </a>
-                                <a href="index2.php" role="menuitem"
+                                <a href="navigator.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ค้นหาเส้นทางไปยังบ้านผู้ป่วย
 
@@ -146,7 +153,7 @@ $token = $_SESSION['token'];
                                 </span>
                             </a>
                             <!-- รายการเมนูที่แสดงเมื่อเปิด -->
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                            <div x-show="open" class="mt-2 space-y-2 px-7 mb-4" role="menu" arial-label="Pages">
                                 <a href="pages/input_user.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     เพิ่มข้อมูลผู้ย้ายมาอยู่ใหม่
@@ -154,6 +161,10 @@ $token = $_SESSION['token'];
                             </div>
                         </div>
                     </nav>
+                    <div class=" mx-2 mb-4 mt-4 p-2">
+                            <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศภาคเหนือตอนล่าง
+                            </div>
+                        </div>
                 </div>
             </aside>
 
@@ -212,8 +223,8 @@ $token = $_SESSION['token'];
                             </span>
                         </button>
                         <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
-                                <!-- ปุ่มสลับธีม dark / light -->
-                                <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
+                            <!-- ปุ่มสลับธีม dark / light -->
+                            <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
                                 <div
                                     class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter">
                                 </div>
@@ -337,6 +348,10 @@ $token = $_SESSION['token'];
                     <div class="border-b md:hidden dark:border-primary-darker" x-show="isMobileMainMenuOpen"
                         @click.away="isMobileMainMenuOpen = false">
                         <nav aria-label="Main" class="px-2 py-4 space-y-2">
+                            <span aria-hidden="true" class="flex">
+                                <img class=" my-2 h-12" src="./build/images/รพสต.png" alt="รพสต">
+                                <img class="my-3 mx-3 h-10" src="./build/images/gistnu.png" alt="รพสต">
+                            </span>
                             <!-- ลิงก์สู่หน้าแสดงข้อมูล-->
                             <div x-data="{ isActive: true, open: true}">
                                 <a href="#" @click="$event.preventDefault(); open = !open"
@@ -350,7 +365,8 @@ $token = $_SESSION['token'];
                                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน </span>
+                                    <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน
+                                    </span>
                                     <span class="ml-auto" aria-hidden="true">
                                         <svg class="w-4 h-4 transition-transform transform"
                                             :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
@@ -362,11 +378,11 @@ $token = $_SESSION['token'];
                                 </a>
                                 <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                                 <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                                    <a href="index.php" role="menuitem"
+                                    <a href="dashboard.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         รายงานสรุปผลการตอบแบบสอบถาม
                                     </a>
-                                    <a href="index2.php" role="menuitem"
+                                    <a href="navigator.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ค้นหาเส้นทางไปยังบ้านผู้ป่วย
                                     </a>
@@ -443,6 +459,10 @@ $token = $_SESSION['token'];
                                 </div>
                             </div>
                         </nav>
+                        <div class=" mx-4 mb-4 mt-4 p-2">
+                            <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศภาคเหนือตอนล่าง
+                            </div>
+                        </div>
                     </div>
                 </header>
                 <main>

@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="mask-icon" type="image/x-icon"
         href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg"
         color="#111">
+    <link rel="shortcut icon" type="image/x-icon" href="./build/images/รพสต.png">
     <script
         src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js">
     </script>
@@ -1227,7 +1228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // นำผู้ใช้ไปยังหน้าตอบแบบสอบถามส่วนแรกหลังจากที่ตัวจับเวลาหมดเวลา
                     window.location.href = 'form.php';
                 });
-                
+
                 // ทำการส่งข้อมูลโดยใช้ Ajax ไปยังไฟล์ process_get.php และจัดการกับการตอบกลับจากเซิร์ฟเวอร์
                 $.ajax({
                     method: 'POST', // ใช้เมธอด POST

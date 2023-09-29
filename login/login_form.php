@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (checkLoginStatus()) {
             // ส่งผู้ใช้ไปยังหน้าสำเร็จหรือทำอย่างอื่นๆ หลังจากการเข้าสู่ระบบสำเร็จ
             // คุณสามารถเพิ่มตรรกะของคุณเองที่นี่
-            header("Location: ../public/index2.php");
+            header("Location: ../public/navigator.php");
             exit();
         } else {
             // กำหนดข้อความข้อผิดพลาดหากชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="form-container">
         <!-- แบบฟอร์มเข้าสู่ระบบ -->
         <div class="flex justify-center items-center flex-col">
-            <img class="h-20" src="../รูป/รพสต.png" alt="รพสต">
+            <img class="h-20" src="../public/build/images/รพสต.png" alt="รพสต">
 
             <h2 class="text-2xl text-center mb-6">เข้าสู่ระบบ</h2>
             <!-- เริ่มแบบฟอร์ม -->

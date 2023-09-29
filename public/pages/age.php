@@ -1,5 +1,5 @@
 <?php
-include("../process/process_get.php");
+include("../process/post_form_and_get_.php");
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +11,7 @@ include("../process/process_get.php");
     <title>อายุของผู้ตอบแบบสอบถาม</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="../build/images/รพสต.png">
     <link rel="stylesheet" href="../build/css/tailwind.css" />
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js">
     </script>
@@ -47,6 +48,10 @@ include("../process/process_get.php");
                     <!-- ลิงก์เมนู -->
                     <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
                         <!-- ลิงก์สู่หน้าแสดงข้อมูล-->
+                        <span aria-hidden="true" class="flex">
+                            <img class="h-12" src="../build/images/รพสต.png" alt="รพสต">
+                            <img class="mx-4 my-3 h-10" src="../build/images/gistnu.png" alt="รพสต">
+                        </span>
                         <div x-data="{ isActive: true, open: true}">
                             <a href="#" @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
@@ -72,11 +77,11 @@ include("../process/process_get.php");
                             </a>
                             <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                             <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                                <a href="../index.php" role="menuitem"
+                                <a href="../dashboard.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     รายงานสรุปผลการตอบแบบสอบถาม
                                 </a>
-                                <a href="../index2.php" role="menuitem"
+                                <a href="../navigator.php" role="menuitem"
                                     class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                     ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                 </a>
@@ -157,7 +162,10 @@ include("../process/process_get.php");
                             </div>
                         </div>
                     </nav>
-
+                    <div class=" mx-4 mb-4 mt-4 p-2">
+                        <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศ ภาคเหนือตอนล่าง
+                        </div>
+                    </div>
                 </div>
             </aside>
 
@@ -179,7 +187,7 @@ include("../process/process_get.php");
                         </button>
 
                         <!-- ชื่อระบบ -->
-                        <a href="../index.php"
+                        <a href="../dashboard.php"
                             class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">
                             ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน
                         </a>
@@ -349,6 +357,10 @@ include("../process/process_get.php");
                     <div class="border-b md:hidden dark:border-primary-darker" x-show="isMobileMainMenuOpen"
                         @click.away="isMobileMainMenuOpen = false">
                         <nav aria-label="Main" class="px-2 py-4 space-y-2">
+                            <span aria-hidden="true" class="flex">
+                                <img class="h-12" src="../build/images/รพสต.png" alt="รพสต">
+                                <img class="mx-4 my-3 h-10" src="../build/images/gistnu.png" alt="รพสต">
+                            </span>
                             <!-- ลิงก์สู่หน้าแสดงข้อมูล-->
                             <div x-data="{ isActive: true, open: true}">
                                 <a href="#" @click="$event.preventDefault(); open = !open"
@@ -362,8 +374,10 @@ include("../process/process_get.php");
                                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน </span>
-                                    <span class="ml-auto" aria-hidden="true">                                        <svg class="w-4 h-4 transition-transform transform"
+                                    <span class="ml-2 text-sm"> ระบบจัดเก็บและแสดงผลข้อมูลการให้บริการสุขภาพในชุมชน
+                                    </span>
+                                    <span class="ml-auto" aria-hidden="true"> <svg
+                                            class="w-4 h-4 transition-transform transform"
                                             :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -373,11 +387,11 @@ include("../process/process_get.php");
                                 </a>
                                 <!-- รายการเมนูที่แสดงเมื่อเปิด -->
                                 <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                                    <a href="../index.php" role="menuitem"
+                                    <a href="../dashboard.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         รายงานสรุปผลการตอบแบบสอบถาม
                                     </a>
-                                    <a href="../index2.php" role="menuitem"
+                                    <a href="../navigator.php" role="menuitem"
                                         class="block p-2 text-sm text-black transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
                                         ระบบแผนที่นำทางไปยังบ้านผู้ป่วย
                                     </a>
@@ -456,6 +470,10 @@ include("../process/process_get.php");
                                 </div>
                             </div>
                         </nav>
+                        <div class=" mx-2 mb-4 mt-4 p-2">
+                            <div class="text-xs">พัฒนาโดย : สถานภูมิภาคเทคโนโลยีอวกาศ และภูมิสารสนเทศ ภาคเหนือตอนล่าง
+                            </div>
+                        </div>
                     </div>
                 </header>
                 <!-- Main content -->
