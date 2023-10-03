@@ -1,5 +1,5 @@
 <?php
-include("./process/post_form_and_get_.php");
+include("./process/get_data.php");
 $keepName;
 $token = $_SESSION['token'];
 ?>

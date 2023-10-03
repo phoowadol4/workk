@@ -1232,7 +1232,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // ทำการส่งข้อมูลโดยใช้ Ajax ไปยังไฟล์ process_get.php และจัดการกับการตอบกลับจากเซิร์ฟเวอร์
                 $.ajax({
                     method: 'POST', // ใช้เมธอด POST
-                    url: './process/process_get.php', // URL ของไฟล์ process_get.php
+                    url: './process/process_post_form.php', // URL ของไฟล์ process_get.php
                     data: formData, // ข้อมูลที่จะส่งไปยังเซิร์ฟเวอร์
                     dataType: "json", // รูปแบบของข้อมูลที่รับกลับมาจากเซิร์ฟเวอร์เป็น JSON
                     encode: true, // เข้ารหัสข้อมูลเพื่อส่งไปยังเซิร์ฟเวอร์
